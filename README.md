@@ -1,5 +1,5 @@
 # Plataforma de Gestión Escolar - CIFP Francesc de Borja Moll
-#GEBMOLL
+# GEBMOLL
 ## 📌 Descripción
 Esta es una plataforma web desarrollada para la gestión académica y administrativa del **CIFP Francesc de Borja Moll (Palma)**. Su objetivo es facilitar la comunicación y administración dentro del centro educativo, permitiendo a docentes, alumnos y personal acceder a funcionalidades esenciales como gestión de notas, asistencia y mensajes internos.
 
