@@ -25,3 +25,5 @@ Esta es una plataforma web desarrollada para la gestión académica y administra
 - Git & GitHub (Control de versiones)
 
 ---
+#### Diagrama
+![diagram](https://github.com/user-attachments/assets/2b495d1c-7037-4a76-8915-9f8c3aa61094)
