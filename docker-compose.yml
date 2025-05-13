@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gebmoll_app
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - gebmoll
+
+  db:
+    image: mysql:8
+    container_name: gebmoll_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: gebmoll
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - gebmoll
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: gebmoll_pma
+    restart: always
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8080:80"
+    networks:
+      - gebmoll
+
+volumes:
+  dbdata:
+
+networks:
+  gebmoll:
+    driver: bridge
