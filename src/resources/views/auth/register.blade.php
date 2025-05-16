@@ -1,6 +1,19 @@
 <x-guest-layout>
+     <div style="text-align:center;">
+        <img src="{{ asset('multimedia/gebmoll_logo.png') }}" alt="Logo GEBMOLL" style="width: 250px;display: block; margin: 0 auto;">
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
+
+        <!-- Rol -->
+        <div class="mt-4">
+            <label for="role">Rol</label>
+            <select id="role" class="block mt-1 w-full rounded-md" name="role" required>
+                <option value="alumno">Alumno</option>
+                <option value="docente">Docente</option>
+                <option value="admin">Administrador</option>
+            </select>
+        </div>
 
         <!-- Name -->
         <div>
@@ -15,15 +28,7 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-        <!-- Rol -->
-        <div>
-            <label for="role">Rol</label>
-            <select id="role" name="role" required>
-                <option value="alumno">Alumno</option>
-                <option value="docente">Docente</option>
-                <option value="admin">Administrador</option>
-            </select>
-        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
@@ -52,7 +57,7 @@
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4 bg-[#0d6efd]">
                 {{ __('Register') }}
             </x-primary-button>
         </div>

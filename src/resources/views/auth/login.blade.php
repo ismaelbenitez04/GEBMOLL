@@ -1,7 +1,9 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    <div style="text-align:center;">
+        <img src="{{ asset('multimedia/gebmoll_logo.png') }}" alt="Logo GEBMOLL" style="width: 250px;display: block; margin: 0 auto;">
+    </div>
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -39,7 +41,7 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button class="ms-3 bg-[#0d6efd]">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

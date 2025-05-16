@@ -24,36 +24,38 @@ Route::middleware(['auth', RoleMiddleware::class.':admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth', RoleMiddleware::class.':docente'])->group(function () {
-    Route::get('/docente', function () {
-        return view('docente.dashboard');
-    });
-});
-
-Route::middleware(['auth', RoleMiddleware::class.':alumno'])->group(function () {
-    Route::get('/alumno', function () {
-        return view('alumno.dashboard');
+Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
     });
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':docente'])->group(function () {
-    Route::get('/inicio', function () { return view('docente.inicio'); });
-    Route::get('/calendario', function () { return view('docente.calendario'); });
-    Route::get('/asistencia', function () { return view('docente.asistencia'); });
-    Route::get('/chats', function () { return view('docente.chats'); });
-    Route::get('/calificaciones', function () { return view('docente.calificaciones'); });
-    Route::get('/amonestaciones', function () { return view('docente.amonestaciones'); });
-    Route::get('/tareas', function () { return view('docente.tareas'); });
+    Route::get('/docente', function () {
+        return view('docente.dashboard');
+    });
+
+    Route::get('/docente/inicio', function () { return view('docente.inicio'); });
+    Route::get('/docente/calendario', function () { return view('docente.calendario'); });
+    Route::get('/docente/asistencia', function () { return view('docente.asistencia'); });
+    Route::get('/docente/chats', function () { return view('docente.chats'); });
+    Route::get('/docente/calificaciones', function () { return view('docente.calificaciones'); });
+    Route::get('/docente/amonestaciones', function () { return view('docente.amonestaciones'); });
+    Route::get('/docente/tareas', function () { return view('docente.tareas'); });
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':alumno'])->group(function () {
-    Route::get('/inicio', function () { return view('alumno.inicio'); });
-    Route::get('/calendario', function () { return view('alumno.calendario'); });
-    Route::get('/asistencia', function () { return view('alumno.asistencia'); });
-    Route::get('/chats', function () { return view('alumno.chats'); });
-    Route::get('/calificaciones', function () { return view('alumno.calificaciones'); });
-    Route::get('/amonestaciones', function () { return view('alumno.amonestaciones'); });
-    Route::get('/tareas', function () { return view('alumno.tareas'); });
+    Route::get('/alumno', function () {
+        return view('alumno.dashboard');
+    });
+
+    Route::get('/alumno/inicio', function () { return view('alumno.inicio'); });
+    Route::get('/alumno/calendario', function () { return view('alumno.calendario'); });
+    Route::get('/alumno/asistencia', function () { return view('alumno.asistencia'); });
+    Route::get('/alumno/chats', function () { return view('alumno.chats'); });
+    Route::get('/alumno/calificaciones', function () { return view('alumno.calificaciones'); });
+    Route::get('/alumno/amonestaciones', function () { return view('alumno.amonestaciones'); });
+    Route::get('/alumno/tareas', function () { return view('alumno.tareas'); });
 });
 
 require __DIR__.'/auth.php';

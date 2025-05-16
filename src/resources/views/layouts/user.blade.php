@@ -9,45 +9,37 @@
 <body>
 <div class="d-flex vh-100">
     <aside class="bg-light p-3" style="width: 220px;">
-        <h5>Menú</h5>
-        <ul class="nav flex-column">
-    <li class="nav-item">
-        <a href="{{ url('/inicio') }}" class="nav-link {{ request()->is('inicio') ? 'active' : '' }}">
-            Inicio
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/calendario') }}" class="nav-link {{ request()->is('calendario') ? 'active' : '' }}">
-            Calendario
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/asistencia') }}" class="nav-link {{ request()->is('asistencia') ? 'active' : '' }}">
-            Asistencia
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/chats') }}" class="nav-link {{ request()->is('chats') ? 'active' : '' }}">
-            Chats
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/calificaciones') }}" class="nav-link {{ request()->is('calificaciones') ? 'active' : '' }}">
-            Calificaciones
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/amonestaciones') }}" class="nav-link {{ request()->is('amonestaciones') ? 'active' : '' }}">
-            Amonestaciones
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/tareas') }}" class="nav-link {{ request()->is('tareas') ? 'active' : '' }}">
-            Tareas
-        </a>
-    </li>
-</ul>
+        <div style="text-align:center;">
+            <img src="{{ asset('multimedia/gebmoll_logo.png') }}" alt="Logo GEBMOLL" style="width: 175px;display: block;">
+        </div>
 
+        @php
+            $role = auth()->check() ? auth()->user()->role : '';
+        @endphp
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="{{ url("/$role/inicio") }}" class="nav-link {{ request()->is("$role/inicio") ? 'active' : '' }}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url("/$role/calendario") }}" class="nav-link {{ request()->is("$role/calendario") ? 'active' : '' }}">Calendario</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url("/$role/asistencia") }}" class="nav-link {{ request()->is("$role/asistencia") ? 'active' : '' }}">Asistencia</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url("/$role/chats") }}" class="nav-link {{ request()->is("$role/chats") ? 'active' : '' }}">Chats</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url("/$role/calificaciones") }}" class="nav-link {{ request()->is("$role/calificaciones") ? 'active' : '' }}">Calificaciones</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url("/$role/amonestaciones") }}" class="nav-link {{ request()->is("$role/amonestaciones") ? 'active' : '' }}">Amonestaciones</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url("/$role/tareas") }}" class="nav-link {{ request()->is("$role/tareas") ? 'active' : '' }}">Tareas</a>
+            </li>
+        </ul>
     </aside>
     <main class="flex-grow-1 p-4">
         <h2>¡Bienvenido, {{ auth()->user()->name }}!</h2>
