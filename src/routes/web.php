@@ -35,4 +35,25 @@ Route::middleware(['auth', RoleMiddleware::class.':alumno'])->group(function () 
         return view('alumno.dashboard');
     });
 });
+
+Route::middleware(['auth', RoleMiddleware::class . ':docente'])->group(function () {
+    Route::get('/inicio', function () { return view('docente.inicio'); });
+    Route::get('/calendario', function () { return view('docente.calendario'); });
+    Route::get('/asistencia', function () { return view('docente.asistencia'); });
+    Route::get('/chats', function () { return view('docente.chats'); });
+    Route::get('/calificaciones', function () { return view('docente.calificaciones'); });
+    Route::get('/amonestaciones', function () { return view('docente.amonestaciones'); });
+    Route::get('/tareas', function () { return view('docente.tareas'); });
+});
+
+Route::middleware(['auth', RoleMiddleware::class . ':alumno'])->group(function () {
+    Route::get('/inicio', function () { return view('alumno.inicio'); });
+    Route::get('/calendario', function () { return view('alumno.calendario'); });
+    Route::get('/asistencia', function () { return view('alumno.asistencia'); });
+    Route::get('/chats', function () { return view('alumno.chats'); });
+    Route::get('/calificaciones', function () { return view('alumno.calificaciones'); });
+    Route::get('/amonestaciones', function () { return view('alumno.amonestaciones'); });
+    Route::get('/tareas', function () { return view('alumno.tareas'); });
+});
+
 require __DIR__.'/auth.php';

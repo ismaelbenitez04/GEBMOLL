@@ -45,4 +45,37 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // Si es un profe:
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'teacher_id');
+    }
+
+    // Si es un alumno:
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    // Mensajes enviados y recibidos
+    public function messagesSent()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function messagesReceived()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
 }

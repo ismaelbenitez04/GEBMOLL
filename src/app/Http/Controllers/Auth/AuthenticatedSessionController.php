@@ -38,8 +38,8 @@ class AuthenticatedSessionController extends Controller
             case 'alumno':
                 return redirect('/alumno');
             default:
-                return redirect('/dashboard'); 
-        }        
+                return redirect('/dashboard'); // Fallback
+        }
     }
 
 

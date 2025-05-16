@@ -1,2 +1,7 @@
-<!-- resources/views/admin/dashboard.blade.php -->
-<h1>Bienvenido, Profesor!</h1>
+@extends('layouts.user')
+
+@section('title', 'Dashboard Docente')
+
+@section('content')
+<p>Bienvenido al panel de docente, {{ auth()->user()->name }}</p>
+@endsection
