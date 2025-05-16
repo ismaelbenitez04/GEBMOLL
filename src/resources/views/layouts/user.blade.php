@@ -50,7 +50,7 @@
 
     </aside>
     <main class="flex-grow-1 p-4">
-        <h2>Bienvenido, {{ auth()->user()->name }}</h2>
+        <h2>¡Bienvenido, {{ auth()->user()->name }}!</h2>
         @yield('content')
     </main>
 </div>
