@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title', 'GEBMOLL')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    {{-- Bootstrap CSS --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {{-- FullCalendar CSS --}}
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+
+    @stack('styles')
 </head>
+
 <body>
     <div class="d-flex vh-100">
         <aside class="bg-light p-3 d-flex flex-column" style="width: 220px;">        
@@ -22,7 +29,11 @@
                     <a href="{{ url("/$role/inicio") }}" class="nav-link {{ request()->is("$role/inicio") ? 'active' : '' }}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url("/$role/calendario") }}" class="nav-link {{ request()->is("$role/calendario") ? 'active' : '' }}">Calendario</a>
+                    @if ($role === 'alumno')
+                        <a href="{{ route('alumno.calendario') }}" class="nav-link {{ request()->routeIs('alumno.calendario') ? 'active' : '' }}">Calendario</a>
+                    @else
+                        <a href="{{ route('calendario.index') }}" class="nav-link {{ request()->routeIs('calendario.index') ? 'active' : '' }}">Calendario</a>
+                    @endif
                 </li>
                  {{-- Mostrar "Asistencia" diferente para alumnos --}}
                 @if ($role === 'alumno')
@@ -83,6 +94,8 @@
         @yield('content')
     </main>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+@stack('scripts') 
+
 </body>
 </html>
