@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container">
+    <h2>¡Bienvenido, {{ auth()->user()->name }}!</h2>
     <br><br>
     <h2 class="lead">Bienvenido a la plataforma GEBMOLL como <strong>{{ ucfirst(auth()->user()->role) }}</strong>.</h2>
     <div class="row g-4 mt-4">

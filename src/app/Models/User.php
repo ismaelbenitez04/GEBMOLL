@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -59,7 +60,7 @@ class User extends Authenticatable
 
     public function grades()
     {
-        return $this->hasMany(Grade::class);
+        return $this->hasMany(Grade::class, 'user_id');
     }
 
     public function attendances()
@@ -77,5 +78,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'receiver_id');
     }
+    // Si el usuario es un alumno, esta es la relación con su tutor
+    public function tutor()
+    {
+        return $this->belongsTo(User::class, 'tutor_id');
+    }
+
+    // Si el usuario es un tutor, esta es la relación con sus tutorandos
+    public function tutorandos()
+    {
+        return $this->hasMany(User::class, 'tutor_id');
+    }
+     public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class)->withPivot('completed')->withTimestamps();
+    }
+
+
 
 }

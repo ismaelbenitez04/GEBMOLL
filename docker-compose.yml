@@ -6,57 +6,37 @@ services:
       context: .
       dockerfile: docker/php/Dockerfile
     container_name: gebmoll_app
-    volumes:
-      - ./src:/var/www
-    working_dir: /var/www
-    depends_on:
-      - db
-    networks:
-      - laravel
-
-  web:
-    image: nginx:alpine
-    container_name: gebmoll_nginx
     ports:
-      - "8000:80"
+      - "8000:8000"
     volumes:
-      - ./src:/var/www
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/var/www/html
     depends_on:
-      - app
-    networks:
-      - laravel
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=gebmoll
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
 
-  db:
+  mysql:
     image: mysql:8
     container_name: gebmoll_db
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gebmoll
-    ports:
-      - "3306:3306"
     volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      - laravel
+      - mysql_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: gebmoll_phpmyadmin
-    restart: unless-stopped
     ports:
       - "8080:80"
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
-      PMA_MYSQL_SSL: false
-    depends_on:
-      - db
-    networks:
-      - laravel
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
 
 volumes:
-  dbdata:
-
-networks:
-  laravel:
+  mysql_data:

@@ -12,6 +12,7 @@
                 <option value="alumno">Alumno</option>
                 <option value="docente">Docente</option>
                 <option value="admin">Administrador</option>
+                <option value="tutor">Tutor</option>
             </select>
         </div>
 

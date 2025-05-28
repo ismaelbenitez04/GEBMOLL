@@ -3,17 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Grade extends Model
 {
-    public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    use HasFactory;
 
-public function subject()
-{
-    return $this->belongsTo(Subject::class);
-}
+    protected $fillable = [
+        'user_id',
+        'subject_id',
+        'grade',
+        'date',
+    ];
 
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }
