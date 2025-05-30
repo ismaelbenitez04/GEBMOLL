@@ -1,11 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight">
-            Tutorandos asignados
-        </h2>
-    </x-slot>
+@extends('layouts.user')
+@section('title', 'Tutorandos')
 
-    <div class="py-6 px-4">
+@section('content')
+<div class="py-6 px-4">
         @if ($tutorandos->isEmpty())
             <p>No tienes tutorandos asignados.</p>
         @else
@@ -27,4 +24,4 @@
             </table>
         @endif
     </div>
-</x-app-layout>
+@endsection

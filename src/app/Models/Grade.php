@@ -15,6 +15,10 @@ class Grade extends Model
         'grade',
         'date',
     ];
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
 
     public function student()
     {
@@ -23,6 +27,7 @@ class Grade extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(\App\Models\Subject::class, 'subject_id');
     }
+
 }

@@ -34,11 +34,11 @@ class AuthenticatedSessionController extends Controller
             case 'admin':
                 return redirect('/admin');
             case 'docente':
-                return redirect('/docente');
+                return redirect('/docente/inicio');
             case 'alumno':
                 return redirect('/alumno/inicio');
             case 'tutor':
-                return redirect('/tutor');
+                return redirect('/tutor/inicio');
             default:
                 return redirect('/dashboard'); // Fallback
         }

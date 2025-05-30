@@ -23,14 +23,26 @@
         @php
             $role = auth()->check() ? auth()->user()->role : '';
         @endphp
+      
+
         <div>
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="{{ url("/$role/inicio") }}" class="nav-link {{ request()->is("$role/inicio") ? 'active' : '' }}">Inicio</a>
-                </li>
+
+                @if ($role === 'tutor')
+                    <li class="nav-item">
+                        <a href="{{ route('tutor.inicio') }}" class="nav-link {{ request()->routeIs('tutor.inicio') ? 'active' : '' }}">Inicio</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="{{ url("/$role/inicio") }}" class="nav-link {{ request()->is("$role/inicio") ? 'active' : '' }}">Inicio</a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
                     @if ($role === 'alumno')
                         <a href="{{ route('alumno.calendario') }}" class="nav-link {{ request()->routeIs('alumno.calendario') ? 'active' : '' }}">Calendario</a>
+                    @elseif ($role === 'tutor')
+                        <a href="{{ route('tutor.calendario') }}" class="nav-link {{ request()->routeIs('tutor.calendario') ? 'active' : '' }}">Calendario</a>
                     @else
                         <a href="{{ route('calendario.index') }}" class="nav-link {{ request()->routeIs('calendario.index') ? 'active' : '' }}">Calendario</a>
                     @endif
@@ -39,6 +51,12 @@
                 @if ($role === 'alumno')
                      <li class="nav-item">
                         <a href="{{ route('alumno.asistencia') }}" class="nav-link {{ request()->routeIs('alumno.asistencia') ? 'active' : '' }}">Asistencia</a>
+                    </li>
+                @elseif ($role === 'tutor')  
+                     <li class="nav-item">
+                        <a href="{{ route('tutor.asistencia') }}" class="nav-link {{ request()->routeIs('tutor.asistencia') ? 'active' : '' }}">
+                            Asistencia
+                        </a>
                     </li>
                 @else
                    <li class="nav-item">
@@ -55,18 +73,28 @@
                     <li class="nav-item">
                         <a href="{{ url("/alumno/calificaciones") }}" class="nav-link {{ request()->is('alumno/calificaciones') ? 'active' : '' }}">Calificaciones</a>
                     </li>
+                @elseif ($role === 'tutor')  
+                     <li class="nav-item">
+                        <a href="{{ route('tutor.calificaciones.index') }}" class="nav-link {{ request()->routeIs('calificaciones.*') ? 'active' : '' }}">
+                            Calificaciones
+                        </a>
+                    </li> 
                 @else
                     <li class="nav-item">
                         <a href="{{ route('calificaciones.index') }}" class="nav-link {{ request()->routeIs('calificaciones.*') ? 'active' : '' }}">Calificaciones</a>
                     </li>
                 @endif
+                @if($role === 'tutor')
+                    <li class="nav-item">
+                        <a href="{{ route('tutor.tareas.index') }}" class="nav-link {{ request()->routeIs('tutor.tareas.*') ? 'active' : '' }}">Tareas</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="{{ url("/$role/tareas") }}" class="nav-link {{ request()->is("$role/tareas") ? 'active' : '' }}">Tareas</a>
+                    </li>
+                @endif
 
-                <li class="nav-item">
-                    <a href="{{ url("/$role/amonestaciones") }}" class="nav-link {{ request()->is("$role/amonestaciones") ? 'active' : '' }}">Amonestaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url("/$role/tareas") }}" class="nav-link {{ request()->is("$role/tareas") ? 'active' : '' }}">Tareas</a>
-                </li>
+                
             </ul>
 
         </div>

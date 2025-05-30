@@ -16,17 +16,18 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            events: @json($events), // Esto se genera desde el controlador
-            locale: 'es',
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                events: @json($events),
+                eventClick: function (info) {
+                    alert(info.event.title + "\n\n" + (info.event.extendedProps.description || 'Sin descripción'));
+                }
+            });
+            calendar.render();
         });
-
-        calendar.render();
-    });
-</script>
+    </script>
 @endpush

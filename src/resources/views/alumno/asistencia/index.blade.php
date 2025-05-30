@@ -62,6 +62,12 @@
                         @endif
                     </td>
                 </tr>
+               <form action="{{ route('alumno.asistencia.justificar', $attendance->id) }}" method="POST">
+                    @csrf
+                    <textarea name="motivo" required placeholder="Escribe el motivo de la justificación"></textarea>
+                    <button type="submit" class="btn btn-primary">Justificar</button>
+                </form>
+
             @empty
                 <tr>
                     <td colspan="3">No hay registros</td>

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Justificacion;
 
 class User extends Authenticatable
 {
@@ -96,6 +97,11 @@ class User extends Authenticatable
     public function tasks()
     {
         return $this->belongsToMany(Task::class)->withPivot('completed')->withTimestamps();
+    }
+
+    public function justificaciones()
+    {
+        return $this->hasMany(\App\Models\Justificacion::class, 'user_id');
     }
 
 

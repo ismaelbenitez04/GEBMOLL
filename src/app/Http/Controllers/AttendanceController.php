@@ -158,6 +158,24 @@ class AttendanceController extends Controller
         return view('alumno.asistencia.index', compact('attendances', 'subjects', 'stats'));
     }
 
+    public function justificar(Request $request, Attendance $attendance)
+    {
+        $request->validate([
+            'motivo' => 'required|string|max:255',
+        ]);
+
+        Justificacion::create([
+            'user_id' => auth()->id(),
+            'subject_id' => $attendance->subject_id,
+            'date' => $attendance->date,
+            'motivo' => $request->motivo,
+            'estado' => 'pendiente',
+        ]);
+
+        return redirect()->back()->with('success', 'Justificación enviada correctamente.');
+    }
+
+
 
 
 }

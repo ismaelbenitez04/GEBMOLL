@@ -1,2156 +1,2326 @@
 .
-|-- Group::all();
-|-- README.md
-|-- app
-|   |-- Http
-|   |   |-- Controllers
-|   |   |-- Middleware
-|   |   `-- Requests
-|   |-- Models
-|   |   |-- Attendance.php
-|   |   |-- Enrollment.php
-|   |   |-- Event.php
-|   |   |-- Grade.php
-|   |   |-- Group.php
-|   |   |-- Message.php
-|   |   |-- Subject.php
-|   |   |-- Task.php
-|   |   `-- User.php
-|   |-- Providers
-|   |   `-- AppServiceProvider.php
-|   `-- View
-|       `-- Components
-|-- artisan
-|-- bootstrap
-|   |-- app.php
-|   |-- cache
-|   |   |-- packages.php
-|   |   `-- services.php
-|   `-- providers.php
-|-- composer.json
-|-- composer.lock
-|-- config
-|   |-- app.php
-|   |-- auth.php
-|   |-- cache.php
-|   |-- database.php
-|   |-- filesystems.php
-|   |-- logging.php
-|   |-- mail.php
-|   |-- queue.php
-|   |-- services.php
-|   `-- session.php
-|-- database
-|   |-- factories
-|   |   `-- UserFactory.php
-|   |-- migrations
-|   |   |-- 0001_01_01_000000_create_users_table.php
-|   |   |-- 0001_01_01_000001_create_cache_table.php
-|   |   |-- 0001_01_01_000002_create_jobs_table.php
-|   |   |-- 2025_05_15_174154_add_role_to_users_table.php
-|   |   |-- 2025_05_15_174832_create_subjects_table.php
-|   |   |-- 2025_05_15_174839_create_groups_table.php
-|   |   |-- 2025_05_15_174847_create_enrollments_table.php
-|   |   |-- 2025_05_15_174854_create_grades_table.php
-|   |   |-- 2025_05_15_174904_create_attendances_table.php
-|   |   |-- 2025_05_15_174920_create_messages_table.php
-|   |   |-- 2025_05_23_164851_add_tutor_id_to_users_table.php
-|   |   |-- 2025_05_23_185902_create_grade_tables.php
-|   |   |-- 2025_05_26_003630_add_present_column_to_attendances_table.php
-|   |   |-- 2025_05_27_151043_add_group_id_to_users_table.php
-|   |   |-- 2025_05_27_235354_create_task_user_table.php
-|   |   `-- 2025_05_28_204135_create_events_table.php
-|   `-- seeders
-|       `-- DatabaseSeeder.php
-|-- er->subjects;
-|-- estructura.txt
-|-- node_modules
-|   |-- @alloc
-|   |   `-- quick-lru
-|   |-- @ampproject
-|   |   `-- remapping
-|   |-- @esbuild
-|   |   |-- linux-x64
-|   |   `-- win32-x64
-|   |-- @isaacs
-|   |   |-- cliui
-|   |   `-- fs-minipass
-|   |-- @jridgewell
-|   |   |-- gen-mapping
-|   |   |-- resolve-uri
-|   |   |-- set-array
-|   |   |-- sourcemap-codec
-|   |   `-- trace-mapping
-|   |-- @nodelib
-|   |   |-- fs.scandir
-|   |   |-- fs.stat
-|   |   `-- fs.walk
-|   |-- @pkgjs
-|   |   `-- parseargs
-|   |-- @rollup
-|   |   |-- rollup-linux-x64-gnu
-|   |   |-- rollup-linux-x64-musl
-|   |   `-- rollup-win32-x64-msvc
-|   |-- @tailwindcss
-|   |   |-- forms
-|   |   |-- node
-|   |   |-- oxide
-|   |   |-- oxide-linux-x64-gnu
-|   |   |-- oxide-linux-x64-musl
-|   |   |-- oxide-win32-x64-msvc
-|   |   `-- vite
-|   |-- @types
-|   |   `-- estree
-|   |-- @vue
-|   |   |-- reactivity
-|   |   `-- shared
-|   |-- alpinejs
-|   |   |-- builds
-|   |   |-- dist
-|   |   |-- package.json
-|   |   `-- src
-|   |-- ansi-regex
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- ansi-styles
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- any-promise
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- implementation.d.ts
-|   |   |-- implementation.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- loader.js
-|   |   |-- optional.js
-|   |   |-- package.json
-|   |   |-- register
-|   |   |-- register-shim.js
-|   |   |-- register.d.ts
-|   |   `-- register.js
-|   |-- anymatch
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- arg
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- asynckit
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- bench.js
-|   |   |-- index.js
-|   |   |-- lib
-|   |   |-- package.json
-|   |   |-- parallel.js
-|   |   |-- serial.js
-|   |   |-- serialOrdered.js
-|   |   `-- stream.js
-|   |-- autoprefixer
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- data
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- axios
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- MIGRATION_GUIDE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   |-- index.d.cts
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- balanced-match
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- binary-extensions
-|   |   |-- binary-extensions.json
-|   |   |-- binary-extensions.json.d.ts
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- brace-expansion
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- braces
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- browserslist
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- browser.js
-|   |   |-- cli.js
-|   |   |-- error.d.ts
-|   |   |-- error.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- node.js
-|   |   |-- package.json
-|   |   `-- parse.js
-|   |-- call-bind-apply-helpers
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- actualApply.d.ts
-|   |   |-- actualApply.js
-|   |   |-- applyBind.d.ts
-|   |   |-- applyBind.js
-|   |   |-- functionApply.d.ts
-|   |   |-- functionApply.js
-|   |   |-- functionCall.d.ts
-|   |   |-- functionCall.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- reflectApply.d.ts
-|   |   |-- reflectApply.js
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- camelcase-css
-|   |   |-- README.md
-|   |   |-- index-es5.js
-|   |   |-- index.js
-|   |   |-- license
-|   |   `-- package.json
-|   |-- caniuse-lite
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- data
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- chalk
-|   |   |-- index.d.ts
-|   |   |-- license
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   |-- readme.md
-|   |   `-- source
-|   |-- chokidar
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- lib
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   `-- types
-|   |-- chownr
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- cliui
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE.txt
-|   |   |-- README.md
-|   |   |-- build
-|   |   |-- index.mjs
-|   |   |-- node_modules
-|   |   `-- package.json
-|   |-- color-convert
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- conversions.js
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- route.js
-|   |-- color-name
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- combined-stream
-|   |   |-- License
-|   |   |-- Readme.md
-|   |   |-- lib
-|   |   |-- package.json
-|   |   `-- yarn.lock
-|   |-- commander
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- Readme.md
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- typings
-|   |-- concurrently
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   |-- docs
-|   |   |-- index.d.mts
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- index.mjs
-|   |   `-- package.json
-|   |-- cross-spawn
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- cssesc
-|   |   |-- LICENSE-MIT.txt
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- cssesc.js
-|   |   |-- man
-|   |   `-- package.json
-|   |-- delayed-stream
-|   |   |-- License
-|   |   |-- Makefile
-|   |   |-- Readme.md
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- detect-libc
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- didyoumean
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- didYouMean-1.2.1.js
-|   |   |-- didYouMean-1.2.1.min.js
-|   |   `-- package.json
-|   |-- dlv
-|   |   |-- README.md
-|   |   |-- dist
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- dunder-proto
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- get.d.ts
-|   |   |-- get.js
-|   |   |-- package.json
-|   |   |-- set.d.ts
-|   |   |-- set.js
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- eastasianwidth
-|   |   |-- README.md
-|   |   |-- eastasianwidth.js
-|   |   `-- package.json
-|   |-- electron-to-chromium
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- chromium-versions.js
-|   |   |-- chromium-versions.json
-|   |   |-- full-chromium-versions.js
-|   |   |-- full-chromium-versions.json
-|   |   |-- full-versions.js
-|   |   |-- full-versions.json
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- versions.js
-|   |   `-- versions.json
-|   |-- emoji-regex
-|   |   |-- LICENSE-MIT.txt
-|   |   |-- README.md
-|   |   |-- RGI_Emoji.d.ts
-|   |   |-- RGI_Emoji.js
-|   |   |-- es2015
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- text.d.ts
-|   |   `-- text.js
-|   |-- enhanced-resolve
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lib
-|   |   |-- package.json
-|   |   `-- types.d.ts
-|   |-- es-define-property
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- es-errors
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- eval.d.ts
-|   |   |-- eval.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- range.d.ts
-|   |   |-- range.js
-|   |   |-- ref.d.ts
-|   |   |-- ref.js
-|   |   |-- syntax.d.ts
-|   |   |-- syntax.js
-|   |   |-- test
-|   |   |-- tsconfig.json
-|   |   |-- type.d.ts
-|   |   |-- type.js
-|   |   |-- uri.d.ts
-|   |   `-- uri.js
-|   |-- es-object-atoms
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- RequireObjectCoercible.d.ts
-|   |   |-- RequireObjectCoercible.js
-|   |   |-- ToObject.d.ts
-|   |   |-- ToObject.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- isObject.d.ts
-|   |   |-- isObject.js
-|   |   |-- package.json
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- es-set-tostringtag
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- esbuild
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- install.js
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- escalade
-|   |   |-- dist
-|   |   |-- index.d.mts
-|   |   |-- index.d.ts
-|   |   |-- license
-|   |   |-- package.json
-|   |   |-- readme.md
-|   |   `-- sync
-|   |-- fast-glob
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- node_modules
-|   |   |-- out
-|   |   `-- package.json
-|   |-- fastq
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- SECURITY.md
-|   |   |-- bench.js
-|   |   |-- example.js
-|   |   |-- example.mjs
-|   |   |-- index.d.ts
-|   |   |-- package.json
-|   |   |-- queue.js
-|   |   `-- test
-|   |-- fill-range
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- follow-redirects
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- debug.js
-|   |   |-- http.js
-|   |   |-- https.js
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- foreground-child
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- form-data
-|   |   |-- License
-|   |   |-- Readme.md
-|   |   |-- index.d.ts
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- fraction.js
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- bigfraction.js
-|   |   |-- fraction.cjs
-|   |   |-- fraction.d.ts
-|   |   |-- fraction.js
-|   |   |-- fraction.min.js
-|   |   `-- package.json
-|   |-- function-bind
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- implementation.js
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- test
-|   |-- get-caller-file
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- index.js.map
-|   |   `-- package.json
-|   |-- get-intrinsic
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- test
-|   |-- get-proto
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- Object.getPrototypeOf.d.ts
-|   |   |-- Object.getPrototypeOf.js
-|   |   |-- README.md
-|   |   |-- Reflect.getPrototypeOf.d.ts
-|   |   |-- Reflect.getPrototypeOf.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- glob
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- glob-parent
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- gopd
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- gOPD.d.ts
-|   |   |-- gOPD.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- graceful-fs
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- clone.js
-|   |   |-- graceful-fs.js
-|   |   |-- legacy-streams.js
-|   |   |-- package.json
-|   |   `-- polyfills.js
-|   |-- has-flag
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- has-symbols
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- shams.d.ts
-|   |   |-- shams.js
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- has-tostringtag
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- shams.d.ts
-|   |   |-- shams.js
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- hasown
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- tsconfig.json
-|   |-- is-binary-path
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- is-core-module
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- core.json
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- test
-|   |-- is-extglob
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- is-fullwidth-code-point
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- is-glob
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- is-number
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- isexe
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- mode.js
-|   |   |-- package.json
-|   |   |-- test
-|   |   `-- windows.js
-|   |-- jackspeak
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- jiti
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- laravel-vite-plugin
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- dist
-|   |   |-- inertia-helpers
-|   |   `-- package.json
-|   |-- lightningcss
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- node
-|   |   `-- package.json
-|   |-- lightningcss-linux-x64-gnu
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lightningcss.linux-x64-gnu.node
-|   |   `-- package.json
-|   |-- lightningcss-linux-x64-musl
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lightningcss.linux-x64-musl.node
-|   |   `-- package.json
-|   |-- lightningcss-win32-x64-msvc
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lightningcss.win32-x64-msvc.node
-|   |   `-- package.json
-|   |-- lilconfig
-|   |   |-- LICENSE
-|   |   |-- package.json
-|   |   |-- readme.md
-|   |   `-- src
-|   |-- lines-and-columns
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- build
-|   |   `-- package.json
-|   |-- lodash
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- _DataView.js
-|   |   |-- _Hash.js
-|   |   |-- _LazyWrapper.js
-|   |   |-- _ListCache.js
-|   |   |-- _LodashWrapper.js
-|   |   |-- _Map.js
-|   |   |-- _MapCache.js
-|   |   |-- _Promise.js
-|   |   |-- _Set.js
-|   |   |-- _SetCache.js
-|   |   |-- _Stack.js
-|   |   |-- _Symbol.js
-|   |   |-- _Uint8Array.js
-|   |   |-- _WeakMap.js
-|   |   |-- _apply.js
-|   |   |-- _arrayAggregator.js
-|   |   |-- _arrayEach.js
-|   |   |-- _arrayEachRight.js
-|   |   |-- _arrayEvery.js
-|   |   |-- _arrayFilter.js
-|   |   |-- _arrayIncludes.js
-|   |   |-- _arrayIncludesWith.js
-|   |   |-- _arrayLikeKeys.js
-|   |   |-- _arrayMap.js
-|   |   |-- _arrayPush.js
-|   |   |-- _arrayReduce.js
-|   |   |-- _arrayReduceRight.js
-|   |   |-- _arraySample.js
-|   |   |-- _arraySampleSize.js
-|   |   |-- _arrayShuffle.js
-|   |   |-- _arraySome.js
-|   |   |-- _asciiSize.js
-|   |   |-- _asciiToArray.js
-|   |   |-- _asciiWords.js
-|   |   |-- _assignMergeValue.js
-|   |   |-- _assignValue.js
-|   |   |-- _assocIndexOf.js
-|   |   |-- _baseAggregator.js
-|   |   |-- _baseAssign.js
-|   |   |-- _baseAssignIn.js
-|   |   |-- _baseAssignValue.js
-|   |   |-- _baseAt.js
-|   |   |-- _baseClamp.js
-|   |   |-- _baseClone.js
-|   |   |-- _baseConforms.js
-|   |   |-- _baseConformsTo.js
-|   |   |-- _baseCreate.js
-|   |   |-- _baseDelay.js
-|   |   |-- _baseDifference.js
-|   |   |-- _baseEach.js
-|   |   |-- _baseEachRight.js
-|   |   |-- _baseEvery.js
-|   |   |-- _baseExtremum.js
-|   |   |-- _baseFill.js
-|   |   |-- _baseFilter.js
-|   |   |-- _baseFindIndex.js
-|   |   |-- _baseFindKey.js
-|   |   |-- _baseFlatten.js
-|   |   |-- _baseFor.js
-|   |   |-- _baseForOwn.js
-|   |   |-- _baseForOwnRight.js
-|   |   |-- _baseForRight.js
-|   |   |-- _baseFunctions.js
-|   |   |-- _baseGet.js
-|   |   |-- _baseGetAllKeys.js
-|   |   |-- _baseGetTag.js
-|   |   |-- _baseGt.js
-|   |   |-- _baseHas.js
-|   |   |-- _baseHasIn.js
-|   |   |-- _baseInRange.js
-|   |   |-- _baseIndexOf.js
-|   |   |-- _baseIndexOfWith.js
-|   |   |-- _baseIntersection.js
-|   |   |-- _baseInverter.js
-|   |   |-- _baseInvoke.js
-|   |   |-- _baseIsArguments.js
-|   |   |-- _baseIsArrayBuffer.js
-|   |   |-- _baseIsDate.js
-|   |   |-- _baseIsEqual.js
-|   |   |-- _baseIsEqualDeep.js
-|   |   |-- _baseIsMap.js
-|   |   |-- _baseIsMatch.js
-|   |   |-- _baseIsNaN.js
-|   |   |-- _baseIsNative.js
-|   |   |-- _baseIsRegExp.js
-|   |   |-- _baseIsSet.js
-|   |   |-- _baseIsTypedArray.js
-|   |   |-- _baseIteratee.js
-|   |   |-- _baseKeys.js
-|   |   |-- _baseKeysIn.js
-|   |   |-- _baseLodash.js
-|   |   |-- _baseLt.js
-|   |   |-- _baseMap.js
-|   |   |-- _baseMatches.js
-|   |   |-- _baseMatchesProperty.js
-|   |   |-- _baseMean.js
-|   |   |-- _baseMerge.js
-|   |   |-- _baseMergeDeep.js
-|   |   |-- _baseNth.js
-|   |   |-- _baseOrderBy.js
-|   |   |-- _basePick.js
-|   |   |-- _basePickBy.js
-|   |   |-- _baseProperty.js
-|   |   |-- _basePropertyDeep.js
-|   |   |-- _basePropertyOf.js
-|   |   |-- _basePullAll.js
-|   |   |-- _basePullAt.js
-|   |   |-- _baseRandom.js
-|   |   |-- _baseRange.js
-|   |   |-- _baseReduce.js
-|   |   |-- _baseRepeat.js
-|   |   |-- _baseRest.js
-|   |   |-- _baseSample.js
-|   |   |-- _baseSampleSize.js
-|   |   |-- _baseSet.js
-|   |   |-- _baseSetData.js
-|   |   |-- _baseSetToString.js
-|   |   |-- _baseShuffle.js
-|   |   |-- _baseSlice.js
-|   |   |-- _baseSome.js
-|   |   |-- _baseSortBy.js
-|   |   |-- _baseSortedIndex.js
-|   |   |-- _baseSortedIndexBy.js
-|   |   |-- _baseSortedUniq.js
-|   |   |-- _baseSum.js
-|   |   |-- _baseTimes.js
-|   |   |-- _baseToNumber.js
-|   |   |-- _baseToPairs.js
-|   |   |-- _baseToString.js
-|   |   |-- _baseTrim.js
-|   |   |-- _baseUnary.js
-|   |   |-- _baseUniq.js
-|   |   |-- _baseUnset.js
-|   |   |-- _baseUpdate.js
-|   |   |-- _baseValues.js
-|   |   |-- _baseWhile.js
-|   |   |-- _baseWrapperValue.js
-|   |   |-- _baseXor.js
-|   |   |-- _baseZipObject.js
-|   |   |-- _cacheHas.js
-|   |   |-- _castArrayLikeObject.js
-|   |   |-- _castFunction.js
-|   |   |-- _castPath.js
-|   |   |-- _castRest.js
-|   |   |-- _castSlice.js
-|   |   |-- _charsEndIndex.js
-|   |   |-- _charsStartIndex.js
-|   |   |-- _cloneArrayBuffer.js
-|   |   |-- _cloneBuffer.js
-|   |   |-- _cloneDataView.js
-|   |   |-- _cloneRegExp.js
-|   |   |-- _cloneSymbol.js
-|   |   |-- _cloneTypedArray.js
-|   |   |-- _compareAscending.js
-|   |   |-- _compareMultiple.js
-|   |   |-- _composeArgs.js
-|   |   |-- _composeArgsRight.js
-|   |   |-- _copyArray.js
-|   |   |-- _copyObject.js
-|   |   |-- _copySymbols.js
-|   |   |-- _copySymbolsIn.js
-|   |   |-- _coreJsData.js
-|   |   |-- _countHolders.js
-|   |   |-- _createAggregator.js
-|   |   |-- _createAssigner.js
-|   |   |-- _createBaseEach.js
-|   |   |-- _createBaseFor.js
-|   |   |-- _createBind.js
-|   |   |-- _createCaseFirst.js
-|   |   |-- _createCompounder.js
-|   |   |-- _createCtor.js
-|   |   |-- _createCurry.js
-|   |   |-- _createFind.js
-|   |   |-- _createFlow.js
-|   |   |-- _createHybrid.js
-|   |   |-- _createInverter.js
-|   |   |-- _createMathOperation.js
-|   |   |-- _createOver.js
-|   |   |-- _createPadding.js
-|   |   |-- _createPartial.js
-|   |   |-- _createRange.js
-|   |   |-- _createRecurry.js
-|   |   |-- _createRelationalOperation.js
-|   |   |-- _createRound.js
-|   |   |-- _createSet.js
-|   |   |-- _createToPairs.js
-|   |   |-- _createWrap.js
-|   |   |-- _customDefaultsAssignIn.js
-|   |   |-- _customDefaultsMerge.js
-|   |   |-- _customOmitClone.js
-|   |   |-- _deburrLetter.js
-|   |   |-- _defineProperty.js
-|   |   |-- _equalArrays.js
-|   |   |-- _equalByTag.js
-|   |   |-- _equalObjects.js
-|   |   |-- _escapeHtmlChar.js
-|   |   |-- _escapeStringChar.js
-|   |   |-- _flatRest.js
-|   |   |-- _freeGlobal.js
-|   |   |-- _getAllKeys.js
-|   |   |-- _getAllKeysIn.js
-|   |   |-- _getData.js
-|   |   |-- _getFuncName.js
-|   |   |-- _getHolder.js
-|   |   |-- _getMapData.js
-|   |   |-- _getMatchData.js
-|   |   |-- _getNative.js
-|   |   |-- _getPrototype.js
-|   |   |-- _getRawTag.js
-|   |   |-- _getSymbols.js
-|   |   |-- _getSymbolsIn.js
-|   |   |-- _getTag.js
-|   |   |-- _getValue.js
-|   |   |-- _getView.js
-|   |   |-- _getWrapDetails.js
-|   |   |-- _hasPath.js
-|   |   |-- _hasUnicode.js
-|   |   |-- _hasUnicodeWord.js
-|   |   |-- _hashClear.js
-|   |   |-- _hashDelete.js
-|   |   |-- _hashGet.js
-|   |   |-- _hashHas.js
-|   |   |-- _hashSet.js
-|   |   |-- _initCloneArray.js
-|   |   |-- _initCloneByTag.js
-|   |   |-- _initCloneObject.js
-|   |   |-- _insertWrapDetails.js
-|   |   |-- _isFlattenable.js
-|   |   |-- _isIndex.js
-|   |   |-- _isIterateeCall.js
-|   |   |-- _isKey.js
-|   |   |-- _isKeyable.js
-|   |   |-- _isLaziable.js
-|   |   |-- _isMaskable.js
-|   |   |-- _isMasked.js
-|   |   |-- _isPrototype.js
-|   |   |-- _isStrictComparable.js
-|   |   |-- _iteratorToArray.js
-|   |   |-- _lazyClone.js
-|   |   |-- _lazyReverse.js
-|   |   |-- _lazyValue.js
-|   |   |-- _listCacheClear.js
-|   |   |-- _listCacheDelete.js
-|   |   |-- _listCacheGet.js
-|   |   |-- _listCacheHas.js
-|   |   |-- _listCacheSet.js
-|   |   |-- _mapCacheClear.js
-|   |   |-- _mapCacheDelete.js
-|   |   |-- _mapCacheGet.js
-|   |   |-- _mapCacheHas.js
-|   |   |-- _mapCacheSet.js
-|   |   |-- _mapToArray.js
-|   |   |-- _matchesStrictComparable.js
-|   |   |-- _memoizeCapped.js
-|   |   |-- _mergeData.js
-|   |   |-- _metaMap.js
-|   |   |-- _nativeCreate.js
-|   |   |-- _nativeKeys.js
-|   |   |-- _nativeKeysIn.js
-|   |   |-- _nodeUtil.js
-|   |   |-- _objectToString.js
-|   |   |-- _overArg.js
-|   |   |-- _overRest.js
-|   |   |-- _parent.js
-|   |   |-- _reEscape.js
-|   |   |-- _reEvaluate.js
-|   |   |-- _reInterpolate.js
-|   |   |-- _realNames.js
-|   |   |-- _reorder.js
-|   |   |-- _replaceHolders.js
-|   |   |-- _root.js
-|   |   |-- _safeGet.js
-|   |   |-- _setCacheAdd.js
-|   |   |-- _setCacheHas.js
-|   |   |-- _setData.js
-|   |   |-- _setToArray.js
-|   |   |-- _setToPairs.js
-|   |   |-- _setToString.js
-|   |   |-- _setWrapToString.js
-|   |   |-- _shortOut.js
-|   |   |-- _shuffleSelf.js
-|   |   |-- _stackClear.js
-|   |   |-- _stackDelete.js
-|   |   |-- _stackGet.js
-|   |   |-- _stackHas.js
-|   |   |-- _stackSet.js
-|   |   |-- _strictIndexOf.js
-|   |   |-- _strictLastIndexOf.js
-|   |   |-- _stringSize.js
-|   |   |-- _stringToArray.js
-|   |   |-- _stringToPath.js
-|   |   |-- _toKey.js
-|   |   |-- _toSource.js
-|   |   |-- _trimmedEndIndex.js
-|   |   |-- _unescapeHtmlChar.js
-|   |   |-- _unicodeSize.js
-|   |   |-- _unicodeToArray.js
-|   |   |-- _unicodeWords.js
-|   |   |-- _updateWrapDetails.js
-|   |   |-- _wrapperClone.js
-|   |   |-- add.js
-|   |   |-- after.js
-|   |   |-- array.js
-|   |   |-- ary.js
-|   |   |-- assign.js
-|   |   |-- assignIn.js
-|   |   |-- assignInWith.js
-|   |   |-- assignWith.js
-|   |   |-- at.js
-|   |   |-- attempt.js
-|   |   |-- before.js
-|   |   |-- bind.js
-|   |   |-- bindAll.js
-|   |   |-- bindKey.js
-|   |   |-- camelCase.js
-|   |   |-- capitalize.js
-|   |   |-- castArray.js
-|   |   |-- ceil.js
-|   |   |-- chain.js
-|   |   |-- chunk.js
-|   |   |-- clamp.js
-|   |   |-- clone.js
-|   |   |-- cloneDeep.js
-|   |   |-- cloneDeepWith.js
-|   |   |-- cloneWith.js
-|   |   |-- collection.js
-|   |   |-- commit.js
-|   |   |-- compact.js
-|   |   |-- concat.js
-|   |   |-- cond.js
-|   |   |-- conforms.js
-|   |   |-- conformsTo.js
-|   |   |-- constant.js
-|   |   |-- core.js
-|   |   |-- core.min.js
-|   |   |-- countBy.js
-|   |   |-- create.js
-|   |   |-- curry.js
-|   |   |-- curryRight.js
-|   |   |-- date.js
-|   |   |-- debounce.js
-|   |   |-- deburr.js
-|   |   |-- defaultTo.js
-|   |   |-- defaults.js
-|   |   |-- defaultsDeep.js
-|   |   |-- defer.js
-|   |   |-- delay.js
-|   |   |-- difference.js
-|   |   |-- differenceBy.js
-|   |   |-- differenceWith.js
-|   |   |-- divide.js
-|   |   |-- drop.js
-|   |   |-- dropRight.js
-|   |   |-- dropRightWhile.js
-|   |   |-- dropWhile.js
-|   |   |-- each.js
-|   |   |-- eachRight.js
-|   |   |-- endsWith.js
-|   |   |-- entries.js
-|   |   |-- entriesIn.js
-|   |   |-- eq.js
-|   |   |-- escape.js
-|   |   |-- escapeRegExp.js
-|   |   |-- every.js
-|   |   |-- extend.js
-|   |   |-- extendWith.js
-|   |   |-- fill.js
-|   |   |-- filter.js
-|   |   |-- find.js
-|   |   |-- findIndex.js
-|   |   |-- findKey.js
-|   |   |-- findLast.js
-|   |   |-- findLastIndex.js
-|   |   |-- findLastKey.js
-|   |   |-- first.js
-|   |   |-- flake.lock
-|   |   |-- flake.nix
-|   |   |-- flatMap.js
-|   |   |-- flatMapDeep.js
-|   |   |-- flatMapDepth.js
-|   |   |-- flatten.js
-|   |   |-- flattenDeep.js
-|   |   |-- flattenDepth.js
-|   |   |-- flip.js
-|   |   |-- floor.js
-|   |   |-- flow.js
-|   |   |-- flowRight.js
-|   |   |-- forEach.js
-|   |   |-- forEachRight.js
-|   |   |-- forIn.js
-|   |   |-- forInRight.js
-|   |   |-- forOwn.js
-|   |   |-- forOwnRight.js
-|   |   |-- fp
-|   |   |-- fp.js
-|   |   |-- fromPairs.js
-|   |   |-- function.js
-|   |   |-- functions.js
-|   |   |-- functionsIn.js
-|   |   |-- get.js
-|   |   |-- groupBy.js
-|   |   |-- gt.js
-|   |   |-- gte.js
-|   |   |-- has.js
-|   |   |-- hasIn.js
-|   |   |-- head.js
-|   |   |-- identity.js
-|   |   |-- inRange.js
-|   |   |-- includes.js
-|   |   |-- index.js
-|   |   |-- indexOf.js
-|   |   |-- initial.js
-|   |   |-- intersection.js
-|   |   |-- intersectionBy.js
-|   |   |-- intersectionWith.js
-|   |   |-- invert.js
-|   |   |-- invertBy.js
-|   |   |-- invoke.js
-|   |   |-- invokeMap.js
-|   |   |-- isArguments.js
-|   |   |-- isArray.js
-|   |   |-- isArrayBuffer.js
-|   |   |-- isArrayLike.js
-|   |   |-- isArrayLikeObject.js
-|   |   |-- isBoolean.js
-|   |   |-- isBuffer.js
-|   |   |-- isDate.js
-|   |   |-- isElement.js
-|   |   |-- isEmpty.js
-|   |   |-- isEqual.js
-|   |   |-- isEqualWith.js
-|   |   |-- isError.js
-|   |   |-- isFinite.js
-|   |   |-- isFunction.js
-|   |   |-- isInteger.js
-|   |   |-- isLength.js
-|   |   |-- isMap.js
-|   |   |-- isMatch.js
-|   |   |-- isMatchWith.js
-|   |   |-- isNaN.js
-|   |   |-- isNative.js
-|   |   |-- isNil.js
-|   |   |-- isNull.js
-|   |   |-- isNumber.js
-|   |   |-- isObject.js
-|   |   |-- isObjectLike.js
-|   |   |-- isPlainObject.js
-|   |   |-- isRegExp.js
-|   |   |-- isSafeInteger.js
-|   |   |-- isSet.js
-|   |   |-- isString.js
-|   |   |-- isSymbol.js
-|   |   |-- isTypedArray.js
-|   |   |-- isUndefined.js
-|   |   |-- isWeakMap.js
-|   |   |-- isWeakSet.js
-|   |   |-- iteratee.js
-|   |   |-- join.js
-|   |   |-- kebabCase.js
-|   |   |-- keyBy.js
-|   |   |-- keys.js
-|   |   |-- keysIn.js
-|   |   |-- lang.js
-|   |   |-- last.js
-|   |   |-- lastIndexOf.js
-|   |   |-- lodash.js
-|   |   |-- lodash.min.js
-|   |   |-- lowerCase.js
-|   |   |-- lowerFirst.js
-|   |   |-- lt.js
-|   |   |-- lte.js
-|   |   |-- map.js
-|   |   |-- mapKeys.js
-|   |   |-- mapValues.js
-|   |   |-- matches.js
-|   |   |-- matchesProperty.js
-|   |   |-- math.js
-|   |   |-- max.js
-|   |   |-- maxBy.js
-|   |   |-- mean.js
-|   |   |-- meanBy.js
-|   |   |-- memoize.js
-|   |   |-- merge.js
-|   |   |-- mergeWith.js
-|   |   |-- method.js
-|   |   |-- methodOf.js
-|   |   |-- min.js
-|   |   |-- minBy.js
-|   |   |-- mixin.js
-|   |   |-- multiply.js
-|   |   |-- negate.js
-|   |   |-- next.js
-|   |   |-- noop.js
-|   |   |-- now.js
-|   |   |-- nth.js
-|   |   |-- nthArg.js
-|   |   |-- number.js
-|   |   |-- object.js
-|   |   |-- omit.js
-|   |   |-- omitBy.js
-|   |   |-- once.js
-|   |   |-- orderBy.js
-|   |   |-- over.js
-|   |   |-- overArgs.js
-|   |   |-- overEvery.js
-|   |   |-- overSome.js
-|   |   |-- package.json
-|   |   |-- pad.js
-|   |   |-- padEnd.js
-|   |   |-- padStart.js
-|   |   |-- parseInt.js
-|   |   |-- partial.js
-|   |   |-- partialRight.js
-|   |   |-- partition.js
-|   |   |-- pick.js
-|   |   |-- pickBy.js
-|   |   |-- plant.js
-|   |   |-- property.js
-|   |   |-- propertyOf.js
-|   |   |-- pull.js
-|   |   |-- pullAll.js
-|   |   |-- pullAllBy.js
-|   |   |-- pullAllWith.js
-|   |   |-- pullAt.js
-|   |   |-- random.js
-|   |   |-- range.js
-|   |   |-- rangeRight.js
-|   |   |-- rearg.js
-|   |   |-- reduce.js
-|   |   |-- reduceRight.js
-|   |   |-- reject.js
-|   |   |-- release.md
-|   |   |-- remove.js
-|   |   |-- repeat.js
-|   |   |-- replace.js
-|   |   |-- rest.js
-|   |   |-- result.js
-|   |   |-- reverse.js
-|   |   |-- round.js
-|   |   |-- sample.js
-|   |   |-- sampleSize.js
-|   |   |-- seq.js
-|   |   |-- set.js
-|   |   |-- setWith.js
-|   |   |-- shuffle.js
-|   |   |-- size.js
-|   |   |-- slice.js
-|   |   |-- snakeCase.js
-|   |   |-- some.js
-|   |   |-- sortBy.js
-|   |   |-- sortedIndex.js
-|   |   |-- sortedIndexBy.js
-|   |   |-- sortedIndexOf.js
-|   |   |-- sortedLastIndex.js
-|   |   |-- sortedLastIndexBy.js
-|   |   |-- sortedLastIndexOf.js
-|   |   |-- sortedUniq.js
-|   |   |-- sortedUniqBy.js
-|   |   |-- split.js
-|   |   |-- spread.js
-|   |   |-- startCase.js
-|   |   |-- startsWith.js
-|   |   |-- string.js
-|   |   |-- stubArray.js
-|   |   |-- stubFalse.js
-|   |   |-- stubObject.js
-|   |   |-- stubString.js
-|   |   |-- stubTrue.js
-|   |   |-- subtract.js
-|   |   |-- sum.js
-|   |   |-- sumBy.js
-|   |   |-- tail.js
-|   |   |-- take.js
-|   |   |-- takeRight.js
-|   |   |-- takeRightWhile.js
-|   |   |-- takeWhile.js
-|   |   |-- tap.js
-|   |   |-- template.js
-|   |   |-- templateSettings.js
-|   |   |-- throttle.js
-|   |   |-- thru.js
-|   |   |-- times.js
-|   |   |-- toArray.js
-|   |   |-- toFinite.js
-|   |   |-- toInteger.js
-|   |   |-- toIterator.js
-|   |   |-- toJSON.js
-|   |   |-- toLength.js
-|   |   |-- toLower.js
-|   |   |-- toNumber.js
-|   |   |-- toPairs.js
-|   |   |-- toPairsIn.js
-|   |   |-- toPath.js
-|   |   |-- toPlainObject.js
-|   |   |-- toSafeInteger.js
-|   |   |-- toString.js
-|   |   |-- toUpper.js
-|   |   |-- transform.js
-|   |   |-- trim.js
-|   |   |-- trimEnd.js
-|   |   |-- trimStart.js
-|   |   |-- truncate.js
-|   |   |-- unary.js
-|   |   |-- unescape.js
-|   |   |-- union.js
-|   |   |-- unionBy.js
-|   |   |-- unionWith.js
-|   |   |-- uniq.js
-|   |   |-- uniqBy.js
-|   |   |-- uniqWith.js
-|   |   |-- uniqueId.js
-|   |   |-- unset.js
-|   |   |-- unzip.js
-|   |   |-- unzipWith.js
-|   |   |-- update.js
-|   |   |-- updateWith.js
-|   |   |-- upperCase.js
-|   |   |-- upperFirst.js
-|   |   |-- util.js
-|   |   |-- value.js
-|   |   |-- valueOf.js
-|   |   |-- values.js
-|   |   |-- valuesIn.js
-|   |   |-- without.js
-|   |   |-- words.js
-|   |   |-- wrap.js
-|   |   |-- wrapperAt.js
-|   |   |-- wrapperChain.js
-|   |   |-- wrapperLodash.js
-|   |   |-- wrapperReverse.js
-|   |   |-- wrapperValue.js
-|   |   |-- xor.js
-|   |   |-- xorBy.js
-|   |   |-- xorWith.js
-|   |   |-- zip.js
-|   |   |-- zipObject.js
-|   |   |-- zipObjectDeep.js
-|   |   `-- zipWith.js
-|   |-- lru-cache
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- magic-string
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- math-intrinsics
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- abs.d.ts
-|   |   |-- abs.js
-|   |   |-- constants
-|   |   |-- floor.d.ts
-|   |   |-- floor.js
-|   |   |-- isFinite.d.ts
-|   |   |-- isFinite.js
-|   |   |-- isInteger.d.ts
-|   |   |-- isInteger.js
-|   |   |-- isNaN.d.ts
-|   |   |-- isNaN.js
-|   |   |-- isNegativeZero.d.ts
-|   |   |-- isNegativeZero.js
-|   |   |-- max.d.ts
-|   |   |-- max.js
-|   |   |-- min.d.ts
-|   |   |-- min.js
-|   |   |-- mod.d.ts
-|   |   |-- mod.js
-|   |   |-- package.json
-|   |   |-- pow.d.ts
-|   |   |-- pow.js
-|   |   |-- round.d.ts
-|   |   |-- round.js
-|   |   |-- sign.d.ts
-|   |   |-- sign.js
-|   |   |-- test
-|   |   `-- tsconfig.json
-|   |-- merge2
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- micromatch
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- mime-db
-|   |   |-- HISTORY.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- db.json
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- mime-types
-|   |   |-- HISTORY.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- mini-svg-data-uri
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- cli.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- index.test-d.ts
-|   |   |-- package.json
-|   |   `-- shorter-css-color-names.js
-|   |-- minimatch
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- minipass
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- minizlib
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- mkdirp
-|   |   |-- LICENSE
-|   |   |-- dist
-|   |   |-- package.json
-|   |   `-- readme.markdown
-|   |-- mz
-|   |   |-- HISTORY.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- child_process.js
-|   |   |-- crypto.js
-|   |   |-- dns.js
-|   |   |-- fs.js
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- readline.js
-|   |   `-- zlib.js
-|   |-- nanoid
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- async
-|   |   |-- bin
-|   |   |-- index.browser.cjs
-|   |   |-- index.browser.js
-|   |   |-- index.cjs
-|   |   |-- index.d.cts
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- nanoid.js
-|   |   |-- non-secure
-|   |   |-- package.json
-|   |   `-- url-alphabet
-|   |-- node-releases
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- data
-|   |   `-- package.json
-|   |-- normalize-path
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- normalize-range
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- object-assign
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- object-hash
-|   |   |-- LICENSE
-|   |   |-- dist
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- readme.markdown
-|   |-- package-json-from-dist
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- path-key
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- path-parse
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- path-scurry
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- picocolors
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- package.json
-|   |   |-- picocolors.browser.js
-|   |   |-- picocolors.d.ts
-|   |   |-- picocolors.js
-|   |   `-- types.d.ts
-|   |-- picomatch
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- pify
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- pirates
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- postcss
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- postcss-import
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- postcss-js
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- async.js
-|   |   |-- index.js
-|   |   |-- index.mjs
-|   |   |-- objectifier.js
-|   |   |-- package.json
-|   |   |-- parser.js
-|   |   |-- process-result.js
-|   |   `-- sync.js
-|   |-- postcss-load-config
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- package.json
-|   |   `-- src
-|   |-- postcss-nested
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- postcss-selector-parser
-|   |   |-- API.md
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE-MIT
-|   |   |-- README.md
-|   |   |-- dist
-|   |   |-- package.json
-|   |   `-- postcss-selector-parser.d.ts
-|   |-- postcss-value-parser
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lib
-|   |   `-- package.json
-|   |-- proxy-from-env
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- test.js
-|   |-- queue-microtask
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- read-cache
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- readdirp
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- require-directory
-|   |   |-- LICENSE
-|   |   |-- README.markdown
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- resolve
-|   |   |-- LICENSE
-|   |   |-- SECURITY.md
-|   |   |-- async.js
-|   |   |-- bin
-|   |   |-- example
-|   |   |-- index.js
-|   |   |-- lib
-|   |   |-- package.json
-|   |   |-- readme.markdown
-|   |   |-- sync.js
-|   |   `-- test
-|   |-- reusify
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- SECURITY.md
-|   |   |-- benchmarks
-|   |   |-- eslint.config.js
-|   |   |-- package.json
-|   |   |-- reusify.d.ts
-|   |   |-- reusify.js
-|   |   |-- test.js
-|   |   `-- tsconfig.json
-|   |-- rollup
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- run-parallel
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- rxjs
-|   |   |-- CHANGELOG.md
-|   |   |-- CODE_OF_CONDUCT.md
-|   |   |-- LICENSE.txt
-|   |   |-- README.md
-|   |   |-- ajax
-|   |   |-- dist
-|   |   |-- fetch
-|   |   |-- operators
-|   |   |-- package.json
-|   |   |-- src
-|   |   |-- testing
-|   |   |-- tsconfig.json
-|   |   `-- webSocket
-|   |-- shebang-command
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- shebang-regex
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- shell-quote
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   |-- parse.js
-|   |   |-- quote.js
-|   |   |-- security.md
-|   |   `-- test
-|   |-- signal-exit
-|   |   |-- LICENSE.txt
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- source-map-js
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lib
-|   |   |-- package.json
-|   |   |-- source-map.d.ts
-|   |   `-- source-map.js
-|   |-- string-width
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- string-width-cjs
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- strip-ansi
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- strip-ansi-cjs
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- sucrase
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- dist
-|   |   |-- package.json
-|   |   |-- register
-|   |   `-- ts-node-plugin
-|   |-- supports-color
-|   |   |-- browser.js
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- supports-preserve-symlinks-flag
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- browser.js
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- test
-|   |-- tailwindcss
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- base.css
-|   |   |-- colors.d.ts
-|   |   |-- colors.js
-|   |   |-- components.css
-|   |   |-- defaultConfig.d.ts
-|   |   |-- defaultConfig.js
-|   |   |-- defaultTheme.d.ts
-|   |   |-- defaultTheme.js
-|   |   |-- lib
-|   |   |-- loadConfig.d.ts
-|   |   |-- loadConfig.js
-|   |   |-- nesting
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   |-- peers
-|   |   |-- plugin.d.ts
-|   |   |-- plugin.js
-|   |   |-- prettier.config.js
-|   |   |-- resolveConfig.d.ts
-|   |   |-- resolveConfig.js
-|   |   |-- screens.css
-|   |   |-- scripts
-|   |   |-- src
-|   |   |-- stubs
-|   |   |-- tailwind.css
-|   |   |-- types
-|   |   |-- utilities.css
-|   |   `-- variants.css
-|   |-- tapable
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- lib
-|   |   |-- package.json
-|   |   `-- tapable.d.ts
-|   |-- tar
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- thenify
-|   |   |-- History.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- thenify-all
-|   |   |-- History.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- tinyglobby
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   |-- node_modules
-|   |   `-- package.json
-|   |-- to-regex-range
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- tree-kill
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- cli.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   `-- package.json
-|   |-- ts-interface-checker
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- tslib
-|   |   |-- CopyrightNotice.txt
-|   |   |-- LICENSE.txt
-|   |   |-- README.md
-|   |   |-- SECURITY.md
-|   |   |-- modules
-|   |   |-- package.json
-|   |   |-- tslib.d.ts
-|   |   |-- tslib.es6.html
-|   |   |-- tslib.es6.js
-|   |   |-- tslib.es6.mjs
-|   |   |-- tslib.html
-|   |   `-- tslib.js
-|   |-- update-browserslist-db
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- check-npm-version.js
-|   |   |-- cli.js
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- package.json
-|   |   `-- utils.js
-|   |-- util-deprecate
-|   |   |-- History.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- browser.js
-|   |   |-- node.js
-|   |   `-- package.json
-|   |-- vite
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- client.d.ts
-|   |   |-- dist
-|   |   |-- index.cjs
-|   |   |-- index.d.cts
-|   |   |-- misc
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   `-- types
-|   |-- vite-plugin-full-reload
-|   |   |-- LICENSE.txt
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- which
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- bin
-|   |   |-- package.json
-|   |   `-- which.js
-|   |-- wrap-ansi
-|   |   |-- index.d.ts
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- wrap-ansi-cjs
-|   |   |-- index.js
-|   |   |-- license
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   `-- readme.md
-|   |-- y18n
-|   |   |-- CHANGELOG.md
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- build
-|   |   |-- index.mjs
-|   |   `-- package.json
-|   |-- yallist
-|   |   |-- LICENSE.md
-|   |   |-- README.md
-|   |   |-- dist
-|   |   `-- package.json
-|   |-- yaml
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- bin.mjs
-|   |   |-- browser
-|   |   |-- dist
-|   |   |-- package.json
-|   |   `-- util.js
-|   |-- yargs
-|   |   |-- LICENSE
-|   |   |-- README.md
-|   |   |-- browser.d.ts
-|   |   |-- browser.mjs
-|   |   |-- build
-|   |   |-- helpers
-|   |   |-- index.cjs
-|   |   |-- index.mjs
-|   |   |-- lib
-|   |   |-- locales
-|   |   |-- node_modules
-|   |   |-- package.json
-|   |   |-- yargs
-|   |   `-- yargs.mjs
-|   `-- yargs-parser
-|       |-- CHANGELOG.md
-|       |-- LICENSE.txt
-|       |-- README.md
-|       |-- browser.js
-|       |-- build
-|       `-- package.json
-|-- package-lock.json
-|-- package.json
-|-- phpunit.xml
-|-- postcss.config.js
-|-- public
-|   |-- build
-|   |   |-- assets
-|   |   `-- manifest.json
-|   |-- favicon.ico
-|   |-- hot
-|   |-- index.php
-|   |-- multimedia
-|   |   `-- gebmoll_logo.png
-|   `-- robots.txt
-|-- resources
-|   |-- css
-|   |   `-- app.css
-|   |-- js
-|   |   |-- app.js
-|   |   `-- bootstrap.js
-|   `-- views
-|       |-- admin
-|       |-- alumno
-|       |-- auth
-|       |-- calendario
-|       |-- components
-|       |-- dashboard.blade.php
-|       |-- docente
-|       |-- layouts
-|       |-- mensajes
-|       |-- profile
-|       |-- tutor
-|       `-- welcome.blade.php
-|-- routes
-|   |-- auth.php
-|   |-- console.php
-|   `-- web.php
-|-- start.sh
-|-- storage
-|   |-- app
-|   |   |-- private
-|   |   `-- public
-|   |-- framework
-|   |   |-- cache
-|   |   |-- sessions
-|   |   |-- testing
-|   |   `-- views
-|   `-- logs
-|       `-- laravel.log
-|-- subjects
-|-- tailwind.config.js
-|-- tests
-|   |-- Feature
-|   |   |-- Auth
-|   |   |-- ExampleTest.php
-|   |   `-- ProfileTest.php
-|   |-- TestCase.php
-|   `-- Unit
-|       `-- ExampleTest.php
-|-- vendor
-|   |-- autoload.php
-|   |-- bin
-|   |   |-- carbon
-|   |   |-- patch-type-declarations
-|   |   |-- php-parse
-|   |   |-- phpunit
-|   |   |-- pint
-|   |   |-- psysh
-|   |   |-- sail
-|   |   |-- var-dump-server
-|   |   `-- yaml-lint
-|   |-- brick
-|   |   `-- math
-|   |-- carbonphp
-|   |   `-- carbon-doctrine-types
-|   |-- composer
-|   |   |-- ClassLoader.php
-|   |   |-- InstalledVersions.php
-|   |   |-- LICENSE
-|   |   |-- autoload_classmap.php
-|   |   |-- autoload_files.php
-|   |   |-- autoload_namespaces.php
-|   |   |-- autoload_psr4.php
-|   |   |-- autoload_real.php
-|   |   |-- autoload_static.php
-|   |   |-- installed.json
-|   |   |-- installed.php
-|   |   `-- platform_check.php
-|   |-- dflydev
-|   |   `-- dot-access-data
-|   |-- doctrine
-|   |   |-- inflector
-|   |   `-- lexer
-|   |-- dragonmantank
-|   |   `-- cron-expression
-|   |-- egulias
-|   |   `-- email-validator
-|   |-- fakerphp
-|   |   `-- faker
-|   |-- filp
-|   |   `-- whoops
-|   |-- fruitcake
-|   |   `-- php-cors
-|   |-- graham-campbell
-|   |   `-- result-type
-|   |-- guzzlehttp
-|   |   |-- guzzle
-|   |   |-- promises
-|   |   |-- psr7
-|   |   `-- uri-template
-|   |-- hamcrest
-|   |   `-- hamcrest-php
-|   |-- laravel
-|   |   |-- breeze
-|   |   |-- framework
-|   |   |-- pail
-|   |   |-- pint
-|   |   |-- prompts
-|   |   |-- sail
-|   |   |-- serializable-closure
-|   |   `-- tinker
-|   |-- league
-|   |   |-- commonmark
-|   |   |-- config
-|   |   |-- flysystem
-|   |   |-- flysystem-local
-|   |   |-- mime-type-detection
-|   |   |-- uri
-|   |   `-- uri-interfaces
-|   |-- mockery
-|   |   `-- mockery
-|   |-- monolog
-|   |   `-- monolog
-|   |-- myclabs
-|   |   `-- deep-copy
-|   |-- nesbot
-|   |   `-- carbon
-|   |-- nette
-|   |   |-- schema
-|   |   `-- utils
-|   |-- nikic
-|   |   `-- php-parser
-|   |-- nunomaduro
-|   |   |-- collision
-|   |   `-- termwind
-|   |-- phar-io
-|   |   |-- manifest
-|   |   `-- version
-|   |-- phpoption
-|   |   `-- phpoption
-|   |-- phpunit
-|   |   |-- php-code-coverage
-|   |   |-- php-file-iterator
-|   |   |-- php-invoker
-|   |   |-- php-text-template
-|   |   |-- php-timer
-|   |   `-- phpunit
-|   |-- psr
-|   |   |-- clock
-|   |   |-- container
-|   |   |-- event-dispatcher
-|   |   |-- http-client
-|   |   |-- http-factory
-|   |   |-- http-message
-|   |   |-- log
-|   |   `-- simple-cache
-|   |-- psy
-|   |   `-- psysh
-|   |-- ralouphie
-|   |   `-- getallheaders
-|   |-- ramsey
-|   |   |-- collection
-|   |   `-- uuid
-|   |-- sebastian
-|   |   |-- cli-parser
-|   |   |-- code-unit
-|   |   |-- code-unit-reverse-lookup
-|   |   |-- comparator
-|   |   |-- complexity
-|   |   |-- diff
-|   |   |-- environment
-|   |   |-- exporter
-|   |   |-- global-state
-|   |   |-- lines-of-code
-|   |   |-- object-enumerator
-|   |   |-- object-reflector
-|   |   |-- recursion-context
-|   |   |-- type
-|   |   `-- version
-|   |-- staabm
-|   |   `-- side-effects-detector
-|   |-- symfony
-|   |   |-- clock
-|   |   |-- console
-|   |   |-- css-selector
-|   |   |-- deprecation-contracts
-|   |   |-- error-handler
-|   |   |-- event-dispatcher
-|   |   |-- event-dispatcher-contracts
-|   |   |-- finder
-|   |   |-- http-foundation
-|   |   |-- http-kernel
-|   |   |-- mailer
-|   |   |-- mime
-|   |   |-- polyfill-ctype
-|   |   |-- polyfill-intl-grapheme
-|   |   |-- polyfill-intl-idn
-|   |   |-- polyfill-intl-normalizer
-|   |   |-- polyfill-mbstring
-|   |   |-- polyfill-php80
-|   |   |-- polyfill-php83
-|   |   |-- polyfill-uuid
-|   |   |-- process
-|   |   |-- routing
-|   |   |-- service-contracts
-|   |   |-- string
-|   |   |-- translation
-|   |   |-- translation-contracts
-|   |   |-- uid
-|   |   |-- var-dumper
-|   |   `-- yaml
-|   |-- theseer
-|   |   `-- tokenizer
-|   |-- tijsverkoyen
-|   |   `-- css-to-inline-styles
-|   |-- vlucas
-|   |   `-- phpdotenv
-|   |-- voku
-|   |   `-- portable-ascii
-|   `-- webmozart
-|       `-- assert
-`-- vite.config.js
-
-543 directories, 1611 files
+./.editorconfig
+./.env
+./.env.example
+./.gitattributes
+./.gitignore
+./app
+./app/Http
+./app/Http/Controllers
+./app/Http/Middleware
+./app/Http/Requests
+./app/Models
+./app/Models/Attendance.php
+./app/Models/Enrollment.php
+./app/Models/Event.php
+./app/Models/Grade.php
+./app/Models/Group.php
+./app/Models/Justificacion.php
+./app/Models/Message.php
+./app/Models/Subject.php
+./app/Models/Task.php
+./app/Models/User.php
+./app/Providers
+./app/Providers/AppServiceProvider.php
+./app/View
+./app/View/Components
+./artisan
+./bootstrap
+./bootstrap/app.php
+./bootstrap/cache
+./bootstrap/cache/.gitignore
+./bootstrap/cache/packages.php
+./bootstrap/cache/services.php
+./bootstrap/providers.php
+./composer.json
+./composer.lock
+./config
+./config/app.php
+./config/auth.php
+./config/cache.php
+./config/database.php
+./config/filesystems.php
+./config/logging.php
+./config/mail.php
+./config/queue.php
+./config/services.php
+./config/session.php
+./database
+./database/.gitignore
+./database/factories
+./database/factories/UserFactory.php
+./database/migrations
+./database/migrations/0001_01_01_000000_create_users_table.php
+./database/migrations/0001_01_01_000001_create_cache_table.php
+./database/migrations/0001_01_01_000002_create_jobs_table.php
+./database/migrations/2025_05_15_174154_add_role_to_users_table.php
+./database/migrations/2025_05_15_174832_create_subjects_table.php
+./database/migrations/2025_05_15_174839_create_groups_table.php
+./database/migrations/2025_05_15_174847_create_enrollments_table.php
+./database/migrations/2025_05_15_174854_create_grades_table.php
+./database/migrations/2025_05_15_174904_create_attendances_table.php
+./database/migrations/2025_05_15_174920_create_messages_table.php
+./database/migrations/2025_05_23_164851_add_tutor_id_to_users_table.php
+./database/migrations/2025_05_23_185902_create_grade_tables.php
+./database/migrations/2025_05_26_003630_add_present_column_to_attendances_table.php
+./database/migrations/2025_05_27_151043_add_group_id_to_users_table.php
+./database/migrations/2025_05_27_235354_create_task_user_table.php
+./database/migrations/2025_05_28_204135_create_events_table.php
+./database/migrations/2025_05_29_160928_add_justification_to_attendances_table.php
+./database/migrations/2025_05_29_164154_create_justificaciones_table.php
+./database/seeders
+./database/seeders/DatabaseSeeder.php
+./er->subjects;
+./estructura.txt
+./GEBMOLL - Acceso directo.lnk
+./Group::all();
+./node_modules
+./node_modules/.bin
+./node_modules/.bin/.autoprefixer-xFgA6Dzf
+./node_modules/.bin/.browserslist-ECdf0Wt1
+./node_modules/.bin/.clean-orphaned-assets-jDFyk3gF
+./node_modules/.bin/.conc-nm87XJiM
+./node_modules/.bin/.concurrently-WCoKe4Iu
+./node_modules/.bin/.cssesc-0lAn9LaT
+./node_modules/.bin/.esbuild-5amJI3LU
+./node_modules/.bin/.glob-L5HoUKgO
+./node_modules/.bin/.jiti-LgjdD6n9
+./node_modules/.bin/.mini-svg-data-uri-fN3XWNNT
+./node_modules/.bin/.mkdirp-wGxeZD0l
+./node_modules/.bin/.nanoid-zwExBSob
+./node_modules/.bin/.node-which-Q7totubO
+./node_modules/.bin/.resolve-VsfWeUVh
+./node_modules/.bin/.rollup-dyzC6TNn
+./node_modules/.bin/.sucrase-hDqXWDfy
+./node_modules/.bin/.sucrase-node-ARwN6Eni
+./node_modules/.bin/.tailwind-foY28s0s
+./node_modules/.bin/.tailwindcss-ktFH7x70
+./node_modules/.bin/.tree-kill-SaCql4Xc
+./node_modules/.bin/.update-browserslist-db-shB7kvKS
+./node_modules/.bin/.vite-tpcEIKyb
+./node_modules/.bin/.yaml-oWwhKRLv
+./node_modules/.bin/autoprefixer
+./node_modules/.bin/autoprefixer.cmd
+./node_modules/.bin/autoprefixer.ps1
+./node_modules/.bin/browserslist
+./node_modules/.bin/browserslist.cmd
+./node_modules/.bin/browserslist.ps1
+./node_modules/.bin/clean-orphaned-assets
+./node_modules/.bin/clean-orphaned-assets.cmd
+./node_modules/.bin/clean-orphaned-assets.ps1
+./node_modules/.bin/conc
+./node_modules/.bin/conc.cmd
+./node_modules/.bin/conc.ps1
+./node_modules/.bin/concurrently
+./node_modules/.bin/concurrently.cmd
+./node_modules/.bin/concurrently.ps1
+./node_modules/.bin/cssesc
+./node_modules/.bin/cssesc.cmd
+./node_modules/.bin/cssesc.ps1
+./node_modules/.bin/esbuild
+./node_modules/.bin/esbuild.cmd
+./node_modules/.bin/esbuild.ps1
+./node_modules/.bin/glob
+./node_modules/.bin/glob.cmd
+./node_modules/.bin/glob.ps1
+./node_modules/.bin/jiti
+./node_modules/.bin/jiti.cmd
+./node_modules/.bin/jiti.ps1
+./node_modules/.bin/mini-svg-data-uri
+./node_modules/.bin/mini-svg-data-uri.cmd
+./node_modules/.bin/mini-svg-data-uri.ps1
+./node_modules/.bin/mkdirp
+./node_modules/.bin/mkdirp.cmd
+./node_modules/.bin/mkdirp.ps1
+./node_modules/.bin/nanoid
+./node_modules/.bin/nanoid.cmd
+./node_modules/.bin/nanoid.ps1
+./node_modules/.bin/node-which
+./node_modules/.bin/node-which.cmd
+./node_modules/.bin/node-which.ps1
+./node_modules/.bin/resolve
+./node_modules/.bin/resolve.cmd
+./node_modules/.bin/resolve.ps1
+./node_modules/.bin/rollup
+./node_modules/.bin/rollup.cmd
+./node_modules/.bin/rollup.ps1
+./node_modules/.bin/sucrase
+./node_modules/.bin/sucrase-node
+./node_modules/.bin/sucrase-node.cmd
+./node_modules/.bin/sucrase-node.ps1
+./node_modules/.bin/sucrase.cmd
+./node_modules/.bin/sucrase.ps1
+./node_modules/.bin/tailwind
+./node_modules/.bin/tailwind.cmd
+./node_modules/.bin/tailwind.ps1
+./node_modules/.bin/tailwindcss
+./node_modules/.bin/tailwindcss.cmd
+./node_modules/.bin/tailwindcss.ps1
+./node_modules/.bin/tree-kill
+./node_modules/.bin/tree-kill.cmd
+./node_modules/.bin/tree-kill.ps1
+./node_modules/.bin/update-browserslist-db
+./node_modules/.bin/update-browserslist-db.cmd
+./node_modules/.bin/update-browserslist-db.ps1
+./node_modules/.bin/vite
+./node_modules/.bin/vite.cmd
+./node_modules/.bin/vite.ps1
+./node_modules/.bin/yaml
+./node_modules/.bin/yaml.cmd
+./node_modules/.bin/yaml.ps1
+./node_modules/.package-lock.json
+./node_modules/.vite
+./node_modules/.vite/deps
+./node_modules/.vite-temp
+./node_modules/@alloc
+./node_modules/@alloc/quick-lru
+./node_modules/@ampproject
+./node_modules/@ampproject/remapping
+./node_modules/@esbuild
+./node_modules/@esbuild/linux-x64
+./node_modules/@esbuild/win32-x64
+./node_modules/@isaacs
+./node_modules/@isaacs/cliui
+./node_modules/@isaacs/fs-minipass
+./node_modules/@jridgewell
+./node_modules/@jridgewell/gen-mapping
+./node_modules/@jridgewell/resolve-uri
+./node_modules/@jridgewell/set-array
+./node_modules/@jridgewell/sourcemap-codec
+./node_modules/@jridgewell/trace-mapping
+./node_modules/@nodelib
+./node_modules/@nodelib/fs.scandir
+./node_modules/@nodelib/fs.stat
+./node_modules/@nodelib/fs.walk
+./node_modules/@pkgjs
+./node_modules/@pkgjs/parseargs
+./node_modules/@rollup
+./node_modules/@rollup/rollup-linux-x64-gnu
+./node_modules/@rollup/rollup-linux-x64-musl
+./node_modules/@rollup/rollup-win32-x64-msvc
+./node_modules/@tailwindcss
+./node_modules/@tailwindcss/forms
+./node_modules/@tailwindcss/node
+./node_modules/@tailwindcss/oxide
+./node_modules/@tailwindcss/oxide-linux-x64-gnu
+./node_modules/@tailwindcss/oxide-linux-x64-musl
+./node_modules/@tailwindcss/oxide-win32-x64-msvc
+./node_modules/@tailwindcss/vite
+./node_modules/@types
+./node_modules/@types/estree
+./node_modules/@vue
+./node_modules/@vue/reactivity
+./node_modules/@vue/shared
+./node_modules/alpinejs
+./node_modules/alpinejs/builds
+./node_modules/alpinejs/dist
+./node_modules/alpinejs/package.json
+./node_modules/alpinejs/src
+./node_modules/ansi-regex
+./node_modules/ansi-regex/index.d.ts
+./node_modules/ansi-regex/index.js
+./node_modules/ansi-regex/license
+./node_modules/ansi-regex/package.json
+./node_modules/ansi-regex/readme.md
+./node_modules/ansi-styles
+./node_modules/ansi-styles/index.d.ts
+./node_modules/ansi-styles/index.js
+./node_modules/ansi-styles/license
+./node_modules/ansi-styles/package.json
+./node_modules/ansi-styles/readme.md
+./node_modules/any-promise
+./node_modules/any-promise/.jshintrc
+./node_modules/any-promise/.npmignore
+./node_modules/any-promise/implementation.d.ts
+./node_modules/any-promise/implementation.js
+./node_modules/any-promise/index.d.ts
+./node_modules/any-promise/index.js
+./node_modules/any-promise/LICENSE
+./node_modules/any-promise/loader.js
+./node_modules/any-promise/optional.js
+./node_modules/any-promise/package.json
+./node_modules/any-promise/README.md
+./node_modules/any-promise/register
+./node_modules/any-promise/register-shim.js
+./node_modules/any-promise/register.d.ts
+./node_modules/any-promise/register.js
+./node_modules/anymatch
+./node_modules/anymatch/index.d.ts
+./node_modules/anymatch/index.js
+./node_modules/anymatch/LICENSE
+./node_modules/anymatch/package.json
+./node_modules/anymatch/README.md
+./node_modules/arg
+./node_modules/arg/index.d.ts
+./node_modules/arg/index.js
+./node_modules/arg/LICENSE.md
+./node_modules/arg/package.json
+./node_modules/arg/README.md
+./node_modules/asynckit
+./node_modules/asynckit/bench.js
+./node_modules/asynckit/index.js
+./node_modules/asynckit/lib
+./node_modules/asynckit/LICENSE
+./node_modules/asynckit/package.json
+./node_modules/asynckit/parallel.js
+./node_modules/asynckit/README.md
+./node_modules/asynckit/serial.js
+./node_modules/asynckit/serialOrdered.js
+./node_modules/asynckit/stream.js
+./node_modules/autoprefixer
+./node_modules/autoprefixer/bin
+./node_modules/autoprefixer/data
+./node_modules/autoprefixer/lib
+./node_modules/autoprefixer/LICENSE
+./node_modules/autoprefixer/package.json
+./node_modules/autoprefixer/README.md
+./node_modules/axios
+./node_modules/axios/CHANGELOG.md
+./node_modules/axios/dist
+./node_modules/axios/index.d.cts
+./node_modules/axios/index.d.ts
+./node_modules/axios/index.js
+./node_modules/axios/lib
+./node_modules/axios/LICENSE
+./node_modules/axios/MIGRATION_GUIDE.md
+./node_modules/axios/package.json
+./node_modules/axios/README.md
+./node_modules/balanced-match
+./node_modules/balanced-match/.github
+./node_modules/balanced-match/index.js
+./node_modules/balanced-match/LICENSE.md
+./node_modules/balanced-match/package.json
+./node_modules/balanced-match/README.md
+./node_modules/binary-extensions
+./node_modules/binary-extensions/binary-extensions.json
+./node_modules/binary-extensions/binary-extensions.json.d.ts
+./node_modules/binary-extensions/index.d.ts
+./node_modules/binary-extensions/index.js
+./node_modules/binary-extensions/license
+./node_modules/binary-extensions/package.json
+./node_modules/binary-extensions/readme.md
+./node_modules/brace-expansion
+./node_modules/brace-expansion/.github
+./node_modules/brace-expansion/index.js
+./node_modules/brace-expansion/LICENSE
+./node_modules/brace-expansion/package.json
+./node_modules/brace-expansion/README.md
+./node_modules/braces
+./node_modules/braces/index.js
+./node_modules/braces/lib
+./node_modules/braces/LICENSE
+./node_modules/braces/package.json
+./node_modules/braces/README.md
+./node_modules/browserslist
+./node_modules/browserslist/browser.js
+./node_modules/browserslist/cli.js
+./node_modules/browserslist/error.d.ts
+./node_modules/browserslist/error.js
+./node_modules/browserslist/index.d.ts
+./node_modules/browserslist/index.js
+./node_modules/browserslist/LICENSE
+./node_modules/browserslist/node.js
+./node_modules/browserslist/package.json
+./node_modules/browserslist/parse.js
+./node_modules/browserslist/README.md
+./node_modules/call-bind-apply-helpers
+./node_modules/call-bind-apply-helpers/.eslintrc
+./node_modules/call-bind-apply-helpers/.github
+./node_modules/call-bind-apply-helpers/.nycrc
+./node_modules/call-bind-apply-helpers/actualApply.d.ts
+./node_modules/call-bind-apply-helpers/actualApply.js
+./node_modules/call-bind-apply-helpers/applyBind.d.ts
+./node_modules/call-bind-apply-helpers/applyBind.js
+./node_modules/call-bind-apply-helpers/CHANGELOG.md
+./node_modules/call-bind-apply-helpers/functionApply.d.ts
+./node_modules/call-bind-apply-helpers/functionApply.js
+./node_modules/call-bind-apply-helpers/functionCall.d.ts
+./node_modules/call-bind-apply-helpers/functionCall.js
+./node_modules/call-bind-apply-helpers/index.d.ts
+./node_modules/call-bind-apply-helpers/index.js
+./node_modules/call-bind-apply-helpers/LICENSE
+./node_modules/call-bind-apply-helpers/package.json
+./node_modules/call-bind-apply-helpers/README.md
+./node_modules/call-bind-apply-helpers/reflectApply.d.ts
+./node_modules/call-bind-apply-helpers/reflectApply.js
+./node_modules/call-bind-apply-helpers/test
+./node_modules/call-bind-apply-helpers/tsconfig.json
+./node_modules/camelcase-css
+./node_modules/camelcase-css/index-es5.js
+./node_modules/camelcase-css/index.js
+./node_modules/camelcase-css/license
+./node_modules/camelcase-css/package.json
+./node_modules/camelcase-css/README.md
+./node_modules/caniuse-lite
+./node_modules/caniuse-lite/data
+./node_modules/caniuse-lite/dist
+./node_modules/caniuse-lite/LICENSE
+./node_modules/caniuse-lite/package.json
+./node_modules/caniuse-lite/README.md
+./node_modules/chalk
+./node_modules/chalk/index.d.ts
+./node_modules/chalk/license
+./node_modules/chalk/node_modules
+./node_modules/chalk/package.json
+./node_modules/chalk/readme.md
+./node_modules/chalk/source
+./node_modules/chokidar
+./node_modules/chokidar/index.js
+./node_modules/chokidar/lib
+./node_modules/chokidar/LICENSE
+./node_modules/chokidar/node_modules
+./node_modules/chokidar/package.json
+./node_modules/chokidar/README.md
+./node_modules/chokidar/types
+./node_modules/chownr
+./node_modules/chownr/dist
+./node_modules/chownr/LICENSE.md
+./node_modules/chownr/package.json
+./node_modules/chownr/README.md
+./node_modules/cliui
+./node_modules/cliui/build
+./node_modules/cliui/CHANGELOG.md
+./node_modules/cliui/index.mjs
+./node_modules/cliui/LICENSE.txt
+./node_modules/cliui/node_modules
+./node_modules/cliui/package.json
+./node_modules/cliui/README.md
+./node_modules/color-convert
+./node_modules/color-convert/CHANGELOG.md
+./node_modules/color-convert/conversions.js
+./node_modules/color-convert/index.js
+./node_modules/color-convert/LICENSE
+./node_modules/color-convert/package.json
+./node_modules/color-convert/README.md
+./node_modules/color-convert/route.js
+./node_modules/color-name
+./node_modules/color-name/index.js
+./node_modules/color-name/LICENSE
+./node_modules/color-name/package.json
+./node_modules/color-name/README.md
+./node_modules/combined-stream
+./node_modules/combined-stream/lib
+./node_modules/combined-stream/License
+./node_modules/combined-stream/package.json
+./node_modules/combined-stream/Readme.md
+./node_modules/combined-stream/yarn.lock
+./node_modules/commander
+./node_modules/commander/CHANGELOG.md
+./node_modules/commander/index.js
+./node_modules/commander/LICENSE
+./node_modules/commander/package.json
+./node_modules/commander/Readme.md
+./node_modules/commander/typings
+./node_modules/concurrently
+./node_modules/concurrently/dist
+./node_modules/concurrently/docs
+./node_modules/concurrently/index.d.mts
+./node_modules/concurrently/index.d.ts
+./node_modules/concurrently/index.js
+./node_modules/concurrently/index.mjs
+./node_modules/concurrently/LICENSE
+./node_modules/concurrently/package.json
+./node_modules/concurrently/README.md
+./node_modules/cross-spawn
+./node_modules/cross-spawn/index.js
+./node_modules/cross-spawn/lib
+./node_modules/cross-spawn/LICENSE
+./node_modules/cross-spawn/package.json
+./node_modules/cross-spawn/README.md
+./node_modules/cssesc
+./node_modules/cssesc/bin
+./node_modules/cssesc/cssesc.js
+./node_modules/cssesc/LICENSE-MIT.txt
+./node_modules/cssesc/man
+./node_modules/cssesc/package.json
+./node_modules/cssesc/README.md
+./node_modules/delayed-stream
+./node_modules/delayed-stream/.npmignore
+./node_modules/delayed-stream/lib
+./node_modules/delayed-stream/License
+./node_modules/delayed-stream/Makefile
+./node_modules/delayed-stream/package.json
+./node_modules/delayed-stream/Readme.md
+./node_modules/detect-libc
+./node_modules/detect-libc/index.d.ts
+./node_modules/detect-libc/lib
+./node_modules/detect-libc/LICENSE
+./node_modules/detect-libc/package.json
+./node_modules/detect-libc/README.md
+./node_modules/didyoumean
+./node_modules/didyoumean/didYouMean-1.2.1.js
+./node_modules/didyoumean/didYouMean-1.2.1.min.js
+./node_modules/didyoumean/LICENSE
+./node_modules/didyoumean/package.json
+./node_modules/didyoumean/README.md
+./node_modules/dlv
+./node_modules/dlv/dist
+./node_modules/dlv/index.js
+./node_modules/dlv/package.json
+./node_modules/dlv/README.md
+./node_modules/dunder-proto
+./node_modules/dunder-proto/.eslintrc
+./node_modules/dunder-proto/.github
+./node_modules/dunder-proto/.nycrc
+./node_modules/dunder-proto/CHANGELOG.md
+./node_modules/dunder-proto/get.d.ts
+./node_modules/dunder-proto/get.js
+./node_modules/dunder-proto/LICENSE
+./node_modules/dunder-proto/package.json
+./node_modules/dunder-proto/README.md
+./node_modules/dunder-proto/set.d.ts
+./node_modules/dunder-proto/set.js
+./node_modules/dunder-proto/test
+./node_modules/dunder-proto/tsconfig.json
+./node_modules/eastasianwidth
+./node_modules/eastasianwidth/eastasianwidth.js
+./node_modules/eastasianwidth/package.json
+./node_modules/eastasianwidth/README.md
+./node_modules/electron-to-chromium
+./node_modules/electron-to-chromium/chromium-versions.js
+./node_modules/electron-to-chromium/chromium-versions.json
+./node_modules/electron-to-chromium/full-chromium-versions.js
+./node_modules/electron-to-chromium/full-chromium-versions.json
+./node_modules/electron-to-chromium/full-versions.js
+./node_modules/electron-to-chromium/full-versions.json
+./node_modules/electron-to-chromium/index.js
+./node_modules/electron-to-chromium/LICENSE
+./node_modules/electron-to-chromium/package.json
+./node_modules/electron-to-chromium/README.md
+./node_modules/electron-to-chromium/versions.js
+./node_modules/electron-to-chromium/versions.json
+./node_modules/emoji-regex
+./node_modules/emoji-regex/es2015
+./node_modules/emoji-regex/index.d.ts
+./node_modules/emoji-regex/index.js
+./node_modules/emoji-regex/LICENSE-MIT.txt
+./node_modules/emoji-regex/package.json
+./node_modules/emoji-regex/README.md
+./node_modules/emoji-regex/RGI_Emoji.d.ts
+./node_modules/emoji-regex/RGI_Emoji.js
+./node_modules/emoji-regex/text.d.ts
+./node_modules/emoji-regex/text.js
+./node_modules/enhanced-resolve
+./node_modules/enhanced-resolve/lib
+./node_modules/enhanced-resolve/LICENSE
+./node_modules/enhanced-resolve/package.json
+./node_modules/enhanced-resolve/README.md
+./node_modules/enhanced-resolve/types.d.ts
+./node_modules/es-define-property
+./node_modules/es-define-property/.eslintrc
+./node_modules/es-define-property/.github
+./node_modules/es-define-property/.nycrc
+./node_modules/es-define-property/CHANGELOG.md
+./node_modules/es-define-property/index.d.ts
+./node_modules/es-define-property/index.js
+./node_modules/es-define-property/LICENSE
+./node_modules/es-define-property/package.json
+./node_modules/es-define-property/README.md
+./node_modules/es-define-property/test
+./node_modules/es-define-property/tsconfig.json
+./node_modules/es-errors
+./node_modules/es-errors/.eslintrc
+./node_modules/es-errors/.github
+./node_modules/es-errors/CHANGELOG.md
+./node_modules/es-errors/eval.d.ts
+./node_modules/es-errors/eval.js
+./node_modules/es-errors/index.d.ts
+./node_modules/es-errors/index.js
+./node_modules/es-errors/LICENSE
+./node_modules/es-errors/package.json
+./node_modules/es-errors/range.d.ts
+./node_modules/es-errors/range.js
+./node_modules/es-errors/README.md
+./node_modules/es-errors/ref.d.ts
+./node_modules/es-errors/ref.js
+./node_modules/es-errors/syntax.d.ts
+./node_modules/es-errors/syntax.js
+./node_modules/es-errors/test
+./node_modules/es-errors/tsconfig.json
+./node_modules/es-errors/type.d.ts
+./node_modules/es-errors/type.js
+./node_modules/es-errors/uri.d.ts
+./node_modules/es-errors/uri.js
+./node_modules/es-object-atoms
+./node_modules/es-object-atoms/.eslintrc
+./node_modules/es-object-atoms/.github
+./node_modules/es-object-atoms/CHANGELOG.md
+./node_modules/es-object-atoms/index.d.ts
+./node_modules/es-object-atoms/index.js
+./node_modules/es-object-atoms/isObject.d.ts
+./node_modules/es-object-atoms/isObject.js
+./node_modules/es-object-atoms/LICENSE
+./node_modules/es-object-atoms/package.json
+./node_modules/es-object-atoms/README.md
+./node_modules/es-object-atoms/RequireObjectCoercible.d.ts
+./node_modules/es-object-atoms/RequireObjectCoercible.js
+./node_modules/es-object-atoms/test
+./node_modules/es-object-atoms/ToObject.d.ts
+./node_modules/es-object-atoms/ToObject.js
+./node_modules/es-object-atoms/tsconfig.json
+./node_modules/es-set-tostringtag
+./node_modules/es-set-tostringtag/.eslintrc
+./node_modules/es-set-tostringtag/.nycrc
+./node_modules/es-set-tostringtag/CHANGELOG.md
+./node_modules/es-set-tostringtag/index.d.ts
+./node_modules/es-set-tostringtag/index.js
+./node_modules/es-set-tostringtag/LICENSE
+./node_modules/es-set-tostringtag/package.json
+./node_modules/es-set-tostringtag/README.md
+./node_modules/es-set-tostringtag/test
+./node_modules/es-set-tostringtag/tsconfig.json
+./node_modules/esbuild
+./node_modules/esbuild/bin
+./node_modules/esbuild/install.js
+./node_modules/esbuild/lib
+./node_modules/esbuild/LICENSE.md
+./node_modules/esbuild/package.json
+./node_modules/esbuild/README.md
+./node_modules/escalade
+./node_modules/escalade/dist
+./node_modules/escalade/index.d.mts
+./node_modules/escalade/index.d.ts
+./node_modules/escalade/license
+./node_modules/escalade/package.json
+./node_modules/escalade/readme.md
+./node_modules/escalade/sync
+./node_modules/fast-glob
+./node_modules/fast-glob/LICENSE
+./node_modules/fast-glob/node_modules
+./node_modules/fast-glob/out
+./node_modules/fast-glob/package.json
+./node_modules/fast-glob/README.md
+./node_modules/fastq
+./node_modules/fastq/.github
+./node_modules/fastq/bench.js
+./node_modules/fastq/example.js
+./node_modules/fastq/example.mjs
+./node_modules/fastq/index.d.ts
+./node_modules/fastq/LICENSE
+./node_modules/fastq/package.json
+./node_modules/fastq/queue.js
+./node_modules/fastq/README.md
+./node_modules/fastq/SECURITY.md
+./node_modules/fastq/test
+./node_modules/fill-range
+./node_modules/fill-range/index.js
+./node_modules/fill-range/LICENSE
+./node_modules/fill-range/package.json
+./node_modules/fill-range/README.md
+./node_modules/follow-redirects
+./node_modules/follow-redirects/debug.js
+./node_modules/follow-redirects/http.js
+./node_modules/follow-redirects/https.js
+./node_modules/follow-redirects/index.js
+./node_modules/follow-redirects/LICENSE
+./node_modules/follow-redirects/package.json
+./node_modules/follow-redirects/README.md
+./node_modules/foreground-child
+./node_modules/foreground-child/dist
+./node_modules/foreground-child/LICENSE
+./node_modules/foreground-child/package.json
+./node_modules/foreground-child/README.md
+./node_modules/form-data
+./node_modules/form-data/index.d.ts
+./node_modules/form-data/lib
+./node_modules/form-data/License
+./node_modules/form-data/package.json
+./node_modules/form-data/Readme.md
+./node_modules/fraction.js
+./node_modules/fraction.js/bigfraction.js
+./node_modules/fraction.js/fraction.cjs
+./node_modules/fraction.js/fraction.d.ts
+./node_modules/fraction.js/fraction.js
+./node_modules/fraction.js/fraction.min.js
+./node_modules/fraction.js/LICENSE
+./node_modules/fraction.js/package.json
+./node_modules/fraction.js/README.md
+./node_modules/function-bind
+./node_modules/function-bind/.eslintrc
+./node_modules/function-bind/.github
+./node_modules/function-bind/.nycrc
+./node_modules/function-bind/CHANGELOG.md
+./node_modules/function-bind/implementation.js
+./node_modules/function-bind/index.js
+./node_modules/function-bind/LICENSE
+./node_modules/function-bind/package.json
+./node_modules/function-bind/README.md
+./node_modules/function-bind/test
+./node_modules/get-caller-file
+./node_modules/get-caller-file/index.d.ts
+./node_modules/get-caller-file/index.js
+./node_modules/get-caller-file/index.js.map
+./node_modules/get-caller-file/LICENSE.md
+./node_modules/get-caller-file/package.json
+./node_modules/get-caller-file/README.md
+./node_modules/get-intrinsic
+./node_modules/get-intrinsic/.eslintrc
+./node_modules/get-intrinsic/.github
+./node_modules/get-intrinsic/.nycrc
+./node_modules/get-intrinsic/CHANGELOG.md
+./node_modules/get-intrinsic/index.js
+./node_modules/get-intrinsic/LICENSE
+./node_modules/get-intrinsic/package.json
+./node_modules/get-intrinsic/README.md
+./node_modules/get-intrinsic/test
+./node_modules/get-proto
+./node_modules/get-proto/.eslintrc
+./node_modules/get-proto/.github
+./node_modules/get-proto/.nycrc
+./node_modules/get-proto/CHANGELOG.md
+./node_modules/get-proto/index.d.ts
+./node_modules/get-proto/index.js
+./node_modules/get-proto/LICENSE
+./node_modules/get-proto/Object.getPrototypeOf.d.ts
+./node_modules/get-proto/Object.getPrototypeOf.js
+./node_modules/get-proto/package.json
+./node_modules/get-proto/README.md
+./node_modules/get-proto/Reflect.getPrototypeOf.d.ts
+./node_modules/get-proto/Reflect.getPrototypeOf.js
+./node_modules/get-proto/test
+./node_modules/get-proto/tsconfig.json
+./node_modules/glob
+./node_modules/glob/dist
+./node_modules/glob/LICENSE
+./node_modules/glob/package.json
+./node_modules/glob/README.md
+./node_modules/glob-parent
+./node_modules/glob-parent/index.js
+./node_modules/glob-parent/LICENSE
+./node_modules/glob-parent/package.json
+./node_modules/glob-parent/README.md
+./node_modules/gopd
+./node_modules/gopd/.eslintrc
+./node_modules/gopd/.github
+./node_modules/gopd/CHANGELOG.md
+./node_modules/gopd/gOPD.d.ts
+./node_modules/gopd/gOPD.js
+./node_modules/gopd/index.d.ts
+./node_modules/gopd/index.js
+./node_modules/gopd/LICENSE
+./node_modules/gopd/package.json
+./node_modules/gopd/README.md
+./node_modules/gopd/test
+./node_modules/gopd/tsconfig.json
+./node_modules/graceful-fs
+./node_modules/graceful-fs/clone.js
+./node_modules/graceful-fs/graceful-fs.js
+./node_modules/graceful-fs/legacy-streams.js
+./node_modules/graceful-fs/LICENSE
+./node_modules/graceful-fs/package.json
+./node_modules/graceful-fs/polyfills.js
+./node_modules/graceful-fs/README.md
+./node_modules/has-flag
+./node_modules/has-flag/index.d.ts
+./node_modules/has-flag/index.js
+./node_modules/has-flag/license
+./node_modules/has-flag/package.json
+./node_modules/has-flag/readme.md
+./node_modules/has-symbols
+./node_modules/has-symbols/.eslintrc
+./node_modules/has-symbols/.github
+./node_modules/has-symbols/.nycrc
+./node_modules/has-symbols/CHANGELOG.md
+./node_modules/has-symbols/index.d.ts
+./node_modules/has-symbols/index.js
+./node_modules/has-symbols/LICENSE
+./node_modules/has-symbols/package.json
+./node_modules/has-symbols/README.md
+./node_modules/has-symbols/shams.d.ts
+./node_modules/has-symbols/shams.js
+./node_modules/has-symbols/test
+./node_modules/has-symbols/tsconfig.json
+./node_modules/has-tostringtag
+./node_modules/has-tostringtag/.eslintrc
+./node_modules/has-tostringtag/.github
+./node_modules/has-tostringtag/.nycrc
+./node_modules/has-tostringtag/CHANGELOG.md
+./node_modules/has-tostringtag/index.d.ts
+./node_modules/has-tostringtag/index.js
+./node_modules/has-tostringtag/LICENSE
+./node_modules/has-tostringtag/package.json
+./node_modules/has-tostringtag/README.md
+./node_modules/has-tostringtag/shams.d.ts
+./node_modules/has-tostringtag/shams.js
+./node_modules/has-tostringtag/test
+./node_modules/has-tostringtag/tsconfig.json
+./node_modules/hasown
+./node_modules/hasown/.eslintrc
+./node_modules/hasown/.github
+./node_modules/hasown/.nycrc
+./node_modules/hasown/CHANGELOG.md
+./node_modules/hasown/index.d.ts
+./node_modules/hasown/index.js
+./node_modules/hasown/LICENSE
+./node_modules/hasown/package.json
+./node_modules/hasown/README.md
+./node_modules/hasown/tsconfig.json
+./node_modules/is-binary-path
+./node_modules/is-binary-path/index.d.ts
+./node_modules/is-binary-path/index.js
+./node_modules/is-binary-path/license
+./node_modules/is-binary-path/package.json
+./node_modules/is-binary-path/readme.md
+./node_modules/is-core-module
+./node_modules/is-core-module/.eslintrc
+./node_modules/is-core-module/.nycrc
+./node_modules/is-core-module/CHANGELOG.md
+./node_modules/is-core-module/core.json
+./node_modules/is-core-module/index.js
+./node_modules/is-core-module/LICENSE
+./node_modules/is-core-module/package.json
+./node_modules/is-core-module/README.md
+./node_modules/is-core-module/test
+./node_modules/is-extglob
+./node_modules/is-extglob/index.js
+./node_modules/is-extglob/LICENSE
+./node_modules/is-extglob/package.json
+./node_modules/is-extglob/README.md
+./node_modules/is-fullwidth-code-point
+./node_modules/is-fullwidth-code-point/index.d.ts
+./node_modules/is-fullwidth-code-point/index.js
+./node_modules/is-fullwidth-code-point/license
+./node_modules/is-fullwidth-code-point/package.json
+./node_modules/is-fullwidth-code-point/readme.md
+./node_modules/is-glob
+./node_modules/is-glob/index.js
+./node_modules/is-glob/LICENSE
+./node_modules/is-glob/package.json
+./node_modules/is-glob/README.md
+./node_modules/is-number
+./node_modules/is-number/index.js
+./node_modules/is-number/LICENSE
+./node_modules/is-number/package.json
+./node_modules/is-number/README.md
+./node_modules/isexe
+./node_modules/isexe/.npmignore
+./node_modules/isexe/index.js
+./node_modules/isexe/LICENSE
+./node_modules/isexe/mode.js
+./node_modules/isexe/package.json
+./node_modules/isexe/README.md
+./node_modules/isexe/test
+./node_modules/isexe/windows.js
+./node_modules/jackspeak
+./node_modules/jackspeak/dist
+./node_modules/jackspeak/LICENSE.md
+./node_modules/jackspeak/package.json
+./node_modules/jackspeak/README.md
+./node_modules/jiti
+./node_modules/jiti/dist
+./node_modules/jiti/lib
+./node_modules/jiti/LICENSE
+./node_modules/jiti/package.json
+./node_modules/jiti/README.md
+./node_modules/laravel-vite-plugin
+./node_modules/laravel-vite-plugin/bin
+./node_modules/laravel-vite-plugin/dist
+./node_modules/laravel-vite-plugin/inertia-helpers
+./node_modules/laravel-vite-plugin/LICENSE.md
+./node_modules/laravel-vite-plugin/package.json
+./node_modules/laravel-vite-plugin/README.md
+./node_modules/lightningcss
+./node_modules/lightningcss/LICENSE
+./node_modules/lightningcss/node
+./node_modules/lightningcss/package.json
+./node_modules/lightningcss/README.md
+./node_modules/lightningcss-linux-x64-gnu
+./node_modules/lightningcss-linux-x64-gnu/LICENSE
+./node_modules/lightningcss-linux-x64-gnu/lightningcss.linux-x64-gnu.node
+./node_modules/lightningcss-linux-x64-gnu/package.json
+./node_modules/lightningcss-linux-x64-gnu/README.md
+./node_modules/lightningcss-linux-x64-musl
+./node_modules/lightningcss-linux-x64-musl/LICENSE
+./node_modules/lightningcss-linux-x64-musl/lightningcss.linux-x64-musl.node
+./node_modules/lightningcss-linux-x64-musl/package.json
+./node_modules/lightningcss-linux-x64-musl/README.md
+./node_modules/lightningcss-win32-x64-msvc
+./node_modules/lightningcss-win32-x64-msvc/LICENSE
+./node_modules/lightningcss-win32-x64-msvc/lightningcss.win32-x64-msvc.node
+./node_modules/lightningcss-win32-x64-msvc/package.json
+./node_modules/lightningcss-win32-x64-msvc/README.md
+./node_modules/lilconfig
+./node_modules/lilconfig/LICENSE
+./node_modules/lilconfig/package.json
+./node_modules/lilconfig/readme.md
+./node_modules/lilconfig/src
+./node_modules/lines-and-columns
+./node_modules/lines-and-columns/build
+./node_modules/lines-and-columns/LICENSE
+./node_modules/lines-and-columns/package.json
+./node_modules/lines-and-columns/README.md
+./node_modules/lodash
+./node_modules/lodash/add.js
+./node_modules/lodash/after.js
+./node_modules/lodash/array.js
+./node_modules/lodash/ary.js
+./node_modules/lodash/assign.js
+./node_modules/lodash/assignIn.js
+./node_modules/lodash/assignInWith.js
+./node_modules/lodash/assignWith.js
+./node_modules/lodash/at.js
+./node_modules/lodash/attempt.js
+./node_modules/lodash/before.js
+./node_modules/lodash/bind.js
+./node_modules/lodash/bindAll.js
+./node_modules/lodash/bindKey.js
+./node_modules/lodash/camelCase.js
+./node_modules/lodash/capitalize.js
+./node_modules/lodash/castArray.js
+./node_modules/lodash/ceil.js
+./node_modules/lodash/chain.js
+./node_modules/lodash/chunk.js
+./node_modules/lodash/clamp.js
+./node_modules/lodash/clone.js
+./node_modules/lodash/cloneDeep.js
+./node_modules/lodash/cloneDeepWith.js
+./node_modules/lodash/cloneWith.js
+./node_modules/lodash/collection.js
+./node_modules/lodash/commit.js
+./node_modules/lodash/compact.js
+./node_modules/lodash/concat.js
+./node_modules/lodash/cond.js
+./node_modules/lodash/conforms.js
+./node_modules/lodash/conformsTo.js
+./node_modules/lodash/constant.js
+./node_modules/lodash/core.js
+./node_modules/lodash/core.min.js
+./node_modules/lodash/countBy.js
+./node_modules/lodash/create.js
+./node_modules/lodash/curry.js
+./node_modules/lodash/curryRight.js
+./node_modules/lodash/date.js
+./node_modules/lodash/debounce.js
+./node_modules/lodash/deburr.js
+./node_modules/lodash/defaults.js
+./node_modules/lodash/defaultsDeep.js
+./node_modules/lodash/defaultTo.js
+./node_modules/lodash/defer.js
+./node_modules/lodash/delay.js
+./node_modules/lodash/difference.js
+./node_modules/lodash/differenceBy.js
+./node_modules/lodash/differenceWith.js
+./node_modules/lodash/divide.js
+./node_modules/lodash/drop.js
+./node_modules/lodash/dropRight.js
+./node_modules/lodash/dropRightWhile.js
+./node_modules/lodash/dropWhile.js
+./node_modules/lodash/each.js
+./node_modules/lodash/eachRight.js
+./node_modules/lodash/endsWith.js
+./node_modules/lodash/entries.js
+./node_modules/lodash/entriesIn.js
+./node_modules/lodash/eq.js
+./node_modules/lodash/escape.js
+./node_modules/lodash/escapeRegExp.js
+./node_modules/lodash/every.js
+./node_modules/lodash/extend.js
+./node_modules/lodash/extendWith.js
+./node_modules/lodash/fill.js
+./node_modules/lodash/filter.js
+./node_modules/lodash/find.js
+./node_modules/lodash/findIndex.js
+./node_modules/lodash/findKey.js
+./node_modules/lodash/findLast.js
+./node_modules/lodash/findLastIndex.js
+./node_modules/lodash/findLastKey.js
+./node_modules/lodash/first.js
+./node_modules/lodash/flake.lock
+./node_modules/lodash/flake.nix
+./node_modules/lodash/flatMap.js
+./node_modules/lodash/flatMapDeep.js
+./node_modules/lodash/flatMapDepth.js
+./node_modules/lodash/flatten.js
+./node_modules/lodash/flattenDeep.js
+./node_modules/lodash/flattenDepth.js
+./node_modules/lodash/flip.js
+./node_modules/lodash/floor.js
+./node_modules/lodash/flow.js
+./node_modules/lodash/flowRight.js
+./node_modules/lodash/forEach.js
+./node_modules/lodash/forEachRight.js
+./node_modules/lodash/forIn.js
+./node_modules/lodash/forInRight.js
+./node_modules/lodash/forOwn.js
+./node_modules/lodash/forOwnRight.js
+./node_modules/lodash/fp
+./node_modules/lodash/fp.js
+./node_modules/lodash/fromPairs.js
+./node_modules/lodash/function.js
+./node_modules/lodash/functions.js
+./node_modules/lodash/functionsIn.js
+./node_modules/lodash/get.js
+./node_modules/lodash/groupBy.js
+./node_modules/lodash/gt.js
+./node_modules/lodash/gte.js
+./node_modules/lodash/has.js
+./node_modules/lodash/hasIn.js
+./node_modules/lodash/head.js
+./node_modules/lodash/identity.js
+./node_modules/lodash/includes.js
+./node_modules/lodash/index.js
+./node_modules/lodash/indexOf.js
+./node_modules/lodash/initial.js
+./node_modules/lodash/inRange.js
+./node_modules/lodash/intersection.js
+./node_modules/lodash/intersectionBy.js
+./node_modules/lodash/intersectionWith.js
+./node_modules/lodash/invert.js
+./node_modules/lodash/invertBy.js
+./node_modules/lodash/invoke.js
+./node_modules/lodash/invokeMap.js
+./node_modules/lodash/isArguments.js
+./node_modules/lodash/isArray.js
+./node_modules/lodash/isArrayBuffer.js
+./node_modules/lodash/isArrayLike.js
+./node_modules/lodash/isArrayLikeObject.js
+./node_modules/lodash/isBoolean.js
+./node_modules/lodash/isBuffer.js
+./node_modules/lodash/isDate.js
+./node_modules/lodash/isElement.js
+./node_modules/lodash/isEmpty.js
+./node_modules/lodash/isEqual.js
+./node_modules/lodash/isEqualWith.js
+./node_modules/lodash/isError.js
+./node_modules/lodash/isFinite.js
+./node_modules/lodash/isFunction.js
+./node_modules/lodash/isInteger.js
+./node_modules/lodash/isLength.js
+./node_modules/lodash/isMap.js
+./node_modules/lodash/isMatch.js
+./node_modules/lodash/isMatchWith.js
+./node_modules/lodash/isNaN.js
+./node_modules/lodash/isNative.js
+./node_modules/lodash/isNil.js
+./node_modules/lodash/isNull.js
+./node_modules/lodash/isNumber.js
+./node_modules/lodash/isObject.js
+./node_modules/lodash/isObjectLike.js
+./node_modules/lodash/isPlainObject.js
+./node_modules/lodash/isRegExp.js
+./node_modules/lodash/isSafeInteger.js
+./node_modules/lodash/isSet.js
+./node_modules/lodash/isString.js
+./node_modules/lodash/isSymbol.js
+./node_modules/lodash/isTypedArray.js
+./node_modules/lodash/isUndefined.js
+./node_modules/lodash/isWeakMap.js
+./node_modules/lodash/isWeakSet.js
+./node_modules/lodash/iteratee.js
+./node_modules/lodash/join.js
+./node_modules/lodash/kebabCase.js
+./node_modules/lodash/keyBy.js
+./node_modules/lodash/keys.js
+./node_modules/lodash/keysIn.js
+./node_modules/lodash/lang.js
+./node_modules/lodash/last.js
+./node_modules/lodash/lastIndexOf.js
+./node_modules/lodash/LICENSE
+./node_modules/lodash/lodash.js
+./node_modules/lodash/lodash.min.js
+./node_modules/lodash/lowerCase.js
+./node_modules/lodash/lowerFirst.js
+./node_modules/lodash/lt.js
+./node_modules/lodash/lte.js
+./node_modules/lodash/map.js
+./node_modules/lodash/mapKeys.js
+./node_modules/lodash/mapValues.js
+./node_modules/lodash/matches.js
+./node_modules/lodash/matchesProperty.js
+./node_modules/lodash/math.js
+./node_modules/lodash/max.js
+./node_modules/lodash/maxBy.js
+./node_modules/lodash/mean.js
+./node_modules/lodash/meanBy.js
+./node_modules/lodash/memoize.js
+./node_modules/lodash/merge.js
+./node_modules/lodash/mergeWith.js
+./node_modules/lodash/method.js
+./node_modules/lodash/methodOf.js
+./node_modules/lodash/min.js
+./node_modules/lodash/minBy.js
+./node_modules/lodash/mixin.js
+./node_modules/lodash/multiply.js
+./node_modules/lodash/negate.js
+./node_modules/lodash/next.js
+./node_modules/lodash/noop.js
+./node_modules/lodash/now.js
+./node_modules/lodash/nth.js
+./node_modules/lodash/nthArg.js
+./node_modules/lodash/number.js
+./node_modules/lodash/object.js
+./node_modules/lodash/omit.js
+./node_modules/lodash/omitBy.js
+./node_modules/lodash/once.js
+./node_modules/lodash/orderBy.js
+./node_modules/lodash/over.js
+./node_modules/lodash/overArgs.js
+./node_modules/lodash/overEvery.js
+./node_modules/lodash/overSome.js
+./node_modules/lodash/package.json
+./node_modules/lodash/pad.js
+./node_modules/lodash/padEnd.js
+./node_modules/lodash/padStart.js
+./node_modules/lodash/parseInt.js
+./node_modules/lodash/partial.js
+./node_modules/lodash/partialRight.js
+./node_modules/lodash/partition.js
+./node_modules/lodash/pick.js
+./node_modules/lodash/pickBy.js
+./node_modules/lodash/plant.js
+./node_modules/lodash/property.js
+./node_modules/lodash/propertyOf.js
+./node_modules/lodash/pull.js
+./node_modules/lodash/pullAll.js
+./node_modules/lodash/pullAllBy.js
+./node_modules/lodash/pullAllWith.js
+./node_modules/lodash/pullAt.js
+./node_modules/lodash/random.js
+./node_modules/lodash/range.js
+./node_modules/lodash/rangeRight.js
+./node_modules/lodash/README.md
+./node_modules/lodash/rearg.js
+./node_modules/lodash/reduce.js
+./node_modules/lodash/reduceRight.js
+./node_modules/lodash/reject.js
+./node_modules/lodash/release.md
+./node_modules/lodash/remove.js
+./node_modules/lodash/repeat.js
+./node_modules/lodash/replace.js
+./node_modules/lodash/rest.js
+./node_modules/lodash/result.js
+./node_modules/lodash/reverse.js
+./node_modules/lodash/round.js
+./node_modules/lodash/sample.js
+./node_modules/lodash/sampleSize.js
+./node_modules/lodash/seq.js
+./node_modules/lodash/set.js
+./node_modules/lodash/setWith.js
+./node_modules/lodash/shuffle.js
+./node_modules/lodash/size.js
+./node_modules/lodash/slice.js
+./node_modules/lodash/snakeCase.js
+./node_modules/lodash/some.js
+./node_modules/lodash/sortBy.js
+./node_modules/lodash/sortedIndex.js
+./node_modules/lodash/sortedIndexBy.js
+./node_modules/lodash/sortedIndexOf.js
+./node_modules/lodash/sortedLastIndex.js
+./node_modules/lodash/sortedLastIndexBy.js
+./node_modules/lodash/sortedLastIndexOf.js
+./node_modules/lodash/sortedUniq.js
+./node_modules/lodash/sortedUniqBy.js
+./node_modules/lodash/split.js
+./node_modules/lodash/spread.js
+./node_modules/lodash/startCase.js
+./node_modules/lodash/startsWith.js
+./node_modules/lodash/string.js
+./node_modules/lodash/stubArray.js
+./node_modules/lodash/stubFalse.js
+./node_modules/lodash/stubObject.js
+./node_modules/lodash/stubString.js
+./node_modules/lodash/stubTrue.js
+./node_modules/lodash/subtract.js
+./node_modules/lodash/sum.js
+./node_modules/lodash/sumBy.js
+./node_modules/lodash/tail.js
+./node_modules/lodash/take.js
+./node_modules/lodash/takeRight.js
+./node_modules/lodash/takeRightWhile.js
+./node_modules/lodash/takeWhile.js
+./node_modules/lodash/tap.js
+./node_modules/lodash/template.js
+./node_modules/lodash/templateSettings.js
+./node_modules/lodash/throttle.js
+./node_modules/lodash/thru.js
+./node_modules/lodash/times.js
+./node_modules/lodash/toArray.js
+./node_modules/lodash/toFinite.js
+./node_modules/lodash/toInteger.js
+./node_modules/lodash/toIterator.js
+./node_modules/lodash/toJSON.js
+./node_modules/lodash/toLength.js
+./node_modules/lodash/toLower.js
+./node_modules/lodash/toNumber.js
+./node_modules/lodash/toPairs.js
+./node_modules/lodash/toPairsIn.js
+./node_modules/lodash/toPath.js
+./node_modules/lodash/toPlainObject.js
+./node_modules/lodash/toSafeInteger.js
+./node_modules/lodash/toString.js
+./node_modules/lodash/toUpper.js
+./node_modules/lodash/transform.js
+./node_modules/lodash/trim.js
+./node_modules/lodash/trimEnd.js
+./node_modules/lodash/trimStart.js
+./node_modules/lodash/truncate.js
+./node_modules/lodash/unary.js
+./node_modules/lodash/unescape.js
+./node_modules/lodash/union.js
+./node_modules/lodash/unionBy.js
+./node_modules/lodash/unionWith.js
+./node_modules/lodash/uniq.js
+./node_modules/lodash/uniqBy.js
+./node_modules/lodash/uniqueId.js
+./node_modules/lodash/uniqWith.js
+./node_modules/lodash/unset.js
+./node_modules/lodash/unzip.js
+./node_modules/lodash/unzipWith.js
+./node_modules/lodash/update.js
+./node_modules/lodash/updateWith.js
+./node_modules/lodash/upperCase.js
+./node_modules/lodash/upperFirst.js
+./node_modules/lodash/util.js
+./node_modules/lodash/value.js
+./node_modules/lodash/valueOf.js
+./node_modules/lodash/values.js
+./node_modules/lodash/valuesIn.js
+./node_modules/lodash/without.js
+./node_modules/lodash/words.js
+./node_modules/lodash/wrap.js
+./node_modules/lodash/wrapperAt.js
+./node_modules/lodash/wrapperChain.js
+./node_modules/lodash/wrapperLodash.js
+./node_modules/lodash/wrapperReverse.js
+./node_modules/lodash/wrapperValue.js
+./node_modules/lodash/xor.js
+./node_modules/lodash/xorBy.js
+./node_modules/lodash/xorWith.js
+./node_modules/lodash/zip.js
+./node_modules/lodash/zipObject.js
+./node_modules/lodash/zipObjectDeep.js
+./node_modules/lodash/zipWith.js
+./node_modules/lodash/_apply.js
+./node_modules/lodash/_arrayAggregator.js
+./node_modules/lodash/_arrayEach.js
+./node_modules/lodash/_arrayEachRight.js
+./node_modules/lodash/_arrayEvery.js
+./node_modules/lodash/_arrayFilter.js
+./node_modules/lodash/_arrayIncludes.js
+./node_modules/lodash/_arrayIncludesWith.js
+./node_modules/lodash/_arrayLikeKeys.js
+./node_modules/lodash/_arrayMap.js
+./node_modules/lodash/_arrayPush.js
+./node_modules/lodash/_arrayReduce.js
+./node_modules/lodash/_arrayReduceRight.js
+./node_modules/lodash/_arraySample.js
+./node_modules/lodash/_arraySampleSize.js
+./node_modules/lodash/_arrayShuffle.js
+./node_modules/lodash/_arraySome.js
+./node_modules/lodash/_asciiSize.js
+./node_modules/lodash/_asciiToArray.js
+./node_modules/lodash/_asciiWords.js
+./node_modules/lodash/_assignMergeValue.js
+./node_modules/lodash/_assignValue.js
+./node_modules/lodash/_assocIndexOf.js
+./node_modules/lodash/_baseAggregator.js
+./node_modules/lodash/_baseAssign.js
+./node_modules/lodash/_baseAssignIn.js
+./node_modules/lodash/_baseAssignValue.js
+./node_modules/lodash/_baseAt.js
+./node_modules/lodash/_baseClamp.js
+./node_modules/lodash/_baseClone.js
+./node_modules/lodash/_baseConforms.js
+./node_modules/lodash/_baseConformsTo.js
+./node_modules/lodash/_baseCreate.js
+./node_modules/lodash/_baseDelay.js
+./node_modules/lodash/_baseDifference.js
+./node_modules/lodash/_baseEach.js
+./node_modules/lodash/_baseEachRight.js
+./node_modules/lodash/_baseEvery.js
+./node_modules/lodash/_baseExtremum.js
+./node_modules/lodash/_baseFill.js
+./node_modules/lodash/_baseFilter.js
+./node_modules/lodash/_baseFindIndex.js
+./node_modules/lodash/_baseFindKey.js
+./node_modules/lodash/_baseFlatten.js
+./node_modules/lodash/_baseFor.js
+./node_modules/lodash/_baseForOwn.js
+./node_modules/lodash/_baseForOwnRight.js
+./node_modules/lodash/_baseForRight.js
+./node_modules/lodash/_baseFunctions.js
+./node_modules/lodash/_baseGet.js
+./node_modules/lodash/_baseGetAllKeys.js
+./node_modules/lodash/_baseGetTag.js
+./node_modules/lodash/_baseGt.js
+./node_modules/lodash/_baseHas.js
+./node_modules/lodash/_baseHasIn.js
+./node_modules/lodash/_baseIndexOf.js
+./node_modules/lodash/_baseIndexOfWith.js
+./node_modules/lodash/_baseInRange.js
+./node_modules/lodash/_baseIntersection.js
+./node_modules/lodash/_baseInverter.js
+./node_modules/lodash/_baseInvoke.js
+./node_modules/lodash/_baseIsArguments.js
+./node_modules/lodash/_baseIsArrayBuffer.js
+./node_modules/lodash/_baseIsDate.js
+./node_modules/lodash/_baseIsEqual.js
+./node_modules/lodash/_baseIsEqualDeep.js
+./node_modules/lodash/_baseIsMap.js
+./node_modules/lodash/_baseIsMatch.js
+./node_modules/lodash/_baseIsNaN.js
+./node_modules/lodash/_baseIsNative.js
+./node_modules/lodash/_baseIsRegExp.js
+./node_modules/lodash/_baseIsSet.js
+./node_modules/lodash/_baseIsTypedArray.js
+./node_modules/lodash/_baseIteratee.js
+./node_modules/lodash/_baseKeys.js
+./node_modules/lodash/_baseKeysIn.js
+./node_modules/lodash/_baseLodash.js
+./node_modules/lodash/_baseLt.js
+./node_modules/lodash/_baseMap.js
+./node_modules/lodash/_baseMatches.js
+./node_modules/lodash/_baseMatchesProperty.js
+./node_modules/lodash/_baseMean.js
+./node_modules/lodash/_baseMerge.js
+./node_modules/lodash/_baseMergeDeep.js
+./node_modules/lodash/_baseNth.js
+./node_modules/lodash/_baseOrderBy.js
+./node_modules/lodash/_basePick.js
+./node_modules/lodash/_basePickBy.js
+./node_modules/lodash/_baseProperty.js
+./node_modules/lodash/_basePropertyDeep.js
+./node_modules/lodash/_basePropertyOf.js
+./node_modules/lodash/_basePullAll.js
+./node_modules/lodash/_basePullAt.js
+./node_modules/lodash/_baseRandom.js
+./node_modules/lodash/_baseRange.js
+./node_modules/lodash/_baseReduce.js
+./node_modules/lodash/_baseRepeat.js
+./node_modules/lodash/_baseRest.js
+./node_modules/lodash/_baseSample.js
+./node_modules/lodash/_baseSampleSize.js
+./node_modules/lodash/_baseSet.js
+./node_modules/lodash/_baseSetData.js
+./node_modules/lodash/_baseSetToString.js
+./node_modules/lodash/_baseShuffle.js
+./node_modules/lodash/_baseSlice.js
+./node_modules/lodash/_baseSome.js
+./node_modules/lodash/_baseSortBy.js
+./node_modules/lodash/_baseSortedIndex.js
+./node_modules/lodash/_baseSortedIndexBy.js
+./node_modules/lodash/_baseSortedUniq.js
+./node_modules/lodash/_baseSum.js
+./node_modules/lodash/_baseTimes.js
+./node_modules/lodash/_baseToNumber.js
+./node_modules/lodash/_baseToPairs.js
+./node_modules/lodash/_baseToString.js
+./node_modules/lodash/_baseTrim.js
+./node_modules/lodash/_baseUnary.js
+./node_modules/lodash/_baseUniq.js
+./node_modules/lodash/_baseUnset.js
+./node_modules/lodash/_baseUpdate.js
+./node_modules/lodash/_baseValues.js
+./node_modules/lodash/_baseWhile.js
+./node_modules/lodash/_baseWrapperValue.js
+./node_modules/lodash/_baseXor.js
+./node_modules/lodash/_baseZipObject.js
+./node_modules/lodash/_cacheHas.js
+./node_modules/lodash/_castArrayLikeObject.js
+./node_modules/lodash/_castFunction.js
+./node_modules/lodash/_castPath.js
+./node_modules/lodash/_castRest.js
+./node_modules/lodash/_castSlice.js
+./node_modules/lodash/_charsEndIndex.js
+./node_modules/lodash/_charsStartIndex.js
+./node_modules/lodash/_cloneArrayBuffer.js
+./node_modules/lodash/_cloneBuffer.js
+./node_modules/lodash/_cloneDataView.js
+./node_modules/lodash/_cloneRegExp.js
+./node_modules/lodash/_cloneSymbol.js
+./node_modules/lodash/_cloneTypedArray.js
+./node_modules/lodash/_compareAscending.js
+./node_modules/lodash/_compareMultiple.js
+./node_modules/lodash/_composeArgs.js
+./node_modules/lodash/_composeArgsRight.js
+./node_modules/lodash/_copyArray.js
+./node_modules/lodash/_copyObject.js
+./node_modules/lodash/_copySymbols.js
+./node_modules/lodash/_copySymbolsIn.js
+./node_modules/lodash/_coreJsData.js
+./node_modules/lodash/_countHolders.js
+./node_modules/lodash/_createAggregator.js
+./node_modules/lodash/_createAssigner.js
+./node_modules/lodash/_createBaseEach.js
+./node_modules/lodash/_createBaseFor.js
+./node_modules/lodash/_createBind.js
+./node_modules/lodash/_createCaseFirst.js
+./node_modules/lodash/_createCompounder.js
+./node_modules/lodash/_createCtor.js
+./node_modules/lodash/_createCurry.js
+./node_modules/lodash/_createFind.js
+./node_modules/lodash/_createFlow.js
+./node_modules/lodash/_createHybrid.js
+./node_modules/lodash/_createInverter.js
+./node_modules/lodash/_createMathOperation.js
+./node_modules/lodash/_createOver.js
+./node_modules/lodash/_createPadding.js
+./node_modules/lodash/_createPartial.js
+./node_modules/lodash/_createRange.js
+./node_modules/lodash/_createRecurry.js
+./node_modules/lodash/_createRelationalOperation.js
+./node_modules/lodash/_createRound.js
+./node_modules/lodash/_createSet.js
+./node_modules/lodash/_createToPairs.js
+./node_modules/lodash/_createWrap.js
+./node_modules/lodash/_customDefaultsAssignIn.js
+./node_modules/lodash/_customDefaultsMerge.js
+./node_modules/lodash/_customOmitClone.js
+./node_modules/lodash/_DataView.js
+./node_modules/lodash/_deburrLetter.js
+./node_modules/lodash/_defineProperty.js
+./node_modules/lodash/_equalArrays.js
+./node_modules/lodash/_equalByTag.js
+./node_modules/lodash/_equalObjects.js
+./node_modules/lodash/_escapeHtmlChar.js
+./node_modules/lodash/_escapeStringChar.js
+./node_modules/lodash/_flatRest.js
+./node_modules/lodash/_freeGlobal.js
+./node_modules/lodash/_getAllKeys.js
+./node_modules/lodash/_getAllKeysIn.js
+./node_modules/lodash/_getData.js
+./node_modules/lodash/_getFuncName.js
+./node_modules/lodash/_getHolder.js
+./node_modules/lodash/_getMapData.js
+./node_modules/lodash/_getMatchData.js
+./node_modules/lodash/_getNative.js
+./node_modules/lodash/_getPrototype.js
+./node_modules/lodash/_getRawTag.js
+./node_modules/lodash/_getSymbols.js
+./node_modules/lodash/_getSymbolsIn.js
+./node_modules/lodash/_getTag.js
+./node_modules/lodash/_getValue.js
+./node_modules/lodash/_getView.js
+./node_modules/lodash/_getWrapDetails.js
+./node_modules/lodash/_Hash.js
+./node_modules/lodash/_hashClear.js
+./node_modules/lodash/_hashDelete.js
+./node_modules/lodash/_hashGet.js
+./node_modules/lodash/_hashHas.js
+./node_modules/lodash/_hashSet.js
+./node_modules/lodash/_hasPath.js
+./node_modules/lodash/_hasUnicode.js
+./node_modules/lodash/_hasUnicodeWord.js
+./node_modules/lodash/_initCloneArray.js
+./node_modules/lodash/_initCloneByTag.js
+./node_modules/lodash/_initCloneObject.js
+./node_modules/lodash/_insertWrapDetails.js
+./node_modules/lodash/_isFlattenable.js
+./node_modules/lodash/_isIndex.js
+./node_modules/lodash/_isIterateeCall.js
+./node_modules/lodash/_isKey.js
+./node_modules/lodash/_isKeyable.js
+./node_modules/lodash/_isLaziable.js
+./node_modules/lodash/_isMaskable.js
+./node_modules/lodash/_isMasked.js
+./node_modules/lodash/_isPrototype.js
+./node_modules/lodash/_isStrictComparable.js
+./node_modules/lodash/_iteratorToArray.js
+./node_modules/lodash/_lazyClone.js
+./node_modules/lodash/_lazyReverse.js
+./node_modules/lodash/_lazyValue.js
+./node_modules/lodash/_LazyWrapper.js
+./node_modules/lodash/_ListCache.js
+./node_modules/lodash/_listCacheClear.js
+./node_modules/lodash/_listCacheDelete.js
+./node_modules/lodash/_listCacheGet.js
+./node_modules/lodash/_listCacheHas.js
+./node_modules/lodash/_listCacheSet.js
+./node_modules/lodash/_LodashWrapper.js
+./node_modules/lodash/_Map.js
+./node_modules/lodash/_MapCache.js
+./node_modules/lodash/_mapCacheClear.js
+./node_modules/lodash/_mapCacheDelete.js
+./node_modules/lodash/_mapCacheGet.js
+./node_modules/lodash/_mapCacheHas.js
+./node_modules/lodash/_mapCacheSet.js
+./node_modules/lodash/_mapToArray.js
+./node_modules/lodash/_matchesStrictComparable.js
+./node_modules/lodash/_memoizeCapped.js
+./node_modules/lodash/_mergeData.js
+./node_modules/lodash/_metaMap.js
+./node_modules/lodash/_nativeCreate.js
+./node_modules/lodash/_nativeKeys.js
+./node_modules/lodash/_nativeKeysIn.js
+./node_modules/lodash/_nodeUtil.js
+./node_modules/lodash/_objectToString.js
+./node_modules/lodash/_overArg.js
+./node_modules/lodash/_overRest.js
+./node_modules/lodash/_parent.js
+./node_modules/lodash/_Promise.js
+./node_modules/lodash/_realNames.js
+./node_modules/lodash/_reEscape.js
+./node_modules/lodash/_reEvaluate.js
+./node_modules/lodash/_reInterpolate.js
+./node_modules/lodash/_reorder.js
+./node_modules/lodash/_replaceHolders.js
+./node_modules/lodash/_root.js
+./node_modules/lodash/_safeGet.js
+./node_modules/lodash/_Set.js
+./node_modules/lodash/_SetCache.js
+./node_modules/lodash/_setCacheAdd.js
+./node_modules/lodash/_setCacheHas.js
+./node_modules/lodash/_setData.js
+./node_modules/lodash/_setToArray.js
+./node_modules/lodash/_setToPairs.js
+./node_modules/lodash/_setToString.js
+./node_modules/lodash/_setWrapToString.js
+./node_modules/lodash/_shortOut.js
+./node_modules/lodash/_shuffleSelf.js
+./node_modules/lodash/_Stack.js
+./node_modules/lodash/_stackClear.js
+./node_modules/lodash/_stackDelete.js
+./node_modules/lodash/_stackGet.js
+./node_modules/lodash/_stackHas.js
+./node_modules/lodash/_stackSet.js
+./node_modules/lodash/_strictIndexOf.js
+./node_modules/lodash/_strictLastIndexOf.js
+./node_modules/lodash/_stringSize.js
+./node_modules/lodash/_stringToArray.js
+./node_modules/lodash/_stringToPath.js
+./node_modules/lodash/_Symbol.js
+./node_modules/lodash/_toKey.js
+./node_modules/lodash/_toSource.js
+./node_modules/lodash/_trimmedEndIndex.js
+./node_modules/lodash/_Uint8Array.js
+./node_modules/lodash/_unescapeHtmlChar.js
+./node_modules/lodash/_unicodeSize.js
+./node_modules/lodash/_unicodeToArray.js
+./node_modules/lodash/_unicodeWords.js
+./node_modules/lodash/_updateWrapDetails.js
+./node_modules/lodash/_WeakMap.js
+./node_modules/lodash/_wrapperClone.js
+./node_modules/lru-cache
+./node_modules/lru-cache/dist
+./node_modules/lru-cache/LICENSE
+./node_modules/lru-cache/package.json
+./node_modules/lru-cache/README.md
+./node_modules/magic-string
+./node_modules/magic-string/dist
+./node_modules/magic-string/LICENSE
+./node_modules/magic-string/package.json
+./node_modules/magic-string/README.md
+./node_modules/math-intrinsics
+./node_modules/math-intrinsics/.eslintrc
+./node_modules/math-intrinsics/.github
+./node_modules/math-intrinsics/abs.d.ts
+./node_modules/math-intrinsics/abs.js
+./node_modules/math-intrinsics/CHANGELOG.md
+./node_modules/math-intrinsics/constants
+./node_modules/math-intrinsics/floor.d.ts
+./node_modules/math-intrinsics/floor.js
+./node_modules/math-intrinsics/isFinite.d.ts
+./node_modules/math-intrinsics/isFinite.js
+./node_modules/math-intrinsics/isInteger.d.ts
+./node_modules/math-intrinsics/isInteger.js
+./node_modules/math-intrinsics/isNaN.d.ts
+./node_modules/math-intrinsics/isNaN.js
+./node_modules/math-intrinsics/isNegativeZero.d.ts
+./node_modules/math-intrinsics/isNegativeZero.js
+./node_modules/math-intrinsics/LICENSE
+./node_modules/math-intrinsics/max.d.ts
+./node_modules/math-intrinsics/max.js
+./node_modules/math-intrinsics/min.d.ts
+./node_modules/math-intrinsics/min.js
+./node_modules/math-intrinsics/mod.d.ts
+./node_modules/math-intrinsics/mod.js
+./node_modules/math-intrinsics/package.json
+./node_modules/math-intrinsics/pow.d.ts
+./node_modules/math-intrinsics/pow.js
+./node_modules/math-intrinsics/README.md
+./node_modules/math-intrinsics/round.d.ts
+./node_modules/math-intrinsics/round.js
+./node_modules/math-intrinsics/sign.d.ts
+./node_modules/math-intrinsics/sign.js
+./node_modules/math-intrinsics/test
+./node_modules/math-intrinsics/tsconfig.json
+./node_modules/merge2
+./node_modules/merge2/index.js
+./node_modules/merge2/LICENSE
+./node_modules/merge2/package.json
+./node_modules/merge2/README.md
+./node_modules/micromatch
+./node_modules/micromatch/index.js
+./node_modules/micromatch/LICENSE
+./node_modules/micromatch/package.json
+./node_modules/micromatch/README.md
+./node_modules/mime-db
+./node_modules/mime-db/db.json
+./node_modules/mime-db/HISTORY.md
+./node_modules/mime-db/index.js
+./node_modules/mime-db/LICENSE
+./node_modules/mime-db/package.json
+./node_modules/mime-db/README.md
+./node_modules/mime-types
+./node_modules/mime-types/HISTORY.md
+./node_modules/mime-types/index.js
+./node_modules/mime-types/LICENSE
+./node_modules/mime-types/package.json
+./node_modules/mime-types/README.md
+./node_modules/mini-svg-data-uri
+./node_modules/mini-svg-data-uri/cli.js
+./node_modules/mini-svg-data-uri/index.d.ts
+./node_modules/mini-svg-data-uri/index.js
+./node_modules/mini-svg-data-uri/index.test-d.ts
+./node_modules/mini-svg-data-uri/LICENSE
+./node_modules/mini-svg-data-uri/package.json
+./node_modules/mini-svg-data-uri/README.md
+./node_modules/mini-svg-data-uri/shorter-css-color-names.js
+./node_modules/minimatch
+./node_modules/minimatch/dist
+./node_modules/minimatch/LICENSE
+./node_modules/minimatch/package.json
+./node_modules/minimatch/README.md
+./node_modules/minipass
+./node_modules/minipass/dist
+./node_modules/minipass/LICENSE
+./node_modules/minipass/package.json
+./node_modules/minipass/README.md
+./node_modules/minizlib
+./node_modules/minizlib/dist
+./node_modules/minizlib/LICENSE
+./node_modules/minizlib/package.json
+./node_modules/minizlib/README.md
+./node_modules/mkdirp
+./node_modules/mkdirp/dist
+./node_modules/mkdirp/LICENSE
+./node_modules/mkdirp/package.json
+./node_modules/mkdirp/readme.markdown
+./node_modules/mz
+./node_modules/mz/child_process.js
+./node_modules/mz/crypto.js
+./node_modules/mz/dns.js
+./node_modules/mz/fs.js
+./node_modules/mz/HISTORY.md
+./node_modules/mz/index.js
+./node_modules/mz/LICENSE
+./node_modules/mz/package.json
+./node_modules/mz/readline.js
+./node_modules/mz/README.md
+./node_modules/mz/zlib.js
+./node_modules/nanoid
+./node_modules/nanoid/async
+./node_modules/nanoid/bin
+./node_modules/nanoid/index.browser.cjs
+./node_modules/nanoid/index.browser.js
+./node_modules/nanoid/index.cjs
+./node_modules/nanoid/index.d.cts
+./node_modules/nanoid/index.d.ts
+./node_modules/nanoid/index.js
+./node_modules/nanoid/LICENSE
+./node_modules/nanoid/nanoid.js
+./node_modules/nanoid/non-secure
+./node_modules/nanoid/package.json
+./node_modules/nanoid/README.md
+./node_modules/nanoid/url-alphabet
+./node_modules/node-releases
+./node_modules/node-releases/data
+./node_modules/node-releases/LICENSE
+./node_modules/node-releases/package.json
+./node_modules/node-releases/README.md
+./node_modules/normalize-path
+./node_modules/normalize-path/index.js
+./node_modules/normalize-path/LICENSE
+./node_modules/normalize-path/package.json
+./node_modules/normalize-path/README.md
+./node_modules/normalize-range
+./node_modules/normalize-range/index.js
+./node_modules/normalize-range/license
+./node_modules/normalize-range/package.json
+./node_modules/normalize-range/readme.md
+./node_modules/object-assign
+./node_modules/object-assign/index.js
+./node_modules/object-assign/license
+./node_modules/object-assign/package.json
+./node_modules/object-assign/readme.md
+./node_modules/object-hash
+./node_modules/object-hash/dist
+./node_modules/object-hash/index.js
+./node_modules/object-hash/LICENSE
+./node_modules/object-hash/package.json
+./node_modules/object-hash/readme.markdown
+./node_modules/package-json-from-dist
+./node_modules/package-json-from-dist/dist
+./node_modules/package-json-from-dist/LICENSE.md
+./node_modules/package-json-from-dist/package.json
+./node_modules/package-json-from-dist/README.md
+./node_modules/path-key
+./node_modules/path-key/index.d.ts
+./node_modules/path-key/index.js
+./node_modules/path-key/license
+./node_modules/path-key/package.json
+./node_modules/path-key/readme.md
+./node_modules/path-parse
+./node_modules/path-parse/index.js
+./node_modules/path-parse/LICENSE
+./node_modules/path-parse/package.json
+./node_modules/path-parse/README.md
+./node_modules/path-scurry
+./node_modules/path-scurry/dist
+./node_modules/path-scurry/LICENSE.md
+./node_modules/path-scurry/package.json
+./node_modules/path-scurry/README.md
+./node_modules/picocolors
+./node_modules/picocolors/LICENSE
+./node_modules/picocolors/package.json
+./node_modules/picocolors/picocolors.browser.js
+./node_modules/picocolors/picocolors.d.ts
+./node_modules/picocolors/picocolors.js
+./node_modules/picocolors/README.md
+./node_modules/picocolors/types.d.ts
+./node_modules/picomatch
+./node_modules/picomatch/CHANGELOG.md
+./node_modules/picomatch/index.js
+./node_modules/picomatch/lib
+./node_modules/picomatch/LICENSE
+./node_modules/picomatch/package.json
+./node_modules/picomatch/README.md
+./node_modules/pify
+./node_modules/pify/index.js
+./node_modules/pify/license
+./node_modules/pify/package.json
+./node_modules/pify/readme.md
+./node_modules/pirates
+./node_modules/pirates/index.d.ts
+./node_modules/pirates/lib
+./node_modules/pirates/LICENSE
+./node_modules/pirates/package.json
+./node_modules/pirates/README.md
+./node_modules/postcss
+./node_modules/postcss/lib
+./node_modules/postcss/LICENSE
+./node_modules/postcss/package.json
+./node_modules/postcss/README.md
+./node_modules/postcss-import
+./node_modules/postcss-import/index.js
+./node_modules/postcss-import/lib
+./node_modules/postcss-import/LICENSE
+./node_modules/postcss-import/package.json
+./node_modules/postcss-import/README.md
+./node_modules/postcss-js
+./node_modules/postcss-js/async.js
+./node_modules/postcss-js/index.js
+./node_modules/postcss-js/index.mjs
+./node_modules/postcss-js/LICENSE
+./node_modules/postcss-js/objectifier.js
+./node_modules/postcss-js/package.json
+./node_modules/postcss-js/parser.js
+./node_modules/postcss-js/process-result.js
+./node_modules/postcss-js/README.md
+./node_modules/postcss-js/sync.js
+./node_modules/postcss-load-config
+./node_modules/postcss-load-config/LICENSE
+./node_modules/postcss-load-config/package.json
+./node_modules/postcss-load-config/README.md
+./node_modules/postcss-load-config/src
+./node_modules/postcss-nested
+./node_modules/postcss-nested/index.d.ts
+./node_modules/postcss-nested/index.js
+./node_modules/postcss-nested/LICENSE
+./node_modules/postcss-nested/package.json
+./node_modules/postcss-nested/README.md
+./node_modules/postcss-selector-parser
+./node_modules/postcss-selector-parser/API.md
+./node_modules/postcss-selector-parser/CHANGELOG.md
+./node_modules/postcss-selector-parser/dist
+./node_modules/postcss-selector-parser/LICENSE-MIT
+./node_modules/postcss-selector-parser/package.json
+./node_modules/postcss-selector-parser/postcss-selector-parser.d.ts
+./node_modules/postcss-selector-parser/README.md
+./node_modules/postcss-value-parser
+./node_modules/postcss-value-parser/lib
+./node_modules/postcss-value-parser/LICENSE
+./node_modules/postcss-value-parser/package.json
+./node_modules/postcss-value-parser/README.md
+./node_modules/proxy-from-env
+./node_modules/proxy-from-env/.eslintrc
+./node_modules/proxy-from-env/.travis.yml
+./node_modules/proxy-from-env/index.js
+./node_modules/proxy-from-env/LICENSE
+./node_modules/proxy-from-env/package.json
+./node_modules/proxy-from-env/README.md
+./node_modules/proxy-from-env/test.js
+./node_modules/queue-microtask
+./node_modules/queue-microtask/index.d.ts
+./node_modules/queue-microtask/index.js
+./node_modules/queue-microtask/LICENSE
+./node_modules/queue-microtask/package.json
+./node_modules/queue-microtask/README.md
+./node_modules/read-cache
+./node_modules/read-cache/index.js
+./node_modules/read-cache/LICENSE
+./node_modules/read-cache/package.json
+./node_modules/read-cache/README.md
+./node_modules/readdirp
+./node_modules/readdirp/index.d.ts
+./node_modules/readdirp/index.js
+./node_modules/readdirp/LICENSE
+./node_modules/readdirp/package.json
+./node_modules/readdirp/README.md
+./node_modules/require-directory
+./node_modules/require-directory/.jshintrc
+./node_modules/require-directory/.npmignore
+./node_modules/require-directory/.travis.yml
+./node_modules/require-directory/index.js
+./node_modules/require-directory/LICENSE
+./node_modules/require-directory/package.json
+./node_modules/require-directory/README.markdown
+./node_modules/resolve
+./node_modules/resolve/.editorconfig
+./node_modules/resolve/.eslintrc
+./node_modules/resolve/.github
+./node_modules/resolve/async.js
+./node_modules/resolve/bin
+./node_modules/resolve/example
+./node_modules/resolve/index.js
+./node_modules/resolve/lib
+./node_modules/resolve/LICENSE
+./node_modules/resolve/package.json
+./node_modules/resolve/readme.markdown
+./node_modules/resolve/SECURITY.md
+./node_modules/resolve/sync.js
+./node_modules/resolve/test
+./node_modules/reusify
+./node_modules/reusify/.github
+./node_modules/reusify/benchmarks
+./node_modules/reusify/eslint.config.js
+./node_modules/reusify/LICENSE
+./node_modules/reusify/package.json
+./node_modules/reusify/README.md
+./node_modules/reusify/reusify.d.ts
+./node_modules/reusify/reusify.js
+./node_modules/reusify/SECURITY.md
+./node_modules/reusify/test.js
+./node_modules/reusify/tsconfig.json
+./node_modules/rollup
+./node_modules/rollup/dist
+./node_modules/rollup/LICENSE.md
+./node_modules/rollup/package.json
+./node_modules/rollup/README.md
+./node_modules/run-parallel
+./node_modules/run-parallel/index.js
+./node_modules/run-parallel/LICENSE
+./node_modules/run-parallel/package.json
+./node_modules/run-parallel/README.md
+./node_modules/rxjs
+./node_modules/rxjs/ajax
+./node_modules/rxjs/CHANGELOG.md
+./node_modules/rxjs/CODE_OF_CONDUCT.md
+./node_modules/rxjs/dist
+./node_modules/rxjs/fetch
+./node_modules/rxjs/LICENSE.txt
+./node_modules/rxjs/operators
+./node_modules/rxjs/package.json
+./node_modules/rxjs/README.md
+./node_modules/rxjs/src
+./node_modules/rxjs/testing
+./node_modules/rxjs/tsconfig.json
+./node_modules/rxjs/webSocket
+./node_modules/shebang-command
+./node_modules/shebang-command/index.js
+./node_modules/shebang-command/license
+./node_modules/shebang-command/package.json
+./node_modules/shebang-command/readme.md
+./node_modules/shebang-regex
+./node_modules/shebang-regex/index.d.ts
+./node_modules/shebang-regex/index.js
+./node_modules/shebang-regex/license
+./node_modules/shebang-regex/package.json
+./node_modules/shebang-regex/readme.md
+./node_modules/shell-quote
+./node_modules/shell-quote/.eslintrc
+./node_modules/shell-quote/.github
+./node_modules/shell-quote/.nycrc
+./node_modules/shell-quote/index.js
+./node_modules/shell-quote/LICENSE
+./node_modules/shell-quote/package.json
+./node_modules/shell-quote/parse.js
+./node_modules/shell-quote/quote.js
+./node_modules/shell-quote/README.md
+./node_modules/shell-quote/security.md
+./node_modules/shell-quote/test
+./node_modules/signal-exit
+./node_modules/signal-exit/dist
+./node_modules/signal-exit/LICENSE.txt
+./node_modules/signal-exit/package.json
+./node_modules/signal-exit/README.md
+./node_modules/source-map-js
+./node_modules/source-map-js/lib
+./node_modules/source-map-js/LICENSE
+./node_modules/source-map-js/package.json
+./node_modules/source-map-js/README.md
+./node_modules/source-map-js/source-map.d.ts
+./node_modules/source-map-js/source-map.js
+./node_modules/string-width
+./node_modules/string-width/index.d.ts
+./node_modules/string-width/index.js
+./node_modules/string-width/license
+./node_modules/string-width/package.json
+./node_modules/string-width/readme.md
+./node_modules/string-width-cjs
+./node_modules/string-width-cjs/index.d.ts
+./node_modules/string-width-cjs/index.js
+./node_modules/string-width-cjs/license
+./node_modules/string-width-cjs/node_modules
+./node_modules/string-width-cjs/package.json
+./node_modules/string-width-cjs/readme.md
+./node_modules/strip-ansi
+./node_modules/strip-ansi/index.d.ts
+./node_modules/strip-ansi/index.js
+./node_modules/strip-ansi/license
+./node_modules/strip-ansi/package.json
+./node_modules/strip-ansi/readme.md
+./node_modules/strip-ansi-cjs
+./node_modules/strip-ansi-cjs/index.d.ts
+./node_modules/strip-ansi-cjs/index.js
+./node_modules/strip-ansi-cjs/license
+./node_modules/strip-ansi-cjs/node_modules
+./node_modules/strip-ansi-cjs/package.json
+./node_modules/strip-ansi-cjs/readme.md
+./node_modules/sucrase
+./node_modules/sucrase/bin
+./node_modules/sucrase/dist
+./node_modules/sucrase/LICENSE
+./node_modules/sucrase/package.json
+./node_modules/sucrase/README.md
+./node_modules/sucrase/register
+./node_modules/sucrase/ts-node-plugin
+./node_modules/supports-color
+./node_modules/supports-color/browser.js
+./node_modules/supports-color/index.js
+./node_modules/supports-color/license
+./node_modules/supports-color/package.json
+./node_modules/supports-color/readme.md
+./node_modules/supports-preserve-symlinks-flag
+./node_modules/supports-preserve-symlinks-flag/.eslintrc
+./node_modules/supports-preserve-symlinks-flag/.github
+./node_modules/supports-preserve-symlinks-flag/.nycrc
+./node_modules/supports-preserve-symlinks-flag/browser.js
+./node_modules/supports-preserve-symlinks-flag/CHANGELOG.md
+./node_modules/supports-preserve-symlinks-flag/index.js
+./node_modules/supports-preserve-symlinks-flag/LICENSE
+./node_modules/supports-preserve-symlinks-flag/package.json
+./node_modules/supports-preserve-symlinks-flag/README.md
+./node_modules/supports-preserve-symlinks-flag/test
+./node_modules/tailwindcss
+./node_modules/tailwindcss/base.css
+./node_modules/tailwindcss/CHANGELOG.md
+./node_modules/tailwindcss/colors.d.ts
+./node_modules/tailwindcss/colors.js
+./node_modules/tailwindcss/components.css
+./node_modules/tailwindcss/defaultConfig.d.ts
+./node_modules/tailwindcss/defaultConfig.js
+./node_modules/tailwindcss/defaultTheme.d.ts
+./node_modules/tailwindcss/defaultTheme.js
+./node_modules/tailwindcss/lib
+./node_modules/tailwindcss/LICENSE
+./node_modules/tailwindcss/loadConfig.d.ts
+./node_modules/tailwindcss/loadConfig.js
+./node_modules/tailwindcss/nesting
+./node_modules/tailwindcss/node_modules
+./node_modules/tailwindcss/package.json
+./node_modules/tailwindcss/peers
+./node_modules/tailwindcss/plugin.d.ts
+./node_modules/tailwindcss/plugin.js
+./node_modules/tailwindcss/prettier.config.js
+./node_modules/tailwindcss/README.md
+./node_modules/tailwindcss/resolveConfig.d.ts
+./node_modules/tailwindcss/resolveConfig.js
+./node_modules/tailwindcss/screens.css
+./node_modules/tailwindcss/scripts
+./node_modules/tailwindcss/src
+./node_modules/tailwindcss/stubs
+./node_modules/tailwindcss/tailwind.css
+./node_modules/tailwindcss/types
+./node_modules/tailwindcss/utilities.css
+./node_modules/tailwindcss/variants.css
+./node_modules/tapable
+./node_modules/tapable/lib
+./node_modules/tapable/LICENSE
+./node_modules/tapable/package.json
+./node_modules/tapable/README.md
+./node_modules/tapable/tapable.d.ts
+./node_modules/tar
+./node_modules/tar/dist
+./node_modules/tar/LICENSE
+./node_modules/tar/package.json
+./node_modules/tar/README.md
+./node_modules/thenify
+./node_modules/thenify/History.md
+./node_modules/thenify/index.js
+./node_modules/thenify/LICENSE
+./node_modules/thenify/package.json
+./node_modules/thenify/README.md
+./node_modules/thenify-all
+./node_modules/thenify-all/History.md
+./node_modules/thenify-all/index.js
+./node_modules/thenify-all/LICENSE
+./node_modules/thenify-all/package.json
+./node_modules/thenify-all/README.md
+./node_modules/tinyglobby
+./node_modules/tinyglobby/dist
+./node_modules/tinyglobby/LICENSE
+./node_modules/tinyglobby/node_modules
+./node_modules/tinyglobby/package.json
+./node_modules/tinyglobby/README.md
+./node_modules/to-regex-range
+./node_modules/to-regex-range/index.js
+./node_modules/to-regex-range/LICENSE
+./node_modules/to-regex-range/package.json
+./node_modules/to-regex-range/README.md
+./node_modules/tree-kill
+./node_modules/tree-kill/cli.js
+./node_modules/tree-kill/index.d.ts
+./node_modules/tree-kill/index.js
+./node_modules/tree-kill/LICENSE
+./node_modules/tree-kill/package.json
+./node_modules/tree-kill/README.md
+./node_modules/ts-interface-checker
+./node_modules/ts-interface-checker/dist
+./node_modules/ts-interface-checker/LICENSE
+./node_modules/ts-interface-checker/package.json
+./node_modules/ts-interface-checker/README.md
+./node_modules/tslib
+./node_modules/tslib/CopyrightNotice.txt
+./node_modules/tslib/LICENSE.txt
+./node_modules/tslib/modules
+./node_modules/tslib/package.json
+./node_modules/tslib/README.md
+./node_modules/tslib/SECURITY.md
+./node_modules/tslib/tslib.d.ts
+./node_modules/tslib/tslib.es6.html
+./node_modules/tslib/tslib.es6.js
+./node_modules/tslib/tslib.es6.mjs
+./node_modules/tslib/tslib.html
+./node_modules/tslib/tslib.js
+./node_modules/update-browserslist-db
+./node_modules/update-browserslist-db/check-npm-version.js
+./node_modules/update-browserslist-db/cli.js
+./node_modules/update-browserslist-db/index.d.ts
+./node_modules/update-browserslist-db/index.js
+./node_modules/update-browserslist-db/LICENSE
+./node_modules/update-browserslist-db/package.json
+./node_modules/update-browserslist-db/README.md
+./node_modules/update-browserslist-db/utils.js
+./node_modules/util-deprecate
+./node_modules/util-deprecate/browser.js
+./node_modules/util-deprecate/History.md
+./node_modules/util-deprecate/LICENSE
+./node_modules/util-deprecate/node.js
+./node_modules/util-deprecate/package.json
+./node_modules/util-deprecate/README.md
+./node_modules/vite
+./node_modules/vite/bin
+./node_modules/vite/client.d.ts
+./node_modules/vite/dist
+./node_modules/vite/index.cjs
+./node_modules/vite/index.d.cts
+./node_modules/vite/LICENSE.md
+./node_modules/vite/misc
+./node_modules/vite/node_modules
+./node_modules/vite/package.json
+./node_modules/vite/README.md
+./node_modules/vite/types
+./node_modules/vite-plugin-full-reload
+./node_modules/vite-plugin-full-reload/dist
+./node_modules/vite-plugin-full-reload/LICENSE.txt
+./node_modules/vite-plugin-full-reload/package.json
+./node_modules/vite-plugin-full-reload/README.md
+./node_modules/which
+./node_modules/which/bin
+./node_modules/which/CHANGELOG.md
+./node_modules/which/LICENSE
+./node_modules/which/package.json
+./node_modules/which/README.md
+./node_modules/which/which.js
+./node_modules/wrap-ansi
+./node_modules/wrap-ansi/index.d.ts
+./node_modules/wrap-ansi/index.js
+./node_modules/wrap-ansi/license
+./node_modules/wrap-ansi/node_modules
+./node_modules/wrap-ansi/package.json
+./node_modules/wrap-ansi/readme.md
+./node_modules/wrap-ansi-cjs
+./node_modules/wrap-ansi-cjs/index.js
+./node_modules/wrap-ansi-cjs/license
+./node_modules/wrap-ansi-cjs/node_modules
+./node_modules/wrap-ansi-cjs/package.json
+./node_modules/wrap-ansi-cjs/readme.md
+./node_modules/y18n
+./node_modules/y18n/build
+./node_modules/y18n/CHANGELOG.md
+./node_modules/y18n/index.mjs
+./node_modules/y18n/LICENSE
+./node_modules/y18n/package.json
+./node_modules/y18n/README.md
+./node_modules/yallist
+./node_modules/yallist/dist
+./node_modules/yallist/LICENSE.md
+./node_modules/yallist/package.json
+./node_modules/yallist/README.md
+./node_modules/yaml
+./node_modules/yaml/bin.mjs
+./node_modules/yaml/browser
+./node_modules/yaml/dist
+./node_modules/yaml/LICENSE
+./node_modules/yaml/package.json
+./node_modules/yaml/README.md
+./node_modules/yaml/util.js
+./node_modules/yargs
+./node_modules/yargs/browser.d.ts
+./node_modules/yargs/browser.mjs
+./node_modules/yargs/build
+./node_modules/yargs/helpers
+./node_modules/yargs/index.cjs
+./node_modules/yargs/index.mjs
+./node_modules/yargs/lib
+./node_modules/yargs/LICENSE
+./node_modules/yargs/locales
+./node_modules/yargs/node_modules
+./node_modules/yargs/package.json
+./node_modules/yargs/README.md
+./node_modules/yargs/yargs
+./node_modules/yargs/yargs.mjs
+./node_modules/yargs-parser
+./node_modules/yargs-parser/browser.js
+./node_modules/yargs-parser/build
+./node_modules/yargs-parser/CHANGELOG.md
+./node_modules/yargs-parser/LICENSE.txt
+./node_modules/yargs-parser/package.json
+./node_modules/yargs-parser/README.md
+./package-lock.json
+./package.json
+./phpunit.xml
+./postcss.config.js
+./public
+./public/.htaccess
+./public/build
+./public/build/assets
+./public/build/manifest.json
+./public/favicon.ico
+./public/hot
+./public/index.php
+./public/multimedia
+./public/multimedia/gebmoll_logo.png
+./public/robots.txt
+./README.md
+./resources
+./resources/css
+./resources/css/app.css
+./resources/js
+./resources/js/app.js
+./resources/js/bootstrap.js
+./resources/views
+./resources/views/admin
+./resources/views/alumno
+./resources/views/auth
+./resources/views/calendario
+./resources/views/components
+./resources/views/dashboard.blade.php
+./resources/views/docente
+./resources/views/layouts
+./resources/views/mensajes
+./resources/views/profile
+./resources/views/tutor
+./resources/views/welcome.blade.php
+./routes
+./routes/auth.php
+./routes/console.php
+./routes/web.php
+./start.sh
+./storage
+./storage/app
+./storage/app/.gitignore
+./storage/app/private
+./storage/app/public
+./storage/framework
+./storage/framework/.gitignore
+./storage/framework/cache
+./storage/framework/sessions
+./storage/framework/testing
+./storage/framework/views
+./storage/logs
+./storage/logs/laravel.log
+./subjects
+./tailwind.config.js
+./tests
+./tests/Feature
+./tests/Feature/Auth
+./tests/Feature/ExampleTest.php
+./tests/Feature/ProfileTest.php
+./tests/TestCase.php
+./tests/Unit
+./tests/Unit/ExampleTest.php
+./vendor
+./vendor/autoload.php
+./vendor/bin
+./vendor/bin/carbon
+./vendor/bin/patch-type-declarations
+./vendor/bin/php-parse
+./vendor/bin/phpunit
+./vendor/bin/pint
+./vendor/bin/psysh
+./vendor/bin/sail
+./vendor/bin/var-dump-server
+./vendor/bin/yaml-lint
+./vendor/brick
+./vendor/brick/math
+./vendor/carbonphp
+./vendor/carbonphp/carbon-doctrine-types
+./vendor/composer
+./vendor/composer/autoload_classmap.php
+./vendor/composer/autoload_files.php
+./vendor/composer/autoload_namespaces.php
+./vendor/composer/autoload_psr4.php
+./vendor/composer/autoload_real.php
+./vendor/composer/autoload_static.php
+./vendor/composer/ClassLoader.php
+./vendor/composer/installed.json
+./vendor/composer/installed.php
+./vendor/composer/InstalledVersions.php
+./vendor/composer/LICENSE
+./vendor/composer/platform_check.php
+./vendor/dflydev
+./vendor/dflydev/dot-access-data
+./vendor/doctrine
+./vendor/doctrine/inflector
+./vendor/doctrine/lexer
+./vendor/dragonmantank
+./vendor/dragonmantank/cron-expression
+./vendor/egulias
+./vendor/egulias/email-validator
+./vendor/fakerphp
+./vendor/fakerphp/faker
+./vendor/filp
+./vendor/filp/whoops
+./vendor/fruitcake
+./vendor/fruitcake/php-cors
+./vendor/graham-campbell
+./vendor/graham-campbell/result-type
+./vendor/guzzlehttp
+./vendor/guzzlehttp/guzzle
+./vendor/guzzlehttp/promises
+./vendor/guzzlehttp/psr7
+./vendor/guzzlehttp/uri-template
+./vendor/hamcrest
+./vendor/hamcrest/hamcrest-php
+./vendor/laravel
+./vendor/laravel/breeze
+./vendor/laravel/framework
+./vendor/laravel/pail
+./vendor/laravel/pint
+./vendor/laravel/prompts
+./vendor/laravel/sail
+./vendor/laravel/serializable-closure
+./vendor/laravel/tinker
+./vendor/league
+./vendor/league/commonmark
+./vendor/league/config
+./vendor/league/flysystem
+./vendor/league/flysystem-local
+./vendor/league/mime-type-detection
+./vendor/league/uri
+./vendor/league/uri-interfaces
+./vendor/mockery
+./vendor/mockery/mockery
+./vendor/monolog
+./vendor/monolog/monolog
+./vendor/myclabs
+./vendor/myclabs/deep-copy
+./vendor/nesbot
+./vendor/nesbot/carbon
+./vendor/nette
+./vendor/nette/schema
+./vendor/nette/utils
+./vendor/nikic
+./vendor/nikic/php-parser
+./vendor/nunomaduro
+./vendor/nunomaduro/collision
+./vendor/nunomaduro/termwind
+./vendor/phar-io
+./vendor/phar-io/manifest
+./vendor/phar-io/version
+./vendor/phpoption
+./vendor/phpoption/phpoption
+./vendor/phpunit
+./vendor/phpunit/php-code-coverage
+./vendor/phpunit/php-file-iterator
+./vendor/phpunit/php-invoker
+./vendor/phpunit/php-text-template
+./vendor/phpunit/php-timer
+./vendor/phpunit/phpunit
+./vendor/psr
+./vendor/psr/clock
+./vendor/psr/container
+./vendor/psr/event-dispatcher
+./vendor/psr/http-client
+./vendor/psr/http-factory
+./vendor/psr/http-message
+./vendor/psr/log
+./vendor/psr/simple-cache
+./vendor/psy
+./vendor/psy/psysh
+./vendor/ralouphie
+./vendor/ralouphie/getallheaders
+./vendor/ramsey
+./vendor/ramsey/collection
+./vendor/ramsey/uuid
+./vendor/sebastian
+./vendor/sebastian/cli-parser
+./vendor/sebastian/code-unit
+./vendor/sebastian/code-unit-reverse-lookup
+./vendor/sebastian/comparator
+./vendor/sebastian/complexity
+./vendor/sebastian/diff
+./vendor/sebastian/environment
+./vendor/sebastian/exporter
+./vendor/sebastian/global-state
+./vendor/sebastian/lines-of-code
+./vendor/sebastian/object-enumerator
+./vendor/sebastian/object-reflector
+./vendor/sebastian/recursion-context
+./vendor/sebastian/type
+./vendor/sebastian/version
+./vendor/staabm
+./vendor/staabm/side-effects-detector
+./vendor/symfony
+./vendor/symfony/clock
+./vendor/symfony/console
+./vendor/symfony/css-selector
+./vendor/symfony/deprecation-contracts
+./vendor/symfony/error-handler
+./vendor/symfony/event-dispatcher
+./vendor/symfony/event-dispatcher-contracts
+./vendor/symfony/finder
+./vendor/symfony/http-foundation
+./vendor/symfony/http-kernel
+./vendor/symfony/mailer
+./vendor/symfony/mime
+./vendor/symfony/polyfill-ctype
+./vendor/symfony/polyfill-intl-grapheme
+./vendor/symfony/polyfill-intl-idn
+./vendor/symfony/polyfill-intl-normalizer
+./vendor/symfony/polyfill-mbstring
+./vendor/symfony/polyfill-php80
+./vendor/symfony/polyfill-php83
+./vendor/symfony/polyfill-uuid
+./vendor/symfony/process
+./vendor/symfony/routing
+./vendor/symfony/service-contracts
+./vendor/symfony/string
+./vendor/symfony/translation
+./vendor/symfony/translation-contracts
+./vendor/symfony/uid
+./vendor/symfony/var-dumper
+./vendor/symfony/yaml
+./vendor/theseer
+./vendor/theseer/tokenizer
+./vendor/tijsverkoyen
+./vendor/tijsverkoyen/css-to-inline-styles
+./vendor/vlucas
+./vendor/vlucas/phpdotenv
+./vendor/voku
+./vendor/voku/portable-ascii
+./vendor/webmozart
+./vendor/webmozart/assert
+./vite.config.js
