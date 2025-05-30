@@ -11,9 +11,16 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Alumno\TaskController as AlumnoTaskController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\JustificacionController;
+use App\Http\Controllers\Tutor\JustificacionController;
 use App\Http\Controllers\Tutor\GradeController as TutorGradeController;
 use App\Http\Controllers\Tutor\TaskController as TutorTaskController;
+
+// Import Admin Controllers
+use App\Http\Controllers\Admin\AlumnoController as AdminAlumnoController;
+use App\Http\Controllers\Admin\DocenteController as AdminDocenteController;
+use App\Http\Controllers\Admin\TutorController as AdminTutorController;
+use App\Http\Controllers\Admin\NotaController as AdminNotaController;
+use App\Http\Controllers\Admin\LogController as AdminLogController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,12 +47,32 @@ Route::middleware('auth')->group(function () {
 });
 
 // ======================= ADMIN =======================
-Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
+Route::middleware(['auth', RoleMiddleware::class . ':admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', function () {
+            return view('admin.inicio');
+        })->name('inicio');
+
+        Route::post('/add-student', [AdminAlumnoController::class, 'addStudentToGroup'])->name('addStudent');
+        Route::post('/remove-student', [AdminAlumnoController::class, 'removeStudentFromGroup'])->name('removeStudent');
+        Route::post('/create-teacher-tutor', [AdminDocenteController::class, 'createTeacherOrTutor'])->name('createTeacherOrTutor');
+        Route::post('/delete-user', [AdminDocenteController::class, 'deleteUser'])->name('deleteUser');
+        Route::post('/move-student', [AdminAlumnoController::class, 'moveStudentToAnotherGroup'])->name('moveStudent');
+        Route::post('/assign-grade', [AdminNotaController::class, 'assignGradeToStudent'])->name('assignGrade');
+        Route::get('/logs/index', [\App\Http\Controllers\Admin\LogController::class, 'index'])->name('logs.index');
+
+        Route::resource('alumnos', AdminAlumnoController::class);
+        Route::resource('docentes', AdminDocenteController::class);
+        Route::resource('tutores', AdminTutorController::class)->parameters(['tutores' => 'tutor']);
+        Route::resource('notas', AdminNotaController::class);
+        Route::get('notas/create', [AdminNotaController::class, 'create'])->name('notas.create');
+        Route::post('notas', [AdminNotaController::class, 'store'])->name('notas.store');
+        Route::put('notas/{id}', [AdminNotaController::class, 'update'])->name('admin.notas.update');
+        Route::get('logs', [AdminLogController::class, 'index'])->name('logs');
+        Route::put('/admin/alumnos/{id}', [AdminAlumnoController::class, 'update'])->name('admin.alumnos.update');
     });
-    Route::resource('tutores', TutorController::class);
-});
 
 // ======================= DOCENTE =======================
 Route::middleware(['auth', RoleMiddleware::class . ':docente'])->prefix('docente')->group(function () {
@@ -93,7 +120,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':alumno'])
         Route::post('/tareas/{task}/completar', [AlumnoTaskController::class, 'marcarCompletada'])->name('tareas.completar');
 
         Route::get('/calendario', [\App\Http\Controllers\Alumno\EventController::class, 'index'])->name('calendario');
-});
+    });
 
 // ======================= TUTOR =======================
 Route::middleware(['auth', RoleMiddleware::class . ':tutor'])

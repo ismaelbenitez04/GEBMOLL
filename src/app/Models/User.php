@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Justificacion;
+use OwenIt\Auditing\Contracts\Auditable; // Es un paquete, Laravel Auditing, que sirve para ver tofas las modificaciones que se han hecho(logs).
 
-class User extends Authenticatable
+
+
+class User extends Authenticatable implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -23,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'group_id',
     ];
 
     /**
