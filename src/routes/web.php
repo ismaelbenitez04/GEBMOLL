@@ -110,9 +110,11 @@ Route::middleware(['auth', RoleMiddleware::class . ':alumno'])
     ->group(function () {
         Route::get('/inicio', [\App\Http\Controllers\Alumno\InicioController::class, 'index'])->name('inicio');
         Route::view('/calendario', 'alumno.calendario')->name('calendario');
-
+        
+        
         Route::get('/asistencia', [AttendanceController::class, 'verAsistenciaAlumno'])->name('asistencia');
-        Route::post('/alumno/asistencia/{attendance}/justificar', [AttendanceController::class, 'justificar'])->name('alumno.asistencia.justificar');
+         Route::post('/asistencia/{attendance}/justificar', [AttendanceController::class, 'justificar'])->name('asistencia.justificar');
+       
 
         Route::get('/calificaciones', [GradeController::class, 'verCalificacionesAlumno'])->name('calificaciones');
 
@@ -140,7 +142,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':tutor'])
         Route::post('/justificaciones', [JustificacionController::class, 'store'])->name('justificaciones.store');
         Route::post('/justificaciones/{justificacion}/responder', [TutorController::class, 'responderJustificacion'])->name('justificaciones.responder');
 
-        Route::resource('calificaciones', TutorGradeController::class)
+        Route::resource('calificaciones', GradeController::class)
             ->parameters(['calificaciones' => 'grade'])
             ->names('calificaciones');
 

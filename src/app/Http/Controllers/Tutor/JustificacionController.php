@@ -41,9 +41,6 @@ class JustificacionController extends Controller
     {
         $alumno = User::findOrFail($alumnoId);
 
-        // Aquí pones la lógica para marcar la falta como justificada
-        // Por ejemplo, crear o actualizar un registro en la tabla justificaciones
-
 
         Justificacion::create([
             'user_id' => $alumno->id,

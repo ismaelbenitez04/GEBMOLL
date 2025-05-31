@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\Subject;
+use App\Models\Justificacion;
 use App\Models\Group;
 use App\Models\User;
+
 
 class AttendanceController extends Controller
 {
@@ -51,34 +53,39 @@ class AttendanceController extends Controller
 
         return view('docente.asistencia.create', compact('groups', 'students'));
     }
-    public function store(Request $request)
+   public function store(Request $request)
     {
-        $exists = Attendance::where('user_id', $userId)
-            ->where('subject_id', $subjectId)
-            ->where('date', $date)
-            ->exists();
-
+        // Validación de los datos del formulario
         $request->validate([
-            'subject_id' => 'required|exists:subjects,id',
-            'date' => 'required|date',
-            'status' => 'array',
+            'subject_id' => 'required|exists:subjects,id', // Asegúrate de que la asignatura exista
+            'date' => 'required|date', // Asegúrate de que la fecha esté bien definida
+            'status' => 'required|array', // Asegúrate de que los estados sean un array
         ]);
-        
 
-       foreach ($request->status ?? [] as $userId => $status) {
-            logger("ID: $userId - Status: $status");
-            dd($status, in_array($status, ['presente', 'retraso']));
+        // Guardar la asistencia de los estudiantes
+        foreach ($request->status as $userId => $status) {
+            $isPresent = in_array($status, ['present', 'late']) ? 1 : 0;
+            // Verificamos que el estado sea uno de los valores válidos
+            if (!in_array($status, ['present', 'absent', 'late'])) {
+                continue;  // Si el valor del estado no es correcto, pasamos al siguiente
+            }
+            
+            
+            // Crear una nueva entrada de asistencia
             Attendance::create([
-                'user_id' => $userId,
-                'subject_id' => $request->subject_id,
-                'date' => $request->date,
-                'status' => $status,
-                'present' => in_array($status, ['present', 'late']), 
+                'user_id' => $userId,          // ID del estudiante
+                'subject_id' => $request->subject_id,  // Asignatura de la clase
+                'date' => $request->date,     // Fecha de la clase
+                'status' => $status,           // Estado: "present", "absent", "late"
+                'present' => $isPresent, // Aquí se asigna 1 si es 'present' o 'late', 0 si no
             ]);
         }
 
+        // Redirigir con un mensaje de éxito
         return redirect()->route('asistencia.index')->with('success', 'Asistencia registrada correctamente.');
     }
+
+
 
 
    public function edit(Attendance $attendance)
@@ -158,21 +165,43 @@ class AttendanceController extends Controller
         return view('alumno.asistencia.index', compact('attendances', 'subjects', 'stats'));
     }
 
-    public function justificar(Request $request, Attendance $attendance)
+     
+    public function justificar($attendanceId, Request $request)
     {
+        // Validar el motivo de la justificación
         $request->validate([
             'motivo' => 'required|string|max:255',
         ]);
 
-        Justificacion::create([
-            'user_id' => auth()->id(),
-            'subject_id' => $attendance->subject_id,
-            'date' => $attendance->date,
-            'motivo' => $request->motivo,
-            'estado' => 'pendiente',
-        ]);
+        // Buscar la entrada de asistencia, asumiendo que ya tenemos una entrada
+        $attendance = Attendance::findOrFail($attendanceId);
+        
+        // Aquí asociamos el usuario y la asignatura
+        $user = $attendance->user; // Obtener el usuario (alumno)
+        $subject = $attendance->subject; // Obtener la asignatura relacionada con esta asistencia
+        
+        // Verificamos si ya existe una justificación para el usuario y asignatura
+        $justificacion = Justificacion::where('user_id', $user->id)
+                                      ->where('subject_id', $subject->id)
+                                      ->first();
 
-        return redirect()->back()->with('success', 'Justificación enviada correctamente.');
+        if ($justificacion) {
+            // Si ya existe, actualizamos la justificación
+            $justificacion->motivo = $request->motivo;
+            $justificacion->estado = 'pendiente'; // O el estado que corresponda
+            $justificacion->save();
+        } else {
+            // Si no existe, creamos una nueva justificación
+            Justificacion::create([
+                'user_id' => $user->id,
+                'subject_id' => $subject->id,
+                'motivo' => $request->motivo,
+                'estado' => 'pendiente', // Estado inicial
+                'date' => now(), // Fecha actual de la justificación
+            ]);
+        }
+
+        return redirect()->route('alumno.asistencia')->with('success', 'Falta justificada correctamente');
     }
 
 

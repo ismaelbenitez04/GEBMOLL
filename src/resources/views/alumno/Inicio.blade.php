@@ -4,48 +4,49 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Bienvenido, {{ auth()->user()->name }}</h1>
+    <h1 class="mb-4 fw-semibold">Bienvenido, {{ auth()->user()->name }}</h1>
 
-    <div class="row">
+    <div class="row g-4">
         <!-- Tareas Pendientes -->
         <div class="col-md-4">
-            <div class="card border-primary mb-3">
-                <div class="card-header bg-primary text-white">Tareas Pendientes</div>
+            <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $tareasPendientes->count() }}</h5>
-                    <p class="card-text">Tienes tareas por completar.</p>
-                    <a href="{{ route('alumno.tareas') }}" class="btn btn-sm btn-primary">Ver Tareas</a>
+                    <h6 class="text-primary fw-semibold mb-2">Tareas Pendientes</h6>
+                    <h2 class="fw-bold">{{ $tareasPendientes->count() }}</h2>
+                    <p class="text-muted">Tienes tareas por completar.</p>
+                    <a href="{{ route('alumno.tareas') }}" class="btn btn-sm btn-outline-primary">Ver Tareas</a>
                 </div>
             </div>
         </div>
 
         <!-- Mensajes sin leer -->
         <div class="col-md-4">
-            <div class="card border-danger mb-3">
-                <div class="card-header bg-danger text-white">Mensajes sin leer</div>
+            <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $mensajesSinLeer->count() }}</h5>
-                    <p class="card-text">Revisa tus chats pendientes.</p>
-                    <a href="{{ route('mensajes.index') }}" class="btn btn-sm btn-danger">Ir a Mensajes</a>
+                    <h6 class="text-danger fw-semibold mb-2">Mensajes sin leer</h6>
+                    <h2 class="fw-bold">{{ $mensajesSinLeer->count() }}</h2>
+                    <p class="text-muted">Revisa tus chats pendientes.</p>
+                    <a href="{{ route('mensajes.index') }}" class="btn btn-sm btn-outline-danger">Ir a Mensajes</a>
                 </div>
             </div>
         </div>
 
         <!-- Últimas Calificaciones -->
         <div class="col-md-4">
-            <div class="card border-success mb-3">
-                <div class="card-header bg-success text-white">Últimas Calificaciones</div>
+            <div class="card shadow-sm border-0 rounded-4">
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
+                    <h6 class="text-success fw-semibold mb-3">Últimas Calificaciones</h6>
+                    <ul class="list-group list-group-flush mb-2">
                         @forelse ($calificaciones as $nota)
-                            <li class="list-group-item">
-                                {{ $nota->subject->name ?? 'Sin asignatura' }}: <strong>{{ $nota->grade }}</strong>
+                            <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                                <span>{{ $nota->subject->name ?? 'Sin asignatura' }}</span>
+                                <strong>{{ $nota->grade }}</strong>
                             </li>
                         @empty
-                            <li class="list-group-item">Sin calificaciones recientes</li>
+                            <li class="list-group-item px-0">Sin calificaciones recientes</li>
                         @endforelse
                     </ul>
-                    <a href="{{ route('alumno.calificaciones') }}" class="btn btn-sm btn-success mt-2">Ver todas</a>
+                    <a href="{{ route('alumno.calificaciones') }}" class="btn btn-sm btn-outline-success">Ver todas</a>
                 </div>
             </div>
         </div>

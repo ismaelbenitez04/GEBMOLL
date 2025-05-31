@@ -21,8 +21,8 @@ class Attendance extends Model
     {
         return $this->belongsTo(Subject::class);
     }
-    public function justificaciones()
+    public function justificacion()
     {
-        return $this->hasMany(\App\Models\Justificacion::class, 'user_id');
+        return $this->hasOne(Justificacion::class);
     }
 }

@@ -1,100 +1,57 @@
 @extends('layouts.user')
 
+@section('title', 'Asistencia')
+
 @section('content')
-<div class="container">
-    <h2 class="mb-4">Mi Asistencia</h2>
+    <div class="mb-4">
+        <h1 class="fw-semibold text-primary">Mi Asistencia</h1>
+        <p class="text-muted">Aquí puedes revisar y justificar tus ausencias.</p>
+    </div>
 
-    {{-- Filtros --}}
-    <form method="GET" class="row g-3 mb-4">
-        <div class="col-md-3">
-            <label class="form-label">Asignatura</label>
-            <select name="subject_id" class="form-select">
-                <option value="">Todas</option>
-                @foreach ($subjects as $subject)
-                    <option value="{{ $subject->id }}" {{ request('subject_id') == $subject->id ? 'selected' : '' }}>
-                        {{ $subject->name }}
-                    </option>
-                @endforeach
-            </select>
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Asignatura</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($attendances as $attendance)
+                            <tr>
+                                <td>{{ $attendance->subject->name }}</td>
+                                <td>{{ \Carbon\Carbon::parse($attendance->date)->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ($attendance->justification_status === 'aceptada')
+                                        <span class="badge bg-success">Aceptada</span>
+                                    @elseif ($attendance->justification_status === 'rechazada')
+                                        <span class="badge bg-danger">Rechazada</span>
+                                    @else
+                                        <span class="badge bg-warning text-dark">Pendiente</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!$attendance->justificado)
+                                        <form action="{{ route('alumno.asistencia.justificar', $attendance->id) }}" method="POST">
+                                            @csrf
+                                            <div class="mb-2">
+                                                <textarea name="motivo" class="form-control" rows="2" required placeholder="Motivo de la justificación"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">Justificar</button>
+                                        </form>
+                                    @else
+                                        <span class="badge bg-success">Justificada</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <div class="col-md-3">
-            <label class="form-label">Desde</label>
-            <input type="date" name="from_date" class="form-control" value="{{ request('from_date') }}">
-        </div>
-
-        <div class="col-md-3">
-            <label class="form-label">Hasta</label>
-            <input type="date" name="to_date" class="form-control" value="{{ request('to_date') }}">
-        </div>
-
-        <div class="col-md-3 align-self-end">
-            <button type="submit" class="btn btn-primary">Filtrar</button>
-        </div>
-    </form>
-
-    {{-- Gráfico --}}
-    <canvas id="attendanceChart" height="100"></canvas>
-
-    {{-- Tabla --}}
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr>
-                <th>Asignatura</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($attendances as $attendance)
-                <tr>
-                    <td>{{ $attendance->subject->name ?? '—' }}</td>
-                    <td>{{ $attendance->date }}</td>
-                    <td>
-                        @if ($attendance->status === 'present')
-                            <span class="badge bg-success">Presente</span>
-                        @elseif ($attendance->status === 'absent')
-                            <span class="badge bg-danger">Ausente</span>
-                        @elseif ($attendance->status === 'late')
-                            <span class="badge bg-warning text-dark">Retraso</span>
-                        @else
-                            <span class="badge bg-secondary">Desconocido</span>
-                        @endif
-                    </td>
-                </tr>
-               <form action="{{ route('alumno.asistencia.justificar', $attendance->id) }}" method="POST">
-                    @csrf
-                    <textarea name="motivo" required placeholder="Escribe el motivo de la justificación"></textarea>
-                    <button type="submit" class="btn btn-primary">Justificar</button>
-                </form>
-
-            @empty
-                <tr>
-                    <td colspan="3">No hay registros</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-</div>
-@endsection
-
-@section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('attendanceChart');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Presente', 'Ausente', 'Retraso'],
-            datasets: [{
-                label: 'Número de asistencias',
-                data: [{{ $stats['present'] }}, {{ $stats['absent'] }}, {{ $stats['late'] }}],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: { y: { beginAtZero: true } }
-        }
-    });
-</script>
+    </div>
 @endsection

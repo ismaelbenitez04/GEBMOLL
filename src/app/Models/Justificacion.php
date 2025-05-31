@@ -21,6 +21,10 @@ class Justificacion extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function attendance()
+    {
+        return $this->belongsTo(Attendance::class);
+    }
 
     public function subject()
     {

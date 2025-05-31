@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         switch ($role) {
             case 'admin':
-                return redirect('/admin/inicio');
+                return redirect('/admin');
             case 'docente':
                 return redirect('/docente/inicio');
             case 'alumno':

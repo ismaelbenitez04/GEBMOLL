@@ -5,16 +5,45 @@
 @push('styles')
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
     <style>
-        #calendar {
+        #calendar-container {
             max-width: 1000px;
             margin: 0 auto;
+        }
+
+        #calendar {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+
+        .fc-toolbar-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1E293B;
+        }
+
+        .fc-button-primary {
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 0.5rem;
+        }
+
+        .fc-button-primary:hover {
+            background-color: #0b5ed7;
         }
     </style>
 @endpush
 
 @section('content')
-    <h1 class="mb-4">Calendario</h1>
-    <div id='calendar'></div>
+    <div class="mb-4 text-center">
+        <h1 class="fw-semibold text-primary">Calendario</h1>
+        <p class="text-muted">Consulta tus eventos, clases, entregas y más.</p>
+    </div>
+
+    <div id="calendar-container">
+        <div id='calendar'></div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -26,6 +55,7 @@
                 initialView: 'dayGridMonth',
                 locale: 'es',
                 events: @json($events),
+                height: 'auto',
                 eventClick: function (info) {
                     alert(info.event.title + "\n\n" + info.event.extendedProps.description);
                 }
