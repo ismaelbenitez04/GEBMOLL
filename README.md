@@ -27,3 +27,4 @@ Esta es una plataforma web desarrollada para la gestión académica y administra
 ---
 #### Diagrama
 ![diagram (1)](https://github.com/user-attachments/assets/41aee671-e987-443f-8f32-b53894897469)
+
