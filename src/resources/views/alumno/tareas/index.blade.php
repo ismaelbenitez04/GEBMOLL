@@ -51,6 +51,12 @@
                         <button type="submit" class="btn btn-sm btn-outline-primary">Marcar como completada</button>
                     </form>
                 @endif
+                 <div class="task-item">
+                    <form action="{{ route('alumno.tareas.agregarCalendario', $task->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-warning">Asignar al Calendario</button>
+                    </form>
+                </div>
             </div>
         </div>
     @empty

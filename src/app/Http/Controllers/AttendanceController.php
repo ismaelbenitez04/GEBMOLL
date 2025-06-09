@@ -13,27 +13,26 @@ use App\Models\User;
 
 class AttendanceController extends Controller
 {
+    // Mostrar todas las asistencias registradas por el docente
     public function index()
-{
-    $docente = auth()->user();
+    {
+        $docente = auth()->user();
+        // Obtenemos los grupos donde el docente tiene asignaturas
+        $groups = Group::whereHas('subjects', function ($query) use ($docente) {
+            $query->where('teacher_id', $docente->id);
+        })->with(['subjects' => function ($query) use ($docente) {
+            $query->where('teacher_id', $docente->id);
+        }])->get();
+        // Obtenemos asistencias de asignaturas del docente
+        $attendances = Attendance::whereIn('subject_id', function ($query) use ($docente) {
+            $query->select('id')
+                ->from('subjects')
+                ->where('teacher_id', $docente->id);
+        })->with(['user', 'subject'])->orderBy('date', 'desc')->get();
 
-    $groups = Group::whereHas('subjects', function ($query) use ($docente) {
-        $query->where('teacher_id', $docente->id);
-    })->with(['subjects' => function ($query) use ($docente) {
-        $query->where('teacher_id', $docente->id);
-    }])->get();
-
-    $attendances = Attendance::whereIn('subject_id', function ($query) use ($docente) {
-        $query->select('id')
-              ->from('subjects')
-              ->where('teacher_id', $docente->id);
-    })->with(['user', 'subject'])->orderBy('date', 'desc')->get();
-
-    return view('docente.asistencia.index', compact('groups', 'attendances'));
-}
-
-
-
+        return view('docente.asistencia.index', compact('groups', 'attendances'));
+    }
+    // Formulario para registrar nuevas asistencias
    public function create(Request $request)
     {
         $docente = auth()->user();
@@ -43,6 +42,7 @@ class AttendanceController extends Controller
         })->with(['subjects' => function ($query) use ($docente) {
             $query->where('teacher_id', $docente->id);
         }, 'students'])->get();
+        // Recopilar todos los alumnos de los grupos
 
         $students = collect();
         foreach ($groups as $group) {
@@ -57,9 +57,9 @@ class AttendanceController extends Controller
     {
         // Validación de los datos del formulario
         $request->validate([
-            'subject_id' => 'required|exists:subjects,id', // Asegúrate de que la asignatura exista
-            'date' => 'required|date', // Asegúrate de que la fecha esté bien definida
-            'status' => 'required|array', // Asegúrate de que los estados sean un array
+            'subject_id' => 'required|exists:subjects,id', 
+            'date' => 'required|date', 
+            'status' => 'required|array', 
         ]);
 
         // Guardar la asistencia de los estudiantes
@@ -88,41 +88,44 @@ class AttendanceController extends Controller
 
 
 
-   public function edit(Attendance $attendance)
+     // ✏️ Formulario para editar una asistencia específica
+    public function edit(Attendance $attendance)
     {
         $attendance->load(['user', 'subject']);
-
         return view('docente.asistencia.edit', compact('attendance'));
     }
 
+    // 🔁 Guardar cambios en una asistencia
     public function update(Request $request, Attendance $attendance)
     {
         $request->validate([
             'date' => 'required|date',
-            'status' => 'required|string|in:present,absent,late', 
+            'status' => 'required|string|in:present,absent,late',
         ]);
 
         $attendance->update([
             'date' => $request->input('date'),
-            'present' => in_array($request->input('status'), ['present', 'late']), 
+            'present' => in_array($request->input('status'), ['present', 'late']),
             'status' => $request->input('status'),
         ]);
 
         return redirect()->route('asistencia.index')->with('success', 'Asistencia actualizada correctamente.');
     }
 
+    // 📌 Seleccionar grupo para pasar lista
     public function seleccionarClase()
     {
         $docente = auth()->user();
 
-        $clases = \App\Models\Group::whereHas('subjects', function ($q) use ($docente) {
+        $clases = Group::whereHas('subjects', function ($q) use ($docente) {
             $q->where('teacher_id', $docente->id);
         })->get();
 
         return view('docente.asistencia.seleccionar_clase', compact('clases'));
-}
+    }
 
-    public function pasarLista(\App\Models\Group $group)
+    // ✅ Mostrar formulario de pasar lista para un grupo
+    public function pasarLista(Group $group)
     {
         $docente = auth()->user();
 
@@ -131,80 +134,73 @@ class AttendanceController extends Controller
 
         return view('docente.asistencia.pasar_lista', compact('group', 'subjects', 'students'));
     }
-   public function verAsistenciaAlumno(Request $request)
+
+    // 👨‍🎓 Vista del alumno para consultar su asistencia
+    public function verAsistenciaAlumno(Request $request)
     {
         $alumno = auth()->user();
 
         $query = Attendance::where('user_id', $alumno->id)->with('subject');
 
-        // Filtros dinámicos
+        // Filtros por asignatura y fechas
         if ($request->filled('subject_id')) {
             $query->where('subject_id', $request->subject_id);
         }
-
         if ($request->filled('from_date')) {
             $query->where('date', '>=', $request->from_date);
         }
-
         if ($request->filled('to_date')) {
             $query->where('date', '<=', $request->to_date);
         }
 
         $attendances = $query->orderBy('date', 'desc')->get();
 
-        // Estadísticas
+        // Contar asistencias por estado
         $stats = [
             'present' => $attendances->where('status', 'present')->count(),
             'absent' => $attendances->where('status', 'absent')->count(),
             'late' => $attendances->where('status', 'late')->count(),
         ];
 
-        // Asignaturas para el filtro
         $subjects = Subject::whereHas('attendances', fn($q) => $q->where('user_id', $alumno->id))->get();
 
         return view('alumno.asistencia.index', compact('attendances', 'subjects', 'stats'));
     }
 
-     
+    // 📝 Justificar una falta desde el alumno
     public function justificar($attendanceId, Request $request)
     {
-        // Validar el motivo de la justificación
         $request->validate([
             'motivo' => 'required|string|max:255',
         ]);
 
-        // Buscar la entrada de asistencia, asumiendo que ya tenemos una entrada
         $attendance = Attendance::findOrFail($attendanceId);
-        
-        // Aquí asociamos el usuario y la asignatura
-        $user = $attendance->user; // Obtener el usuario (alumno)
-        $subject = $attendance->subject; // Obtener la asignatura relacionada con esta asistencia
-        
-        // Verificamos si ya existe una justificación para el usuario y asignatura
+
+        $user = $attendance->user;
+        $subject = $attendance->subject;
+
+        // Verificar si ya existe una justificación previa
         $justificacion = Justificacion::where('user_id', $user->id)
-                                      ->where('subject_id', $subject->id)
-                                      ->first();
+            ->where('subject_id', $subject->id)
+            ->first();
 
         if ($justificacion) {
-            // Si ya existe, actualizamos la justificación
+            // Actualizar justificación existente
             $justificacion->motivo = $request->motivo;
-            $justificacion->estado = 'pendiente'; // O el estado que corresponda
+            $justificacion->estado = 'pendiente';
             $justificacion->save();
         } else {
-            // Si no existe, creamos una nueva justificación
+            // Crear nueva justificación
             Justificacion::create([
                 'user_id' => $user->id,
                 'subject_id' => $subject->id,
                 'motivo' => $request->motivo,
-                'estado' => 'pendiente', // Estado inicial
-                'date' => now(), // Fecha actual de la justificación
+                'estado' => 'pendiente',
+                'date' => now(),
             ]);
         }
 
         return redirect()->route('alumno.asistencia')->with('success', 'Falta justificada correctamente');
     }
-
-
-
 
 }

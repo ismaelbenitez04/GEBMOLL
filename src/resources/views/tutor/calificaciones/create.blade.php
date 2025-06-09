@@ -6,7 +6,7 @@
 <div class="container">
     <h1 class="mb-4 text-primary fw-semibold">Registrar Nueva Calificación</h1>
 
-    <form action="{{ route('calificaciones.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('tutor.calificaciones.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
         {{-- Alumno --}}
@@ -47,7 +47,7 @@
             <button type="submit" class="btn btn-success">
                 💾 Guardar Calificación
             </button>
-            <a href="{{ route('calificaciones.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('tutor.calificaciones.index') }}" class="btn btn-outline-secondary">
                 Cancelar
             </a>
         </div>

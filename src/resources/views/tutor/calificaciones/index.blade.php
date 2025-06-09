@@ -6,7 +6,7 @@
 <div class="container">
     <h2 class="mb-4 text-primary fw-semibold">Gestión de Calificaciones</h2>
 
-    <a href="{{ route('calificaciones.create') }}" class="btn btn-success mb-4">
+    <a href="{{ route('tutor.calificaciones.create') }}" class="btn btn-success mb-4">
         ➕ Nueva Calificación
     </a>
 
@@ -43,12 +43,12 @@
                             </td>
                             <td>{{ \Carbon\Carbon::parse($grade->date)->format('d/m/Y') }}</td>
                             <td class="text-center">
-                                <a href="{{ route('calificaciones.edit', ['grade' => $grade->id]) }}" class="btn btn-sm btn-outline-warning">
+                                <a href="{{ route('tutor.calificaciones.edit', ['grade' => $grade->id]) }}" class="btn btn-sm btn-outline-warning">
                                     ✏️ Editar
                                 </a>
                             </td>
                             <td class="text-center">
-                                <form method="POST" action="{{ route('calificaciones.destroy', ['grade' => $grade->id]) }}" onsubmit="return confirm('¿Estás seguro de eliminar esta calificación?')">
+                                <form method="POST" action="{{ route('tutor.calificaciones.destroy', ['grade' => $grade->id]) }}" onsubmit="return confirm('¿Estás seguro de eliminar esta calificación?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">

@@ -10,88 +10,93 @@ use Illuminate\Http\Request;
 
 class NotaController extends Controller
 {
-     public function index()
+    // 📋 Mostrar todas las notas
+    public function index()
     {
-        // Obtener todas las notas
-        $notas = Grade::with('user', 'subject')->get(); // Carga las notas, estudiantes y asignaturas
+        // Cargamos todas las notas junto con los datos del alumno y la asignatura relacionada
+        $notas = Grade::with('user', 'subject')->get();
 
         return view('admin.notas.index', compact('notas'));
     }
-    // Mostrar el formulario para crear una nueva nota
+
+    // 📝 Mostrar formulario para crear una nueva nota
     public function create()
     {
-        // Obtén los alumnos y asignaturas disponibles
+        // Obtenemos todos los alumnos (rol 'alumno') y todas las asignaturas disponibles
         $alumnos = User::where('role', 'alumno')->get();
         $asignaturas = Subject::all();
 
         return view('admin.notas.create', compact('alumnos', 'asignaturas'));
     }
 
-    // Almacenar la nueva nota
+    // 💾 Guardar una nueva nota
     public function store(Request $request)
     {
+        // Validamos los datos del formulario
         $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'subject_id' => 'required|exists:subjects,id',
-            'grade' => 'required|numeric|min:0|max:10',
+            'user_id' => 'required|exists:users,id',         // El alumno debe existir
+            'subject_id' => 'required|exists:subjects,id',   // La asignatura debe existir
+            'grade' => 'required|numeric|min:0|max:10',      // Nota entre 0 y 10
         ]);
 
-        // Crear la nueva nota
+        // Creamos la nota con la fecha actual
         Grade::create([
             'user_id' => $request->user_id,
             'subject_id' => $request->subject_id,
             'grade' => $request->grade,
-            'date' => now(),
+            'date' => now(), // Fecha del sistema
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
-        // Redirigir con un mensaje de éxito
+
         return redirect()->route('admin.notas.index')->with('success', 'Nota creada correctamente');
     }
 
-     public function edit($id)
+    // ✏️ Mostrar el formulario de edición de una nota
+    public function edit($id)
     {
-        // Obtener la nota a editar
+        // Buscamos la nota por ID
         $nota = Grade::findOrFail($id);
 
-        // Obtener todos los estudiantes y asignaturas
+        // Obtenemos alumnos y asignaturas para los selects del formulario
         $alumnos = User::where('role', 'alumno')->get();
         $asignaturas = Subject::all();
 
-        // Retornar la vista con los datos necesarios
         return view('admin.notas.edit', compact('nota', 'alumnos', 'asignaturas'));
     }
 
+    // ♻️ Actualizar una nota existente
     public function update(Request $request, $id)
     {
+        // Validamos los datos actualizados
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'subject_id' => 'required|exists:subjects,id',
             'grade' => 'required|numeric|min:0|max:10',
         ]);
 
-        // Encontrar la nota por ID
+        // Buscamos la nota
         $nota = Grade::findOrFail($id);
 
-        // Actualizar la nota con los datos del formulario
+        // Actualizamos sus campos
         $nota->update([
             'user_id' => $request->user_id,
             'subject_id' => $request->subject_id,
             'grade' => $request->grade,
         ]);
-        
+
         return redirect()->route('admin.notas.index')->with('success', 'Nota actualizada correctamente');
     }
-      public function destroy($id)
+
+    // 🗑️ Eliminar una nota
+    public function destroy($id)
     {
+        // Buscamos y eliminamos la nota
         $nota = Grade::findOrFail($id);
         $nota->delete();
 
-        // Loguear la eliminación
-        
+        // Aquí podrías registrar en auditoría que se eliminó una nota (opcional)
 
         return redirect()->route('admin.notas.index')->with('success', 'Nota eliminada correctamente');
     }
 }
-

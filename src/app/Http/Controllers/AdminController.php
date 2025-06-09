@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Grade;
+use OwenIt\Auditing\Models\Audit; // Asegúrate de importar esto si usas auditoría
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    // 📌 Asignar un alumno a un grupo
     public function addStudentToGroup(Request $request)
     {
-        // Validar datos
         $request->validate([
             'student_id' => 'required|exists:users,id',
             'group_id' => 'required|exists:groups,id',
@@ -19,30 +22,30 @@ class AdminController extends Controller
         $student = User::find($request->student_id);
         $group = Group::find($request->group_id);
 
-        // Asociar al alumno con el grupo
+        // Asocia el grupo al alumno
         $student->group()->associate($group);
         $student->save();
 
         return redirect()->back()->with('success', 'Alumno agregado al grupo exitosamente');
     }
 
+    // 🗑️ Quitar a un alumno del grupo
     public function removeStudentFromGroup(Request $request)
     {
-        // Validar datos
         $request->validate([
             'student_id' => 'required|exists:users,id',
         ]);
 
         $student = User::find($request->student_id);
 
-        // Eliminar asociación con el grupo
+        // Elimina la relación con el grupo
         $student->group()->dissociate();
         $student->save();
 
         return redirect()->back()->with('success', 'Alumno eliminado del grupo exitosamente');
     }
 
-
+    // 👨‍🏫 Crear un docente o tutor
     public function createTeacherOrTutor(Request $request)
     {
         $request->validate([
@@ -62,6 +65,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Nuevo ' . $request->role . ' creado exitosamente');
     }
 
+    // 🗑️ Eliminar un usuario
     public function deleteUser(Request $request)
     {
         $request->validate([
@@ -74,6 +78,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Usuario eliminado exitosamente');
     }
 
+    // 🔄 Mover un alumno a otro grupo
     public function moveStudentToAnotherGroup(Request $request)
     {
         $request->validate([
@@ -84,12 +89,14 @@ class AdminController extends Controller
         $student = User::find($request->student_id);
         $newGroup = Group::find($request->new_group_id);
 
-        // Mover al alumno al nuevo grupo
+        // Asociar el nuevo grupo
         $student->group()->associate($newGroup);
         $student->save();
 
         return redirect()->back()->with('success', 'Alumno movido a otro grupo exitosamente');
     }
+
+    // 📝 Asignar una calificación a un alumno
     public function assignGradeToStudent(Request $request)
     {
         $request->validate([
@@ -107,10 +114,10 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Nota asignada exitosamente');
     }
 
+    // 🧾 Mostrar logs de auditoría (si usas OwenIt\Auditing)
     public function showLogs()
     {
-        $logs = Audit::all();  // O usa tu filtro de logs
+        $logs = Audit::all();  // Se podrían filtrar o paginar
         return view('admin.logs.index', compact('logs'));
     }
-
 }

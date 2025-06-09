@@ -28,7 +28,6 @@
             <label for="role" class="form-label">🎓 Rol</label>
             <select name="role" id="role" class="form-select" required>
                 <option value="docente">Docente</option>
-                {{-- Podrías extender esto si en el futuro hay otros roles --}}
             </select>
         </div>
 

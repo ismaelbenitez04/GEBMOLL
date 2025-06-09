@@ -77,7 +77,6 @@ Route::middleware(['auth', RoleMiddleware::class . ':admin'])
 // ======================= DOCENTE =======================
 Route::middleware(['auth', RoleMiddleware::class . ':docente'])->prefix('docente')->group(function () {
     Route::view('/', 'docente.dashboard')->name('docente.dashboard');
-    Route::view('/calendario', 'docente.calendario')->name('docente.calendario');
     Route::view('/tareas', 'docente.tareas')->name('docente.tareas');
 
     Route::get('/inicio', [\App\Http\Controllers\Docente\InicioController::class, 'index'])->name('docente.inicio');
@@ -100,6 +99,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':docente'])->prefix('docente
     Route::post('/tareas', [TaskController::class, 'store'])->name('tareas.store');
 
     Route::get('/calendario', [EventController::class, 'index'])->name('calendario.index');
+    Route::get('/calendario/create', [EventController::class, 'create'])->name('calendario.create');
     Route::post('/calendario', [EventController::class, 'store'])->name('calendario.store');
 });
 
@@ -120,6 +120,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':alumno'])
 
         Route::get('/tareas', [AlumnoTaskController::class, 'index'])->name('tareas');
         Route::post('/tareas/{task}/completar', [AlumnoTaskController::class, 'marcarCompletada'])->name('tareas.completar');
+        Route::post('/tareas/{task}/agregarCalendario', [TaskController::class, 'agregarCalendario'])->name('tareas.agregarCalendario');
 
         Route::get('/calendario', [\App\Http\Controllers\Alumno\EventController::class, 'index'])->name('calendario');
     });
@@ -132,7 +133,10 @@ Route::middleware(['auth', RoleMiddleware::class . ':tutor'])
         Route::get('/inicio', [\App\Http\Controllers\Tutor\InicioController::class, 'index'])->name('inicio');
         Route::get('/alumnos', [TutorController::class, 'index'])->name('tutorandos');
 
-        Route::get('/calendario', [\App\Http\Controllers\Tutor\EventController::class, 'index'])->name('calendario');
+        Route::get('/calendario', [EventController::class, 'index'])->name('calendario.index');
+        Route::get('/calendario/create', [EventController::class, 'create'])->name('calendario.create');
+        Route::post('/calendario', [EventController::class, 'store'])->name('calendario.store');
+        
 
         Route::get('/asistencia', [\App\Http\Controllers\Tutor\AsistenciaController::class, 'index'])->name('asistencia');
         Route::get('/justificaciones', [\App\Http\Controllers\Tutor\JustificacionController::class, 'index'])->name('justificaciones');
@@ -142,13 +146,14 @@ Route::middleware(['auth', RoleMiddleware::class . ':tutor'])
         Route::post('/justificaciones', [JustificacionController::class, 'store'])->name('justificaciones.store');
         Route::post('/justificaciones/{justificacion}/responder', [TutorController::class, 'responderJustificacion'])->name('justificaciones.responder');
 
-        Route::resource('calificaciones', GradeController::class)
+        Route::resource('calificaciones', TutorGradeController::class)
             ->parameters(['calificaciones' => 'grade'])
             ->names('calificaciones');
 
         Route::get('/calificaciones', [TutorGradeController::class, 'index'])->name('calificaciones.index');
         Route::get('/calificaciones/{grade}/edit', [TutorGradeController::class, 'edit'])->name('calificaciones.edit');
         Route::put('/calificaciones/{grade}', [TutorGradeController::class, 'update'])->name('calificaciones.update');
+        Route::post('/calificaciones', [TutorGradeController::class, 'store'])->name('calificaciones.store');
 
         Route::get('/tareas', [TutorTaskController::class, 'index'])->name('tareas.index');
         Route::get('/tareas/crear', [TutorTaskController::class, 'create'])->name('tareas.create');

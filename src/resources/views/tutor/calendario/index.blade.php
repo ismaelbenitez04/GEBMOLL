@@ -43,15 +43,9 @@
     </div>
    
     <div id="calendar-container">
-          @if(auth()->user()->role === 'tutor')
-                <a href="{{ route('tutor.calendario.create') }}" class="btn btn-success mb-4">
-                    ➕ Nuevo Evento
-                </a>
-            @else
-                <a href="{{ route('calendario.create') }}" class="btn btn-success mb-4">
-                    ➕ Nuevo Evento
-                </a>
-            @endif
+         <a href="{{ route('tutor.calendario.create') }}" class="btn btn-success mb-4">
+            ➕ Nuevo Evento
+        </a>
         <div id="calendar"></div>
     </div>
 </div>

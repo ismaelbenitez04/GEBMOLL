@@ -6,7 +6,7 @@
 <div class="container">
     <h1 class="mb-4 text-primary fw-bold">Editar Calificación</h1>
 
-    <form action="{{ route('calificaciones.update', ['grade' => $grade->id]) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('tutor.calificaciones.update', ['grade' => $grade->id]) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
         @method('PUT')
 
@@ -53,7 +53,7 @@
             <button type="submit" class="btn btn-primary">
                 💾 Actualizar
             </button>
-            <a href="{{ route('calificaciones.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('tutor.calificaciones.index') }}" class="btn btn-outline-secondary">
                 Cancelar
             </a>
         </div>

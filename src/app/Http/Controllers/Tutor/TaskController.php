@@ -9,29 +9,41 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    // 📋 Mostrar todas las tareas creadas por el tutor
     public function index()
     {
         $tutor = Auth::user();
 
-        // Obtén tareas relacionadas con las asignaturas que el tutor quiere gestionar
-        // Por ejemplo, todas las tareas asignadas por el tutor en sus asignaturas
+        // Buscamos todas las tareas que pertenecen a asignaturas del tutor
         $tasks = Task::whereHas('subject', function($query) use ($tutor) {
-            // Aquí ajusta según relación con asignaturas
-            $query->where('teacher_id', $tutor->id);
+            $query->where('teacher_id', $tutor->id); // Aseguramos que el tutor sea el profesor de la asignatura
         })->get();
 
         return view('tutor.tareas.index', compact('tasks'));
     }
 
+    // 📝 Mostrar formulario para crear una nueva tarea
+    public function create()
+    {
+        $tutor = auth()->user();
 
+        // Obtenemos solo las asignaturas que enseña el tutor
+        $subjects = $tutor->subjects;
+
+        return view('tutor.tareas.create', compact('subjects'));
+    }
+
+    // 💾 Guardar una nueva tarea
     public function store(Request $request)
     {
+        // Validamos los datos recibidos
         $request->validate([
             'subject_id' => 'required|exists:subjects,id',
             'description' => 'required|string',
             'due_date' => 'required|date',
         ]);
 
+        // Creamos la tarea asociada a la asignatura
         Task::create([
             'subject_id' => $request->subject_id,
             'description' => $request->description,
@@ -40,20 +52,15 @@ class TaskController extends Controller
 
         return redirect()->route('tutor.tareas.index')->with('success', 'Tarea creada correctamente');
     }
-    public function create()
-    {
-        $tutor = auth()->user();
-        $subjects = $tutor->subjects; // Asignaturas del tutor
-        return view('tutor.tareas.create', compact('subjects'));
-    }
- 
-     public function edit(Task $task)
+
+    // ✏️ Mostrar formulario de edición de una tarea
+    public function edit(Task $task)
     {
         $tutor = Auth::user();
 
-        // Comprobar que la tarea pertenece a una asignatura del tutor
+        // Seguridad: aseguramos que el tutor solo edite tareas de sus asignaturas
         if ($task->subject->teacher_id !== $tutor->id) {
-            abort(403);
+            abort(403); // No autorizado
         }
 
         $subjects = $tutor->subjects;
@@ -61,31 +68,35 @@ class TaskController extends Controller
         return view('tutor.tareas.edit', compact('task', 'subjects'));
     }
 
-    // Actualizar tarea
+    // 🔁 Actualizar una tarea existente
     public function update(Request $request, Task $task)
     {
         $tutor = Auth::user();
 
+        // Verificación de seguridad como en edit()
         if ($task->subject->teacher_id !== $tutor->id) {
             abort(403);
         }
 
+        // Validación de datos
         $request->validate([
             'subject_id' => 'required|exists:subjects,id',
             'description' => 'required|string',
             'due_date' => 'required|date',
         ]);
 
+        // Actualizamos la tarea
         $task->update($request->all());
 
         return redirect()->route('tutor.tareas.index')->with('success', 'Tarea actualizada correctamente');
     }
 
-    // Eliminar tarea
+    // 🗑️ Eliminar una tarea
     public function destroy(Task $task)
     {
         $tutor = Auth::user();
 
+        // Verificación de seguridad antes de eliminar
         if ($task->subject->teacher_id !== $tutor->id) {
             abort(403);
         }
@@ -94,7 +105,4 @@ class TaskController extends Controller
 
         return redirect()->route('tutor.tareas.index')->with('success', 'Tarea eliminada correctamente');
     }
-
-
 }
-

@@ -80,10 +80,11 @@
                 @endif
 
                 <li class="nav-item">
+                    
                     @if ($role === 'alumno')
                         <a href="{{ route('alumno.calendario') }}" class="nav-link {{ request()->routeIs('alumno.calendario') ? 'active' : '' }}">Calendario</a>
-                    @elseif ($role === 'tutor')
-                        <a href="{{ route('tutor.calendario') }}" class="nav-link {{ request()->routeIs('tutor.calendario') ? 'active' : '' }}">Calendario</a>
+                    @elseif ($role == 'tutor')
+                        <a href="{{ route('tutor.calendario.index') }}" class="nav-link {{ request()->routeIs('tutor.calendario') ? 'active' : '' }}">Calendario</a>
                     @else
                         <a href="{{ route('calendario.index') }}" class="nav-link {{ request()->routeIs('calendario.index') ? 'active' : '' }}">Calendario</a>
                     @endif
